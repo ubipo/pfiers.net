@@ -1,0 +1,40 @@
+{
+  "name": "pieterfiers.net",
+  "version": "1.0.0",
+  "description": "Personal GitHub Pages site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ubipo/pieterfiers.net.git"
+  },
+  "author": "Pieter Fiers",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ubipo/pieterfiers.net/issues"
+  },
+  "homepage": "https://github.com/ubipo/pieterfiers.net#readme",
+  "dependencies": {
+    "ts-loader": "^5.3.3",
+    "vue": "^2.5.22",
+    "webpack": "^4.29.0",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^2.1.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "typescript": "^3.2.4",
+    "vue-class-component": "^6.3.2",
+    "vue-loader": "^15.6.2",
+    "vue-router": "^3.0.2",
+    "vue-template-compiler": "^2.5.22",
+    "vuetype": "^0.3.2",
+    "webpack-cli": "^3.2.1"
+  }
+}
