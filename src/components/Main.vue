@@ -67,6 +67,7 @@
 
   .main {
     margin-top: 2rem;
+    padding: 1rem;
     max-width: 60rem;
     width: 100%;
   }

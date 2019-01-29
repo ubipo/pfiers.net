@@ -1,10 +1,8 @@
 import * as serializedProjects from "./res/projects.json";
 
-export type Technology = "ts" | "web" | "webpack";
-
 export interface Project {
   name: string,
-  technologies: Array<Technology>,
+  technologies: Array<string>,
   short: string,
   imgUrl: string
 }

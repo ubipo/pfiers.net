@@ -4,10 +4,21 @@
     <nav>
       <ul class="navlist">
         <li class="navlist__item navlist__item--title">
-          <router-link class="navlist__link" to="/"><h1 class="navlist__link--title">Pieter Fiers ></h1></router-link>
+          <router-link class="navlist__link" to="/">
+            <h1 class="navlist__link--title">
+              <span v-if="windowWidth > 650">Pieter Fiers</span><span v-else>PF</span>>
+            </h1>
+          </router-link>
         </li>
-        <li class="navlist__item" v-for="page in pages" v-bind:key="page">
-          <router-link class="navlist__link" v-bind:to="page">{{page | capitalize }}</router-link>
+        <li class="navlist__item" v-for="(page, index) in pages" v-bind:key="index">
+          <router-link class="navlist__link" v-bind:to="page.full">
+            <span v-if="windowWidth > 650">
+              {{page.full | capitalize }}
+            </span>
+            <span v-else>
+              {{page.abrv | capitalize }}
+            </span>
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -17,6 +28,11 @@
 <script lang="ts">
   import Vue from 'vue';
   import Component from 'vue-class-component';
+
+  type PageName = {
+    full: string,
+    abrv: string
+  }
 
   @Component({
     filters: {
@@ -28,11 +44,19 @@
       super();
     }
 
-    pages: Array<string> = [
-      "technologies",
-      "projects",
-      "personal"
+    windowWidth: number = window.innerWidth;
+
+    pages: Array<PageName> = [
+      {full: "technologies", abrv: "tech"},
+      {full: "projects", abrv: "proj"}
     ]
+
+    public mounted() {
+      console.log("heeye");
+      window.onresize = () => {
+        this.windowWidth = window.innerWidth;
+      }
+    }
   }
 </script>
 
@@ -65,8 +89,8 @@
     outline: none;
 
     padding-bottom: calc(0.5rem + 3px);
-    padding-top: 1rem;
-    border-bottom: 3px solid hsl(120, 80, 20);
+    padding-top: 2rem;
+    border-bottom: 3px solid hsl(120, 80, 35);
 
     &:focus, &:hover {
       padding-bottom: 0.5rem;

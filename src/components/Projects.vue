@@ -4,7 +4,7 @@
     <section v-for="(project, index) in getProjects()" v-bind:key="index">
       <h3>{{project.name}}</h3>
       <p>{{project.short}}</p>
-      <object data="/src/res/tech-icons/opencv.svg" type="image/svg+xml"></object>
+      <TechnologyBadges v-bind:technologies="project.technologies"></TechnologyBadges>
       <figure>
         <img v-bind:src="project.imgUrl">
       </figure>
@@ -15,9 +15,14 @@
 <script lang="ts">
   import Vue from 'vue';
   import Component from 'vue-class-component';
+  import TechnologyBadges from './TechnologyBadges.vue';
   import { Project, deserializeProjects } from '../projectsDeserializer.ts';
 
-  @Component
+  @Component({
+    components: {
+      TechnologyBadges
+    }
+  })
   export default class Projects extends Vue {
     constructor() {
       super();
@@ -40,5 +45,8 @@ img {
   max-width: 100%;
 }
 
+object {
+  background-color: rebeccapurple;
+}
 
 </style>

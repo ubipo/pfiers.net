@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import Main from './components/Main.vue';
 
 var main = new Main();
