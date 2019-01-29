@@ -1,8 +1,8 @@
 <template>
   <div>
     <Nav> </Nav>
-    <div class="h-center">
-      <main class="main">
+    <div class="main">
+      <main class="main__content">
         <router-view></router-view>
       </main>
     </div>
@@ -59,21 +59,43 @@
   h1, h2, h3 {
     font-family: 'Quicksand', sans-serif;
     font-weight: 400;
-    font-size: 2rem;
     text-decoration: none;
     color: hsl(0, 0, 20);
     outline: none;
   }
 
+  h2 {
+    font-size: 3rem;
+  }
+
   .main {
-    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .main__content {
+    margin-top: 0.5rem;
     padding: 1rem;
     max-width: 60rem;
     width: 100%;
   }
 
-  .h-center {
-    display: flex;
-    justify-content: center;
+  @media only screen and (min-width: 650px) {
+    .main__content {
+      margin-top: 2rem;
+    }
+  }
+
+  .page-title {
+    margin-top: 0;
+  }
+
+  figure {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  img {
+    max-width: 100%;
   }
 </style>

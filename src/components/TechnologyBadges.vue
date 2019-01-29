@@ -16,7 +16,11 @@
   }
 
   const technologiesNameMap: { [key:string]:string; } = {
-    "OpenCV": "opencv"
+    "OpenCV": "opencv",
+    "c++": "cpp",
+    "hardware-interfacing": "hwint",
+    "TypeScript": "ts",
+    "Webpack": "webpack"
   }
 
   @Component({
@@ -46,10 +50,14 @@
   }
 
   .icons__item {
+    height: 50px;
+    width: 50px;
     background-color: hsl(120, 80, 35);
+    margin-right: 5px;
   }
 
   .icons__icon {
     height: 50px;
+    width: 50px;
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2> Projects </h2>
+    <h2 class="page-title">Projects</h2>
     <section v-for="(project, index) in getProjects()" v-bind:key="index">
       <h3>{{project.name}}</h3>
       <p>{{project.short}}</p>

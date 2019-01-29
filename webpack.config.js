@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './src/index.ts',
   devtool: 'inline-source-map',
   module: {
@@ -32,11 +32,18 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ]
+      },
+      {
+        test: /\.md$/,
+        use: 'raw-loader'
       }
     ]
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js', '.vue' ]
+    extensions: [ '.tsx', '.ts', '.js', '.vue' ],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -51,9 +58,9 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([
-      // { from: 'src/res/**/*', transformPath: (targetPath, sourcePath) => targetPath.replace("src", "")},
-      // { from: 'src/index.html', to: '../index.html'},
-      // { from: 'src/index.html', to: '../404.html'} // For vue history mode
+      { from: 'src/res/**/*', transformPath: (targetPath, sourcePath) => targetPath.replace("src", "")},
+      { from: 'src/index.html', to: '../index.html'},
+      { from: 'src/index.html', to: '../404.html'} // For vue history mode
     ]),
     new VueLoaderPlugin()
   ]

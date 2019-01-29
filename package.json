@@ -25,9 +25,12 @@
     "webpack-dev-server": "^3.1.14"
   },
   "devDependencies": {
+    "@types/marked": "^0.6.0",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^2.1.0",
+    "marked": "^0.6.0",
     "node-sass": "^4.11.0",
+    "raw-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
     "typescript": "^3.2.4",
     "vue-class-component": "^6.3.2",

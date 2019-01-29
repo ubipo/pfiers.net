@@ -4,8 +4,8 @@
     <nav>
       <ul class="navlist">
         <li class="navlist__item navlist__item--title">
-          <router-link class="navlist__link" to="/">
-            <h1 class="navlist__link--title">
+          <router-link class="navlist__link navlist__link--title" to="/">
+            <h1 class="navlist__header">
               <span v-if="windowWidth > 650">Pieter Fiers</span><span v-else>PF</span>>
             </h1>
           </router-link>
@@ -47,8 +47,8 @@
     windowWidth: number = window.innerWidth;
 
     pages: Array<PageName> = [
-      {full: "technologies", abrv: "tech"},
-      {full: "projects", abrv: "proj"}
+      {full: "projects", abrv: "proj"},
+      {full: "technologies", abrv: "tech"}
     ]
 
     public mounted() {
@@ -89,7 +89,7 @@
     outline: none;
 
     padding-bottom: calc(0.5rem + 3px);
-    padding-top: 2rem;
+    padding-top: 1rem;
     border-bottom: 3px solid hsl(120, 80, 35);
 
     &:focus, &:hover {
@@ -98,8 +98,14 @@
     }
   }
 
-  .navlist__link--title {
+  .router-link-exact-active, .router-link-active:not(.navlist__link--title) {
+    padding-bottom: 0.5rem;
+    border-bottom: 5px solid hsl(190, 80, 30);
+  }
+
+  .navlist__header {
     margin: 0;
+    font-size: 2rem;
     font-weight: 700;
   }
 

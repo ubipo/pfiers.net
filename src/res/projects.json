@@ -9,7 +9,7 @@
   {
     "abrv": "OCIC",
     "name": "Osm Contact Info Corrector",
-    "technologies": ["ts", "web", "webpack"],
+    "technologies": ["TypeScript", "web", "Webpack"],
     "short": "Osm Contact Info Corrector is a webapp to add and correct contact info on openstreetmap.",
     "imgUrl": "ocic.png",
     "url": "opf.osm.be"
@@ -23,32 +23,32 @@
   {
     "abrv": "DSpay",
     "name": "DSpay - Digital School Pay",
-    "technologies": ["ts", "web", "webpack"],
+    "technologies": ["ts", "web", "Webpack"],
     "short": "DSpay is my high-school thesis which researches the viability and implements a prototype of a digital payment system at school.",
     "imgUrl": "dspay.png"
   },
   {
     "abrv": "DCNT",
     "name": "Dorm Controller 9000",
-    "technologies": ["ts", "web", "webpack"],
+    "technologies": ["ts", "web", "Webpack"],
     "short": "Dorm Controller 9000 smoothly wakes me up by controlling several relays and an rgb led strip using a custom HTTP server running on a ESP-12E microcontroller.",
     "imgUrl": "dcnt.png"
   },
   {
     "name": "Ubokeh",
-    "technologies": ["ts", "web", "webpack"],
+    "technologies": ["ts", "web", "Webpack"],
     "short": "My Unnecessary Badly-Documented and Overly Complicated Esp Http-Server is the heart of DCNT [TODO: link].",
     "imgUrl": "ubokeh.png"
   },
   {
     "name": "Sel",
-    "technologies": ["ts", "web", "webpack"],
+    "technologies": ["ts", "web", "Webpack"],
     "short": "The Sel Embedded Logger combined with the Sel Tcp Log Server form my logging solution for DCNT.",
     "imgUrl": "ubokeh.png"
   },
   {
     "name": "This site ;)",
-    "technologies": ["ts", "web", "webpack", "Vue.js"],
+    "technologies": ["ts", "web", "Webpack", "Vue.js"],
     "short": "This site is hosted by github pages and runs Vue.js.",
     "imgUrl": null
   }
