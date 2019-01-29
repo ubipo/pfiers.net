@@ -15,7 +15,7 @@ export function deserializeProjects(): Array<Project> {
       name: s.name,
       technologies: s.technologies,
       short: s.short,
-      imgUrl: `/src/res/${s.imgUrl}`
+      imgUrl: `/dist/res/${s.imgUrl}`
     }
   });
 }

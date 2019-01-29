@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './src/index.ts',
   devtool: 'inline-source-map',
   module: {
@@ -51,7 +51,7 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: 'static/**/*', to: ''},
+      { from: 'src/res/**/*', transformPath: (targetPath, sourcePath) => targetPath.replace("src", "")},
       { from: 'index.html', to: '../index.html'},
       { from: 'index.html', to: '../404.html'} // For vue history mode
     ]),
