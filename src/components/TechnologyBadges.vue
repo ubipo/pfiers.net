@@ -1,7 +1,9 @@
 <template>
   <div>
     <ul class="icons">
-      <li class="icons__item" v-for="technology in getTechnologyInfos()"><object class="icons__icon" v-bind:data="`/src/res/tech-icons/${technology.filename}.svg`" type="image/svg+xml"></object></li>
+      <li class="icons__item" v-for="technology in getTechnologyInfos()">
+        <object class="icons__icon" v-bind:data="`/content/tech-icons/${technology.filename}.svg`" type="image/svg+xml"></object>
+        </li>
     </ul>
   </div>
 </template>
@@ -17,10 +19,18 @@
 
   const technologiesNameMap: { [key:string]:string; } = {
     "OpenCV": "opencv",
-    "c++": "cpp",
+    "C++": "cpp",
     "hardware-interfacing": "hwint",
     "TypeScript": "ts",
-    "Webpack": "webpack"
+    "JavaScript": "js",
+    "Webpack": "webpack",
+    "web": "web",
+    "microcontroller": "microcontroller",
+    "Node.js": "nodejs",
+    "PostgreSQL": "postgresql",
+    "SQL": "sql",
+    "Python": "python",
+    "Vue.js": "vuejs"
   }
 
   @Component({

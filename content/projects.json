@@ -1,0 +1,79 @@
+[
+  {
+    "abrv": "KMT",
+    "name": "Kinect Mouse Tracker",
+    "urlSafeName": null,
+    "technologies": ["C++", "hardware-interfacing", "OpenCV"],
+    "gitUrl": "https://github.com/ubipo/kmt",
+    "short": "Kinect Mouse Tracker processes live Microsoft kinect data to deduce a mouse's position inside an enclosed pen.",
+    "longMd": "kmt.md",
+    "img": "kmt.png"
+  },
+  {
+    "abrv": "DSpay",
+    "name": "DSpay - Digital School Pay",
+    "urlSafeName": null,
+    "technologies": ["web", "JavaScript", "microcontroller", "Node.js", "SQL"],
+    "gitUrl": null,
+    "short": "DSpay is my high-school thesis which researches the viability and implements a prototype of a digital payment system at school.",
+    "longMd": null,
+    "img": null
+  },
+  {
+    "abrv": "OCIC",
+    "name": "Osm Contact Info Corrector",
+    "urlSafeName": null,
+    "technologies": ["TypeScript", "web", "Webpack"],
+    "gitUrl": "https://github.com/ubipo/opf",
+    "short": "Osm Contact Info Corrector is a webapp to add and correct contact info on openstreetmap.",
+    "longMd": null,
+    "img": "ocic.png",
+    "url": "opf.osm.be"
+  },
+  {
+    "name": "Trend-Friends",
+    "urlSafeName": null,
+    "technologies": ["web"],
+    "gitUrl": "https://github.com/ubipo/trend-friends",
+    "short": "A school assignment to make a static, accessible site.",
+    "longMd": null,
+    "img": "trend-friends.png"
+  },
+  {
+    "abrv": "DCNT",
+    "name": "Dorm Controller 9000",
+    "urlSafeName": null,
+    "technologies": ["C++", "microcontroller", "hardware-interfacing", "web"],
+    "gitUrl": "https://github.com/ubipo/dcnt",
+    "short": "Dorm Controller 9000 is a hobby project that smoothly wakes me up by controlling several relays and an rgb led strip using a custom HTTP server running on a ESP-12E microcontroller.",
+    "longMd": null,
+    "img": null
+  },
+  {
+    "name": "Ubokeh",
+    "urlSafeName": null,
+    "technologies": ["C++"],
+    "gitUrl": "https://github.com/ubipo/ubokeh",
+    "short": "My Unnecessary Badly-Documented and Overly Complicated Esp Http-Server is the heart of DCNT [TODO: link].",
+    "longMd": null,
+    "img": null
+  },
+  {
+    "name": "Sel",
+    "urlSafeName": null,
+    "technologies": ["C++", "Python"],
+    "gitUrl": "https://github.com/ubipo/sel",
+    "short": "The Sel Embedded Logger combined with the Sel Tcp Log Server form my logging solution for DCNT.",
+    "longMd": null,
+    "img": null
+  },
+  {
+    "name": "This site ;)",
+    "urlSafeName": null,
+    "technologies": ["TypeScript", "web", "Webpack", "Vue.js"],
+    "gitUrl": "https://github.com/ubipo/pieterfiers.net",
+    "short": "This site is hosted by github pages and runs Vue.js.",
+    "longMd": null,
+    "img": null
+  }
+]

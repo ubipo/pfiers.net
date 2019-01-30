@@ -18,27 +18,44 @@
   import Projects from  './Projects.vue';
   import Technologies from  './Technologies.vue';
   import NotFound from './NotFound.vue';
+  import Project from './Project.vue';
+
+  import { tProject, loadProjects } from '../projectsLoader';
 
   (Vue as any).use(VueRouter); // Because Vue.use() doesn't exist?
 
   const routes = [
-    { path: '/', component: Home },
-    { path: '/projects', component: Projects },
-    { path: '/technologies', component: Technologies },
-    { path: '*', component: NotFound }
+    {path: '/', component: Home},
+    {path: '/projects', component: Projects},
+    {path: '/projects/:project', component: Project},
+    {path: '/technologies', component: Technologies},
+    {path: '*', component: NotFound}
   ]
+
+  let projects: Array<tProject> = [];
+  loadProjects().then(e => projects.push(...e)).catch(err => console.error(err));
 
   const router = new VueRouter({
     routes,
-    mode: 'history'
+    mode: 'history',
+    scrollBehavior (to: any, from: any, savedPosition: any) {
+      if (savedPosition) {
+        return savedPosition
+      } else {
+        return { x: 0, y: 0 }
+      }
+    }
   })
 
   @Component({
     router,
+    data: () => {
+      return {
+        projects: projects
+      }
+    },
     components: {
-      Nav,
-      Projects,
-      Technologies
+      Nav
     }
   })
   export default class Main extends Vue {

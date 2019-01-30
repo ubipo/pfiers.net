@@ -58,7 +58,6 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: 'src/res/**/*', transformPath: (targetPath, sourcePath) => targetPath.replace("src", "")},
       { from: 'src/index.html', to: '../index.html'},
       { from: 'src/index.html', to: '../404.html'} // For vue history mode
     ]),

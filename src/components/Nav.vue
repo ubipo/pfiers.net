@@ -11,7 +11,7 @@
           </router-link>
         </li>
         <li class="navlist__item" v-for="(page, index) in pages" v-bind:key="index">
-          <router-link class="navlist__link" v-bind:to="page.full">
+          <router-link class="navlist__link" v-bind:to="`/${page.full}`">
             <span v-if="windowWidth > 650">
               {{page.full | capitalize }}
             </span>
@@ -52,7 +52,6 @@
     ]
 
     public mounted() {
-      console.log("heeye");
       window.onresize = () => {
         this.windowWidth = window.innerWidth;
       }
