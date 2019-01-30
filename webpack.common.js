@@ -5,7 +5,6 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = {
   mode: 'production',
   entry: './src/index.ts',
-  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -49,12 +48,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: 'bundle.js',
     publicPath: "/",
-  },
-  devServer: {
-    contentBase: __dirname,
-    compress: true,
-    historyApiFallback: true,
-    publicPath: "/dist/"
   },
   plugins: [
     new CopyWebpackPlugin([
