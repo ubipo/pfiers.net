@@ -1,0 +1,8 @@
+$primary-color: hsl(120, 80, 35);
+$secondary-color: hsl(190, 80, 30);
+
+a {
+  color: $primary-color;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}

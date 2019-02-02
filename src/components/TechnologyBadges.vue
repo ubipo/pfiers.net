@@ -2,7 +2,9 @@
   <div>
     <ul class="icons">
       <li class="icons__item" v-for="technology in getTechnologyInfos()">
-        <object class="icons__icon" v-bind:data="`/content/tech-icons/${technology.filename}.svg`" type="image/svg+xml"></object>
+        <router-link :title="technology.name" :to="`/technologies/${technology.name}`">
+          <object class="icons__icon" v-bind:data="`/content/tech-icons/${technology.filename}.svg`" type="image/svg+xml"></object>
+        </router-link>
         </li>
     </ul>
   </div>
@@ -70,4 +72,15 @@
     height: 50px;
     width: 50px;
   }
+
+  a {
+    display: block;
+    height: 50px;
+    width: 50px;
+  }
+  
+  object {
+    pointer-events: none;
+  }
+
 </style>

@@ -3,7 +3,10 @@
     <p v-if="projectData.err !== null">{{projectData.err}}</p>
     <p v-else-if="project === undefined">Long...</p>
     <NotFound v-else-if="project === null"></NotFound>
-    <Markdown v-else-if="project.longMdUrl !== null" v-bind:markdownUrl="project.longMdUrl"></Markdown>
+    <article v-else-if="project.longMdUrl !== null">
+      <TechnologyBadges v-bind:technologies="project.technologies"></TechnologyBadges>
+      <Markdown v-bind:markdownUrl="project.longMdUrl"></Markdown>
+    </article>
     <p v-else>{{project.name}} doesn't have a detailed description yet.</p>
   </div>
 </template>
