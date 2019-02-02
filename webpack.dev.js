@@ -8,6 +8,7 @@ module.exports = merge(common, {
     contentBase: __dirname,
     compress: true,
     historyApiFallback: true,
-    publicPath: "/dist/"
+    publicPath: "/dist/",
+    overlay: true
   }
 });

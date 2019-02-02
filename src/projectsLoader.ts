@@ -1,14 +1,14 @@
 import * as serializedProjects from "./res/projects.json";
 
-export interface tProject {
+export type tProject = {
   abrv: string,
   name: string,
   urlSafeName: string,
   technologies: Array<string>,
-  gitUrl: string,
+  gitUrl: string | null,
   short: string,
-  longMdUrl: string,
-  imgUrl: string
+  longMdUrl: string | null,
+  imgUrl: string | null
 }
 
 function makeUrlSafe(url: string): string {
@@ -31,28 +31,38 @@ export function loadProjects(): Promise<Array<tProject>> {
       try {
         projectsJSON = JSON.parse(req.responseText);
       } catch (err) {
-        console.error(err);
+        return reject(`JSON Parser Error: ${String(err)}`);
       }
 
       resolve(deserializeProjects(projectsJSON));
     });
     req.send();
-  })
-
-
+  });
 }
 
-function deserializeProjects(serializedProjects: any): Array<tProject> {
+function normalize(val: any, def: any = null, throwOnNull: boolean = false) {
+  if (val === undefined || val === null) {
+    if (throwOnNull) {
+      throw new Error("Error parsing projects!");
+    } else {
+      return def;
+    }
+  }
+  
+  return val;
+}
+
+function deserializeProjects(serializedProjects: Array<any>): Array<tProject> {
   let projects: Array<tProject> = serializedProjects.map((s: any) => {
     return {
       abrv: s.abrv,
-      name: s.name,
-      urlSafeName: s.urlSafeName === null ? makeUrlSafe(s.name) : s.urlSafeName,
-      technologies: s.technologies,
-      gitUrl: s.gitUrl,
-      short: s.short,
-      longMdUrl: s.longMd === null ? null : `/content/${s.longMd}`,
-      imgUrl: s.img === null ? null : `/content/${s.img}`
+      name: normalize(s.name, null, true),
+      urlSafeName: normalize(s.urlSafeName, makeUrlSafe(s.name)),
+      technologies: normalize(s.technologies, []),
+      gitUrl: normalize(s.gitUrl),
+      short: normalize(s.short),
+      longMdUrl: normalize(s.longMd) === null ? null : `/content/${s.longMd}`,
+      imgUrl: normalize(s.img) === null ? null :  `/content/${s.img}`
     }
   });
   return projects;

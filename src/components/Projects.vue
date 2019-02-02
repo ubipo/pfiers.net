@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="page-title">Projects</h2>
-    <section class="project" v-for="(project, index) in $root.projects" v-bind:key="index">
+    <section class="project" v-for="(project, index) in $root.projectsData.projects" v-bind:key="index">
       <h3 class="project__title">{{project.name}}</h3>
       <p>{{project.short}}</p>
       <router-link v-if="project.longMdUrl !== null" class="navlist__link navlist__link--title" v-bind:to="`/projects/${project.urlSafeName}`">Read more...</router-link>

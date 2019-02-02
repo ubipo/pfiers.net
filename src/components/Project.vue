@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h2 class="page-title">Project {{ $route.params.project }}</h2>
+    <p v-if="projectData.err !== null">{{projectData.err}}</p>
+    <p v-else-if="project === undefined">Long...</p>
+    <NotFound v-else-if="project === null"></NotFound>
+    <Markdown v-else-if="project.longMdUrl !== null" v-bind:markdownUrl="project.longMdUrl"></Markdown>
+    <p v-else>{{project.name}} doesn't have a detailed description yet.</p>
   </div>
 </template>
 
@@ -8,27 +12,41 @@
   import Vue from 'vue';
   import Component from 'vue-class-component';
   import TechnologyBadges from './TechnologyBadges.vue';
+  import NotFound from './NotFound.vue';
+  import Markdown from './Markdown.vue';
   import { tProject } from '../projectsLoader';
 
   @Component({
     components: {
-      TechnologyBadges
+      TechnologyBadges,
+      NotFound,
+      Markdown
     }
   })
-  export default class Projects extends Vue {
+  export default class Project extends Vue {
     constructor() {
       super();
-
-      let projects: Array<tProject> = (this as any).$root.projects;
-      let project = projects.find(e => e.urlSafeName === (this as any).$parent.$route.params.project);
-      if (project !== undefined) {
-        this.exists = true;
-      }
-
-      console.log((this as any).$parent.$route.params.project);
     }
 
-    private exists: boolean = false;
+    private projectData = (this as any).$root.projectsData;
+
+    /**
+     * @returns {tProject} when found
+     * @returns {undefined} when no projects have yet been loaded
+     * @returns {null} when the project hasn't been found
+     */
+    get project(): tProject | undefined | null {
+      let projects: Array<tProject> | null = (this as any).$root.projectsData.projects;
+      if (projects === null) 
+        return undefined;
+
+      let projectName = (this as any).$parent.$route.params.project;
+      let project = projects.find(e => e.urlSafeName === projectName);
+      if (project === undefined)
+        return null;
+
+      return project;
+    }
   }
 </script>
 

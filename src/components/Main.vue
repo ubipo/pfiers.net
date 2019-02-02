@@ -32,8 +32,17 @@
     {path: '*', component: NotFound}
   ]
 
-  let projects: Array<tProject> = [];
-  loadProjects().then(e => projects.push(...e)).catch(err => console.error(err));
+  type ProjectsData = {
+    projects: Array<tProject> | null,
+    err: string | null
+  }
+
+  let projectsData: ProjectsData = {
+    projects: null,
+    err: null
+  }
+
+  loadProjects().then(e => projectsData.projects = e).catch(err => projectsData.err = err);
 
   const router = new VueRouter({
     routes,
@@ -49,11 +58,6 @@
 
   @Component({
     router,
-    data: () => {
-      return {
-        projects: projects
-      }
-    },
     components: {
       Nav
     }
@@ -62,6 +66,8 @@
     constructor() {
       super();
     }
+
+    private projectsData = projectsData;
   }
 </script>
 
