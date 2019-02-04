@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="page-title">Projects</h2>
+    <h1 class="page-title">Projects</h1>
     <ProjectShort v-for="project in siteData.projects" :key="project.name" :project="project"></ProjectShort>
   </div>
 </template>

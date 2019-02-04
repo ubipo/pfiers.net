@@ -2,7 +2,7 @@
   <div>
     <NotFound v-if="technology === null"></NotFound>
     <div v-else>
-      <h1>{{technology.name}}</h1>
+      <h1 class="page-title">{{technology.name}}</h1>
       <p>{{technology.short}}</p>
       <p>Below are some projects in which I use {{technology.name}}: </p>
       <ProjectShort v-for="project in technology.projects" v-bind:key="project.name" :project="project"></ProjectShort>
@@ -44,3 +44,4 @@
     }
   }
 </script>
+

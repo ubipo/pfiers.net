@@ -4,8 +4,8 @@
     <div class="main">
       <main class="main__content">
         <div v-if="sdlStatus.err !== null">
-          <p>An error occured while trying to load the site content: </p>
-          <p>{{sdlStatus.err}}</p>
+          <p class="error-title">An error occured while trying to load the site data: </p>
+          <p class="error-msg">{{sdlStatus.err}}</p>
         </div>
         <p v-else-if="!sdlStatus.loaded">Loading...</p>
         <router-view v-else></router-view>
@@ -92,24 +92,20 @@ import TechnologyDetail from './TechnologyDetail.vue';
 </script>
 
 <style lang="scss">
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans|Quicksand:400');
   @import '../main.scss';
+  @import '../style.scss';
 
   p {
-    font-family: 'Open Sans', sans-serif;
-    color: hsl(0, 0, 20);
+    font-family: $text-font-stack;
+    color: $text-color;
   }
 
   h1, h2, h3 {
     font-family: 'Quicksand', sans-serif;
     font-weight: 400;
     text-decoration: none;
-    color: hsl(0, 0, 20);
+    color: $text-color;
     outline: none;
-  }
-
-  h2 {
-    font-size: 3rem;
   }
 
   .main {
@@ -128,10 +124,6 @@ import TechnologyDetail from './TechnologyDetail.vue';
     .main__content {
       margin-top: 2rem;
     }
-  }
-
-  .page-title {
-    margin-top: 0;
   }
 
   figure {

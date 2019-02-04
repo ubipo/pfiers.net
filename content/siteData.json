@@ -12,13 +12,13 @@
     {
       "abrv": "DSpay",
       "name": "DSpay - Digital School Pay",
-      "technologies": ["web", "JavaScript", "microcontroller", "Node.js", "SQL"],
+      "technologies": ["Web", "JavaScript", "Microcontrollers", "Node.js", "SQL"],
       "short": "DSpay is my high-school thesis which researches the viability and implements a prototype of a digital payment system at school."
     },
     {
       "abrv": "OCIC",
       "name": "Osm Contact Info Corrector",
-      "technologies": ["TypeScript", "web", "Webpack"],
+      "technologies": ["TypeScript", "Web", "Webpack"],
       "gitUrl": "https://github.com/ubipo/opf",
       "short": "Osm Contact Info Corrector is a webapp to add and correct contact info on openstreetmap.",
       "img": "ocic.png",
@@ -26,7 +26,7 @@
     },
     {
       "name": "Trend-Friends",
-      "technologies": ["web"],
+      "technologies": ["Web"],
       "gitUrl": "https://github.com/ubipo/trend-friends",
       "short": "A school assignment to make a static, accessible site.",
       "img": "trend-friends.png"
@@ -34,7 +34,7 @@
     {
       "abrv": "DCNT",
       "name": "Dorm Controller 9000",
-      "technologies": ["C++", "microcontroller", "hardware-interfacing", "web"],
+      "technologies": ["C++", "Microcontrollers", "hardware-interfacing", "Web"],
       "gitUrl": "https://github.com/ubipo/dcnt",
       "short": "Dorm Controller 9000 is a hobby project that smoothly wakes me up by controlling several relays and an rgb led strip using a custom HTTP server running on a ESP-12E microcontroller."
     },
@@ -52,7 +52,7 @@
     },
     {
       "name": "This site ;)",
-      "technologies": ["TypeScript", "web", "Webpack", "Vue.js"],
+      "technologies": ["TypeScript", "Web", "Webpack", "Vue.js"],
       "gitUrl": "https://github.com/ubipo/pieterfiers.net",
       "short": "This site is hosted by github pages and runs Vue.js.",
       "urlSafeName": "this-site"
@@ -82,10 +82,11 @@
       "name": "Webpack"
     },
     {
-      "name": "web"
+      "name": "Web"
     },
     {
-      "name": "microcontroller"
+      "name": "Microcontrollers",
+      "iconName": "microcontroller"
     },
     {
       "name": "Node.js",

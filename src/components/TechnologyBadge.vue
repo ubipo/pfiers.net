@@ -1,6 +1,6 @@
 <template>
-  <router-link :title="technology.name" :to="technology.urlSafeName">
-    <object class="icons__icon" v-bind:data="technology.iconUrl" type="image/svg+xml"></object>
+  <router-link class="technology-badge" :title="technology.name" :to="`/technologies/${technology.urlSafeName}`">
+    <object class="technology-badge__icon" v-bind:data="technology.iconUrl" type="image/svg+xml"></object>
   </router-link>
 </template>
 
@@ -19,20 +19,20 @@
 </script>
 
 <style lang="scss" scoped>
-  .icons__icon {
-    height: 50px;
-    width: 50px;
-  }
+  @import '../style.scss';
 
-  a {
+  $icon-size: 50px;
+
+  .technology-badge {
     display: block;
-    background-color: hsl(120, 80, 35);
-    height: 50px;
-    width: 50px;
-  }
-  
-  object {
-    pointer-events: none;
+    background-color: $primary-color;
+    height: $icon-size;
+    width: $icon-size;
   }
 
+  .technology-badge__icon {
+    pointer-events: none;
+    height: $icon-size;
+    width: $icon-size;    
+  }
 </style>

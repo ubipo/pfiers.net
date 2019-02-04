@@ -2,7 +2,7 @@
   <div>
     <NotFound v-if="project === null"></NotFound>
     <div v-else>
-      <h1>{{project.name}}</h1>
+      <h1 class="page-title">{{project.name}}</h1>
       <p>{{project.short}}</p>
       <ProjectTechnologyList :project="project"></ProjectTechnologyList>
       <p v-if="project.longMdUrl === null">No detailed description available.</p>

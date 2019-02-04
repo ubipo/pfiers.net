@@ -1,5 +1,24 @@
-$primary-color: hsl(120, 80, 35);
-$secondary-color: hsl(190, 80, 30);
+@import './style.scss';
+
+.error-title {
+  color: hsl(0, 64%, 43%);
+  font-size: 1.5rem;
+}
+
+.error-msg {
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+.page-title {
+  margin-top: 0;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  text-decoration: none;
+  color: $text-color;
+  outline: none;
+  font-size: 3rem;
+}
 
 a {
   color: $primary-color;

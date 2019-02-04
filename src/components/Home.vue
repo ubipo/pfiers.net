@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 class="page-title">Pieter Fiers</h1>
     <Markdown markdownUrl="/content/home.md"></Markdown>
     <figure>
       <img src="/content/home.jpg">
