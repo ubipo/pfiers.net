@@ -3,7 +3,12 @@
     <Nav> </Nav>
     <div class="main">
       <main class="main__content">
-        <router-view></router-view>
+        <div v-if="sdlStatus.err !== null">
+          <p>An error occured while trying to load the site content: </p>
+          <p>{{sdlStatus.err}}</p>
+        </div>
+        <p v-else-if="!sdlStatus.loaded">Loading...</p>
+        <router-view v-else></router-view>
       </main>
     </div>
   </div>
@@ -18,31 +23,36 @@
   import Projects from  './Projects.vue';
   import Technologies from  './Technologies.vue';
   import NotFound from './NotFound.vue';
-  import Project from './Project.vue';
-
-  import { tProject, loadProjects } from '../projectsLoader';
+  import ProjectDetail from './ProjectDetail.vue';
+  import * as siteDataLoader from '../siteDataLoader';
+import TechnologyDetail from './TechnologyDetail.vue';
 
   (Vue as any).use(VueRouter); // Because Vue.use() doesn't exist?
 
+  let sdl = new siteDataLoader.SiteDataLoader();
+
+  function siteDataSafeGetter() {
+    if (sdl.data === null)
+      throw new Error("This error shouldn't occure");
+    
+    return {
+      siteData: sdl.data
+    };
+  }
+
   const routes = [
     {path: '/', component: Home},
-    {path: '/projects', component: Projects},
-    {path: '/projects/:project', component: Project},
-    {path: '/technologies', component: Technologies},
+    {path: '/projects', component: Projects, props: siteDataSafeGetter},
+    {path: '/projects/:projectName', component: ProjectDetail, props: (route: any) => ({siteData: siteDataSafeGetter().siteData, projectName: route.params.projectName})},
+    {path: '/technologies', component: Technologies, props: siteDataSafeGetter},
+    {path: '/technologies/:technologyName', component: TechnologyDetail, props: (route: any) => ({siteData: siteDataSafeGetter().siteData, technologyName: route.params.technologyName})},
     {path: '*', component: NotFound}
   ]
 
-  type ProjectsData = {
-    projects: Array<tProject> | null,
-    err: string | null
+  type SiteDataStatus = {
+    loaded: boolean,
+    err: null | string
   }
-
-  let projectsData: ProjectsData = {
-    projects: null,
-    err: null
-  }
-
-  loadProjects().then(e => projectsData.projects = e).catch(err => projectsData.err = err);
 
   const router = new VueRouter({
     routes,
@@ -65,9 +75,19 @@
   export default class Main extends Vue {
     constructor() {
       super();
+
+      sdl.load().then(() => {
+        this.sdlStatus.loaded = true;
+      }).catch(err => {
+        console.error(err);
+        this.sdlStatus.err = err;
+      });
     }
 
-    private projectsData = projectsData;
+    sdlStatus = {
+      loaded: false,
+      err: null
+    };
   }
 </script>
 
