@@ -32,6 +32,12 @@
       "img": "trend-friends.png"
     },
     {
+      "abrv": "EWM",
+      "name": "Esp Water Meter",
+      "technologies": ["C++", "Microcontrollers", "hardware-interfacing", "OpenCV", "Python"],
+      "short": "Esp Water Meter is a system consisting of an Esp with Arducam and a Python flask server running on a Raspberry pi to process pictures of a water usage meter."
+    },
+    {
       "abrv": "DCNT",
       "name": "Dorm Controller 9000",
       "technologies": ["C++", "Microcontrollers", "hardware-interfacing", "Web"],
