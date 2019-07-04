@@ -1,0 +1,14 @@
+{
+    "eslint.autoFixOnSave":  true,
+    "eslint.validate":  [
+        {
+            "language": "typescript",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        }
+    ],
+    "editor.tabSize": 2,
+}

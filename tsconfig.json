@@ -4,12 +4,19 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "esnext",
-    "target": "es5",
+    "target": "es6",
     "jsx": "react",
     "allowJs": true,
     "strict": true,
     "lib": ["dom", "es2017"],
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin",
+        "suppressWhileTypeErrorsPresent": false
+      }
+    ]
   },
   "include": [
     "./src/**/*"

@@ -9,6 +9,14 @@
       "problemMatcher": [
         "$tsc"
       ]
+    },
+    {
+      "type": "npm",
+      "script": "start",
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "isBackground": true
     }
   ]
 }

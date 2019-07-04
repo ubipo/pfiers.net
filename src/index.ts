@@ -1,7 +1,10 @@
-import Main from './components/Main.vue';
+import Main from './components/Main'
+import { version, buildMode } from './versionInfo'
 
-var main = new Main();
+console.info(`pieterfiers.net ${version} ${buildMode}`) // eslint-disable-line no-console
 
-window.addEventListener("load", _ => {
-  main.$mount("#app");
-});
+const main = new Main()
+
+window.addEventListener('load', () => {
+  main.$mount('#app')
+})

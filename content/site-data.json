@@ -6,8 +6,8 @@
       "technologies": ["C++", "hardware-interfacing", "OpenCV"],
       "gitUrl": "https://github.com/ubipo/kmt",
       "short": "Kinect Mouse Tracker processes live Microsoft kinect data to deduce a mouse's position inside an enclosed pen. Made during my internship at NERF (Neuro-Electronics Research Flanders, part of IMEC).",
-      "longMdUrl": "kmt.md",
-      "img": "kmt.png"
+      "longMdUrl": "@/kmt.md",
+      "imgUrl": "@/kmt.png"
     },
     {
       "abrv": "DSpay",
@@ -21,15 +21,15 @@
       "technologies": ["TypeScript", "Web", "Webpack"],
       "gitUrl": "https://github.com/ubipo/opf",
       "short": "Osm Contact Info Corrector is a webapp to add and correct contact info on openstreetmap.",
-      "img": "ocic.png",
-      "url": "opf.osm.be"
+      "imgUrl": "@/ocic.png",
+      "siteUrl": "opf.osm.be"
     },
     {
       "name": "Trend-Friends",
       "technologies": ["Web"],
       "gitUrl": "https://github.com/ubipo/trend-friends",
       "short": "A school assignment to make a static, accessible site.",
-      "img": "trend-friends.png"
+      "imgUrl": "@/trend-friends.png"
     },
     {
       "abrv": "EWM",

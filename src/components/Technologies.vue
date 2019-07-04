@@ -1,29 +1,30 @@
 <template>
   <div>
     <h2 class="page-title">Technologies</h2>
-    <TechnologyShort v-for="technology in siteData.technologies" :key="technology.name" :technology="technology"></TechnologyShort>
+    <TechnologyShort
+      v-for="technology in siteData.technologies"
+      :key="technology.name"
+      :technology="technology"
+    ></TechnologyShort>
   </div>
 </template>
 
 <script lang="ts">
-  import { Vue, Component, Prop } from 'vue-property-decorator';
-  import TechnologyShort from './TechnologyShort.vue';
-  import { SiteData } from '../siteDataLoader';
+import { Vue, Component } from 'vue-property-decorator'
+import TechnologyShort from './TechnologyShort.vue'
+import { SiteData } from '../site-data/types'
+import { namespace } from 'vuex-class'
 
-  @Component({
-    components: {
-      TechnologyShort
-    }
-  })
-  export default class Technologies extends Vue {
-    constructor() {
-      super();
-    }
+const ns = namespace('siteData')
 
-    @Prop(undefined) siteData!: SiteData;
+@Component({
+  components: {
+    TechnologyShort
   }
+})
+export default class Technologies extends Vue {
+  @ns.Getter('data') siteData!: SiteData | undefined
+}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

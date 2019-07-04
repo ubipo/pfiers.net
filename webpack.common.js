@@ -1,9 +1,10 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const fs = require('fs');
+const version = require('./package.json').version;
 
 module.exports = {
-  mode: 'production',
   entry: './src/index.ts',
   module: {
     rules: [
@@ -33,7 +34,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.md$/,
+        test: /\.(md|txt|jschema)$/,
         use: 'raw-loader'
       }
     ]
@@ -54,6 +55,14 @@ module.exports = {
       { from: 'src/index.html', to: '../index.html'},
       { from: 'src/index.html', to: '../404.html'} // For vue history mode
     ]),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    {
+      apply: (compiler) => {
+        compiler.hooks.afterPlugins.tap('setVersionInfo', (compilation) => {
+          const versionInfo = `${version}/${compilation.options.mode}`;
+          fs.writeFileSync('version-info.txt', versionInfo);
+        })
+      }
+    }
   ]
-};
+}

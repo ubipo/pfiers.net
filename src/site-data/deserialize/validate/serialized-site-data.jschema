@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SerializedSiteData",
+  "type": "object",
+  "required": [
+    "projects",
+    "technologies"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "title": "SerializedProject",
+        "required": [
+          "name",
+          "short",
+          "technologies"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "abrv": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "urlSafeName": {
+            "type": "string"
+          },
+          "short": {
+            "type": "string"
+          },
+          "longMdUrl": {
+            "type": "string"
+          },
+          "gitUrl": {
+            "type": "string"
+          },
+          "imgUrl": {
+            "type": "string"
+          },
+          "siteUrl": {
+            "type": "string"
+          },
+          "technologies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "technologies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "title": "SerializedTechnology",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "urlSafeName": {
+            "type": "string"
+          },
+          "iconName": {
+            "type": "string"
+          },
+          "short": {
+            "type": "string"
+          },
+          "longMdUrl": {
+            "type": "string"
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
