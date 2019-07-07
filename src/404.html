@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <script type="text/javascript">
-      const l = window.location
-      const s = l.search.slice(1)
-      const key = 'l'
-      window.location.replace(`${l.origin}/?l=${l.pathname.slice(1)}${s ? '&' + s : ''}${l.hash}`)
+      'use strict';
+      const l = window.location;
+      const s = l.search.slice(1);
+      const key = 'l';
+      window.location.replace(`${l.origin}/?l=${l.pathname.slice(1)}${s ? '&' + s : ''}${l.hash}`);
     </script>
   </head>
   <body>
