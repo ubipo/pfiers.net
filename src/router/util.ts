@@ -49,6 +49,7 @@ export function nearestWithData(
     .find(p => p.meta && p.meta.data && getDataVal(p.meta.data[key], route) != undefined)
   if (nearestByChildComponent != undefined) return nearestByChildComponent
   const nearestByPath = parentChain.find(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     p => getDataVal<any>(p.meta.data[key], route) != undefined
   )
   return nearestByPath

@@ -21,7 +21,7 @@
       "technologies": ["TypeScript", "Web", "Webpack"],
       "gitUrl": "https://github.com/ubipo/opf",
       "short": "Osm Contact Info Corrector is a webapp to add and correct contact info on openstreetmap.",
-      "imgUrl": "@/ocic.png",
+      "imgUrl": "@/ocic.jpg",
       "siteUrl": "opf.osm.be"
     },
     {
@@ -29,7 +29,7 @@
       "technologies": ["Web"],
       "gitUrl": "https://github.com/ubipo/trend-friends",
       "short": "A school assignment to make a static, accessible site.",
-      "imgUrl": "@/trend-friends.png"
+      "imgUrl": "@/trend-friends.jpg"
     },
     {
       "abrv": "EWM",
