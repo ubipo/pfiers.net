@@ -74,7 +74,9 @@ function deserializeTechnologies(sTechnologies: SerializedTechnology[]) {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function deserialize(serializedSiteData: any): Promise<SiteData> {
   if (buildMode === 'development') {
-    const validateSerializedSiteData = await import('./validate')
+    const validateSerializedSiteData = await import(
+      /* webpackChunkName: "dev-validate-site-data" */ './validate'
+    )
     const res = await validateSerializedSiteData.default(serializedSiteData)
     if (res !== undefined)
       throw new DeserializationException(

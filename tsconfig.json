@@ -16,7 +16,8 @@
         "name": "typescript-tslint-plugin",
         "suppressWhileTypeErrorsPresent": false
       }
-    ]
+    ],
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "./src/**/*"
