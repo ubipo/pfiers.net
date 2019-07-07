@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { CreateElement, VNode } from 'vue'
-import { memoize } from 'lodash'
+import memoize from 'lodash/memoize'
 
 // First arg (content) is used as cache key
 const renderer = memoize((content: string, createElement: CreateElement) => {
