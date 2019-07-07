@@ -5,7 +5,7 @@
       "name": "Kinect Mouse Tracker",
       "technologies": ["C++", "hardware-interfacing", "OpenCV"],
       "gitUrl": "https://github.com/ubipo/kmt",
-      "short": "Kinect Mouse Tracker processes live Microsoft kinect data to deduce a mouse's position inside an enclosed pen. Made during my internship at NERF (Neuro-Electronics Research Flanders, part of IMEC).",
+      "short": "Kinect Mouse Tracker processes live Microsoft kinect data to deduce a mouse's position inside an enclosed pen. Made during my internship at NERF.",
       "longMdUrl": "@/kmt.md",
       "imgUrl": "@/kmt.png"
     },

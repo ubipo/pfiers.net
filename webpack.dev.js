@@ -7,7 +7,12 @@ module.exports = merge(common, {
   devServer: {
     contentBase: __dirname,
     compress: true,
-    historyApiFallback: true,
+    historyApiFallback: {
+      index: 'index.html',
+      rewrites: [
+        { from: /\/*/, to: '/404.html' }
+      ]
+    },    
     publicPath: "/dist/",
     overlay: true
   }

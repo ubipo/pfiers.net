@@ -4,7 +4,7 @@ import {
   SerializedProject,
   SerializedTechnology
 } from './validate/serialized-site-data-schema'
-import validateSerializedSiteData from './validate'
+import { buildMode } from '../../versionInfo'
 
 function makeUrlSafe(url: string): string {
   return encodeURIComponent(url.toLowerCase().replace(/ ?[ -] ?/g, '-'))
@@ -73,11 +73,14 @@ function deserializeTechnologies(sTechnologies: SerializedTechnology[]) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function deserialize(serializedSiteData: any): Promise<SiteData> {
-  const res = await validateSerializedSiteData(serializedSiteData)
-  if (res !== undefined)
-    throw new DeserializationException(
-      `serializedSiteData does not follow jschema: ${res}`
-    )
+  if (buildMode === 'development') {
+    const validateSerializedSiteData = await import('./validate')
+    const res = await validateSerializedSiteData.default(serializedSiteData)
+    if (res !== undefined)
+      throw new DeserializationException(
+        `serializedSiteData does not follow jschema: ${res}`
+      )
+  }
 
   let projects: Project[] = deserializeProjects(serializedSiteData.projects)
   let technologies: Technology[] = deserializeTechnologies(

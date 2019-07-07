@@ -15,13 +15,13 @@ export const getters: GetterTree<SiteDataState, RootState> = {
   },
   projectByUrlSafeName(state) {
     return (name: string) => {
-      if (state.data === undefined) throw new NoSiteDataException()
+      if (state.data === undefined) throw new NoSiteDataException('fadsjl')
       return state.data.projects.find(e => e.urlSafeName === name)
     }
   },
   technologyByUrlSafeName(state) {
     return (name: string) => {
-      if (state.data === undefined) throw new NoSiteDataException()
+      if (state.data === undefined) throw new NoSiteDataException('eheye')
       return state.data.technologies.find(e => e.urlSafeName === name)
     }
   }

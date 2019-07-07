@@ -48,12 +48,11 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: 'bundle.js',
-    publicPath: "/",
+    publicPath: "/dist/",
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: 'src/index.html', to: '../index.html'},
-      { from: 'src/index.html', to: '../404.html'} // For vue history mode
+      { from: 'src/*.html', to: '../[name].html'},
     ]),
     new VueLoaderPlugin(),
     {

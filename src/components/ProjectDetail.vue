@@ -1,11 +1,11 @@
 <template>
   <div>
-    <NotFound v-if="project === null"></NotFound>
+    <NotFound v-if="!project"></NotFound>
     <div v-else>
       <h1 class="page-title">{{ project.name }}</h1>
       <p>{{ project.short }}</p>
       <ProjectTechnologyList :project="project"></ProjectTechnologyList>
-      <p v-if="project.longMdUrl === null">No detailed description available.</p>
+      <p v-if="project.longMdUrl == undefined">No detailed description available.</p>
       <article v-else>
         <Markdown :markdown-url="project.longMdUrl"></Markdown>
       </article>

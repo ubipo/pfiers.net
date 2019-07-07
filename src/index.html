@@ -14,6 +14,18 @@
   <meta property="og:type" content="profile" />
   <meta property="og:profile:first_name" content="Pieter" />
   <meta property="og:profile:last_name" content="Fiers" />
+
+  <script type="text/javascript">
+    const l = window.location
+    const s = l.search
+    if (s.substr(1, 1) === 'l') {
+      let pei = s.indexOf('&')
+      pei = pei === -1 ? s.length : pei
+      const p = s.slice(3, pei)
+      const so = s.slice(pei + 1)
+      history.replaceState({}, "", `${l.origin}/${p}${so ? '?' + so : ''}${l.hash}`)
+    }
+  </script>
   
   <script type="text/javascript" src="/dist/bundle.js"></script>
 
