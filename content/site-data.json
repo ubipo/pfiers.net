@@ -7,7 +7,7 @@
       "gitUrl": "https://github.com/ubipo/kmt",
       "short": "Kinect Mouse Tracker processes live Microsoft kinect data to deduce a mouse's position inside an enclosed pen. Made during my internship at NERF.",
       "longMdUrl": "@/kmt.md",
-      "imgUrl": "@/kmt.png"
+      "imgUrl": "@/kmt.jpg"
     },
     {
       "abrv": "DSpay",

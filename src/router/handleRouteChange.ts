@@ -6,7 +6,8 @@ import {
   setDocDescription,
   getJsondLdBreadcrumbs,
   setDocJsonLd,
-  setDocCanonicalUrl
+  setDocCanonicalUrl,
+  setDocRobots
 } from './util'
 
 const titlePostfix = 'Pieter Fiers'
@@ -32,12 +33,11 @@ export default function handleRouteChange(route: Route) {
   setDocDescription(description, document)
 
   const canonicalUrl = getDataVal(route.meta.data.canonicalUrl, route)
-  if (canonicalUrl != undefined) {
-    setDocCanonicalUrl(canonicalUrl, document)
-  } else {
-    const e = document.querySelector('link[rel="canonical"]')
-    if (e != null) e.remove()
-  }
+  setDocCanonicalUrl(canonicalUrl, document)
+
+  const doNotIndex = getDataVal(route.meta.data.doNotIndex, route)
+  const robots = doNotIndex ? 'noindex' : 'index, follow'
+  setDocRobots(robots, document)
 
   const jsonLd = getJsondLdBreadcrumbs(
     parentChain,

@@ -102,10 +102,24 @@ export function setDocJsonLd(jsonLd: string, doc: Document) {
 
 export function setDocCanonicalUrl(canonicalUrl: URL, doc: Document) {
   let eCanonicalUrl = doc.querySelector('link[rel="canonical"]')
-  if (eCanonicalUrl == null) {
-    eCanonicalUrl = doc.createElement('link')
-    eCanonicalUrl.setAttribute('rel', 'canonical')
-    document.head.append(eCanonicalUrl)
+  if (canonicalUrl == undefined) {
+    if (eCanonicalUrl != undefined) eCanonicalUrl.remove()
+  } else {
+    if (eCanonicalUrl == undefined) {
+      eCanonicalUrl = doc.createElement('link')
+      eCanonicalUrl.setAttribute('rel', 'canonical')
+      document.head.append(eCanonicalUrl)
+    }
+    eCanonicalUrl.setAttribute('href', canonicalUrl.href)
   }
-  eCanonicalUrl.setAttribute('href', canonicalUrl.href)
+}
+
+export function setDocRobots(robots: string, doc: Document) {
+  let eRobots = doc.querySelector('meta[name="robots"]')
+  if (eRobots == null) {
+    eRobots = doc.createElement('meta')
+    eRobots.setAttribute('name', 'robots')
+    document.head.append(eRobots)
+  }
+  eRobots.setAttribute('content', robots)
 }

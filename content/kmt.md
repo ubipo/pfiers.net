@@ -4,4 +4,4 @@ To collect experimental data and/or change visual stimulation patterns in real-t
 
 ![alt text](/content/kmt-setup-cropped.jpg "Logo Title Text 1")
 
-![alt text](/content/kmt.png "Logo Title Text 1")
+![alt text](/content/kmt.jpg "Logo Title Text 1")
