@@ -46,15 +46,12 @@ module.exports = {
     }
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
     filename: 'bundle.js',
-    publicPath: "/dist/",
-    chunkFilename: "[name].bundle.js"
+    chunkFilename: "[name].bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/dist/"
   },
   plugins: [
-    new CopyWebpackPlugin([
-      { from: 'src/*.html', to: '../[name].html'},
-    ]),
     new VueLoaderPlugin(),
     {
       apply: (compiler) => {

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Build Mode</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <script type="text/javascript">
+    function set(mode) {
+      localStorage.setItem('buildMode', mode)
+    }
+    function remove() {
+      localStorage.removeItem('buildMode')
+    }
+  </script>
+</head>
+<body>
+  <ul id="build-mode">
+    <li><a href="#" onclick="set('development')">development</a></li>
+    <li><a href="#" onclick="set('production')">production</a></li>
+    <li><a href="#" onclick="remove()">remove</a></li>
+  </ul>
+</body>
+</html>

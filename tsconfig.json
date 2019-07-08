@@ -4,11 +4,11 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "esnext",
-    "target": "es6",
+    "target": "es5",
     "jsx": "react",
     "allowJs": true,
     "strict": true,
-    "lib": ["dom", "es2017"],
+    "lib": ["dom", "es2019"],
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "plugins": [

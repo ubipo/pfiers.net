@@ -10,7 +10,7 @@ module.exports = merge(common, {
     historyApiFallback: {
       index: 'index.html',
       rewrites: [
-        { from: /\/*/, to: '/404.html' }
+        { from: /\/*/, to: '/index.html' }
       ]
     },    
     publicPath: "/dist/",
