@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.js",
     "start": "webpack-dev-server --config webpack.dev.js",
-    "compile-json-schemas": "node ./compile-json-schemas"
+    "compile-json-schemas": "node ./compile-json-schemas",
+    "check-types": "tsc"
   },
   "repository": {
     "type": "git",
@@ -25,13 +26,26 @@
     "webpack-dev-server": "^3.7.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.1",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.5.0",
+    "@babel/plugin-transform-typescript": "^7.5.1",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@babel/runtime": "^7.5.1",
     "@types/marked": "^0.6.5",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
     "@vue/eslint-config-prettier": "^4.0.1",
     "@vue/eslint-config-typescript": "^4.0.0",
     "ajv": "^6.10.0",
+    "babel-loader": "^8.0.6",
     "copy-webpack-plugin": "^5.0.3",
+    "core-js": "^3.1.4",
     "css-loader": "^3.0.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^5.1.0",

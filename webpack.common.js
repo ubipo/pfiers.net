@@ -9,21 +9,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-        exclude: /tests/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            appendTsSuffixTo: [/\.vue$/],
-            appendTsxSuffixTo: [/\.vue$/]
-          }
-        }
+        test: /\.vue$/,
+        loader: 'vue-loader'
       },
       {
-        test: /\.vue$/,
-        use: ['vue-loader']
+        test: /\.tsx?$/,
+        loader: 'babel-loader',
+        exclude: [/node_modules/, /tests/]
       },
       {
         test: /\.scss$/,
@@ -42,7 +34,8 @@ module.exports = {
   resolve: {
     extensions: [ '.tsx', '.ts', '.js', '.vue' ],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': path.resolve(__dirname, "src")
     }
   },
   output: {
