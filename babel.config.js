@@ -5,7 +5,9 @@ module.exports = function (api) {
     "@babel/typescript",
     ["@babel/preset-env", {
       "useBuiltIns": "entry",
-      "targets": "defaults",
+      "targets": {
+        "chrome": "54"
+      },
       "corejs": 3
     }]
   ];
@@ -17,7 +19,8 @@ module.exports = function (api) {
     ["@babel/proposal-class-properties", {"loose": true}],
     "@babel/plugin-syntax-dynamic-import",
     ["@babel/plugin-transform-runtime", {
-      "regenerator": true
+      "regenerator": true,
+      "useESModules": true
     }]
   ];
 
