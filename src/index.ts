@@ -7,7 +7,9 @@ import { version, buildMode } from './versionInfo'
 
 console.info(`piterfiers.net@${version} ${buildMode}`) // eslint-disable-line no-console
 
-Object.assign({}, {})
+const a = () => Object.assign({}, {})
+a()
+
 const main = new Main()
 
 window.addEventListener('load', () => {

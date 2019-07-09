@@ -6,7 +6,7 @@ module.exports = function (api) {
     ["@babel/preset-env", {
       "useBuiltIns": "entry",
       "targets": {
-        "chrome": "54"
+        "chrome": "41"
       },
       "corejs": 3
     }]
