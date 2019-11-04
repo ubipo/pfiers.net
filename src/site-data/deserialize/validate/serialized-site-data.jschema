@@ -35,13 +35,13 @@
           "longMdUrl": {
             "type": "string"
           },
+          "siteUrl": {
+            "type": "string"
+          },
           "gitUrl": {
             "type": "string"
           },
           "imgUrl": {
-            "type": "string"
-          },
-          "siteUrl": {
             "type": "string"
           },
           "technologies": {

@@ -1,23 +1,21 @@
 <template>
-  <div>
-    <Nav> </Nav>
+  <div class="page-wrapper">
+    <Nav />
     <div class="main">
       <main class="main__content">
         <div
-          v-if="siteDataLoading || siteDataError !== undefined"
+          v-if="siteDataLoading || siteDataError != undefined"
           class="site-data-status"
         >
-          <div v-if="siteDataError !== undefined">
-            <p class="error-title">
+          <div v-if="siteDataError != undefined" class="error-msg">
+            <p class="error-msg__title">
               An error occured while trying to load the site data:
             </p>
-            <p class="error-msg">{{ siteDataError }}</p>
+            <p class="error-msg__text">{{ siteDataError }}</p>
           </div>
-          <div v-if="siteDataLoading">
-            <p>Loading site data...</p>
-            <svg xmlns="http://www.w3.org/2000/svg">
-              <use href="/static/spinner.svg#spinner"></use>
-            </svg>
+          <div v-if="siteDataLoading" class="loading-msg">
+            <p class="loading-msg__text">Loading site data...</p>
+            <div class="loading-msg__spinner"><div></div></div>
           </div>
         </div>
         <router-view v-else></router-view>
@@ -64,6 +62,7 @@ export default class Main extends Vue {
 <style lang="scss">
 @import '../style/main.scss';
 @import '../style/style.scss';
+@import '../style/spinner.scss';
 
 p {
   font-family: $text-font-stack;
@@ -80,9 +79,18 @@ h3 {
   outline: none;
 }
 
+.page-wrapper {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
 .main {
   display: flex;
   justify-content: center;
+  // background-image: url(../../static/interlaced.png);
+  background-color: hsl(0, 0, 95%);
+  flex-grow: 1;
 }
 
 .main__content {
@@ -107,13 +115,17 @@ img {
   max-width: 100%;
 }
 
-svg {
-  stroke: $primary-color;
-}
-
 .site-data-status {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.loading-msg__text {
+  text-align: center;
+}
+
+.loading-msg__spinner {
+  @include spinner('loading-msg__spinner--animation', $primary-color);
 }
 </style>

@@ -11,4 +11,5 @@
         }
     ],
     "editor.tabSize": 2,
+    "html.validate.scripts": false
 }

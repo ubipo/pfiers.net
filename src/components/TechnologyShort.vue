@@ -1,20 +1,25 @@
 <template>
-  <section class="technology">
-    <h3 class="technology__title">{{ technology.name }}</h3>
+  <div>
+    <div class="technology__header">
+      <h3 :id="technology.urlSafeName" class="technology__header__title">
+        {{ technology.name }}
+      </h3>
+      <TechnologyBadge :technology="technology"></TechnologyBadge>
+    </div>
     <p>{{ technology.short }}</p>
-    <router-link class="read-more" :to="`/technologies/${technology.urlSafeName}`"
-      >Read more></router-link
-    >
-    <TechnologyBadge :technology="technology"></TechnologyBadge>
+    <router-link class="button" :to="`/technologies/${technology.urlSafeName}`">
+      Read more
+    </router-link>
+
     <p>Used in:</p>
     <ul>
       <li v-for="project in technology.projects" :key="project.name">
-        <router-link :to="`/projects/${project.urlSafeName}`">{{
-          project.name
-        }}</router-link>
+        <router-link :to="`/projects/${project.urlSafeName}`" class="link">
+          {{ project.name }}
+        </router-link>
       </li>
     </ul>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">
@@ -28,10 +33,6 @@ import { Technology } from '../site-data/types'
   }
 })
 export default class TechnologyShort extends Vue {
-  constructor() {
-    super()
-  }
-
   @Prop(undefined) technology!: Technology
 }
 </script>
@@ -39,11 +40,14 @@ export default class TechnologyShort extends Vue {
 <style lang="scss" scoped>
 @import '../style/style.scss';
 
-.read-more {
-  @include button;
-}
+.technology__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-.technology__title {
-  font-size: 1.5rem;
+  .technology__header__title {
+    @include h3-style();
+    margin-top: 0.2em;
+  }
 }
 </style>

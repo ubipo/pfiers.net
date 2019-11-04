@@ -1,15 +1,17 @@
 <template>
   <div>
     <NotFound v-if="!project"></NotFound>
-    <div v-else>
+    <article v-else class="article-card">
       <h1 class="page-title">{{ project.name }}</h1>
       <p>{{ project.short }}</p>
       <ProjectTechnologyList :project="project"></ProjectTechnologyList>
-      <p v-if="project.longMdUrl == undefined">No detailed description available.</p>
+      <p v-if="project.longMdUrl == undefined" class="not-available-text">
+        No detailed description available.
+      </p>
       <article v-else>
         <Markdown :markdown-url="project.longMdUrl"></Markdown>
       </article>
-    </div>
+    </article>
   </div>
 </template>
 
@@ -31,5 +33,3 @@ export default class ProjectDetail extends Vue {
   @Prop(Object) project!: Project
 }
 </script>
-
-<style lang="scss" scoped></style>

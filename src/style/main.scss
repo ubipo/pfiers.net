@@ -20,8 +20,26 @@
   font-size: 3rem;
 }
 
-a {
+.link {
+  @include text();
   color: $primary-color;
   text-decoration: underline;
   text-decoration-style: dotted;
+}
+
+.not-available-text {
+  font-style: italic;
+}
+
+.article-card {
+  background-color: #fff;
+  box-shadow: 5px 5px 12px 0px rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+
+.button {
+  @include text;
+  @include button;
 }

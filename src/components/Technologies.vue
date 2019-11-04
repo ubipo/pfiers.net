@@ -1,11 +1,13 @@
 <template>
   <div>
     <h2 class="page-title">Technologies</h2>
-    <TechnologyShort
+    <article
       v-for="technology in siteData.technologies"
       :key="technology.name"
-      :technology="technology"
-    ></TechnologyShort>
+      class="article-card"
+    >
+      <TechnologyShort :technology="technology"></TechnologyShort>
+    </article>
   </div>
 </template>
 

@@ -1,52 +1,44 @@
 <template>
-  <section class="project">
-    <h3 :id="project.urlSafeName" class="project__title">{{ project.name }}</h3>
+  <div>
+    <div class="project__header">
+      <h3 :id="project.urlSafeName" class="project__header__title">{{ project.name }}</h3>
+      <ProjectTechnologyList :project="project" />
+    </div>
     <p>{{ project.short }}</p>
-    <router-link class="read-more" :to="`/projects/${project.urlSafeName}`"
-      >Read more></router-link
+    <router-link
+      v-if="project.longMdUrl"
+      :to="`/projects/${project.urlSafeName}`"
+      class="button"
     >
-    <a v-if="project.gitUrl !== null" class="git-repo" :href="project.gitUrl"
-      >Git repository></a
-    >
-    <ProjectTechnologyList
-      class="technology-list"
-      :project="project"
-    ></ProjectTechnologyList>
+      Read more
+    </router-link>
+    <a v-if="project.siteUrl" :href="project.siteUrl" class="button">Project site</a>
+    <a v-if="project.gitUrl" :href="project.gitUrl" class="button">Git repository</a>
     <figure v-if="project.imgUrl !== null">
       <img :src="project.imgUrl" />
     </figure>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import ProjectTechnologyList from './ProjectTechnologyList.vue'
+import ButtonGroup from './ButtonGroup.vue'
 import { Project } from '../site-data/types'
 
 @Component({
   components: {
-    ProjectTechnologyList
+    ProjectTechnologyList,
+    ButtonGroup
   }
 })
 export default class ProjectShort extends Vue {
-  constructor() {
-    super()
-  }
-
   @Prop(undefined) project!: Project
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../style/style.scss';
-
-.read-more {
-  @include button;
-}
-
-.git-repo {
-  @include button;
-}
 
 figure {
   max-width: 100%;
@@ -57,8 +49,14 @@ img {
   max-width: 100%;
 }
 
-.project__title {
-  font-size: 1.5rem;
-  margin-bottom: 0.5em;
+.project__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .project__header__title {
+    @include h3-style();
+    margin-top: 0.2em;
+  }
 }
 </style>

@@ -1,3 +1,5 @@
+const browserListQueries = require('./browserListQueries');
+
 module.exports = function (api) {
   api.cache(true);
 
@@ -5,9 +7,7 @@ module.exports = function (api) {
     "@babel/typescript",
     ["@babel/preset-env", {
       "useBuiltIns": "entry",
-      "targets": {
-        "chrome": "41"
-      },
+      "targets": browserListQueries.modern, // Default for dev, gets overridden in webpack prod by BabelMultiTargetPlugin
       "corejs": 3
     }]
   ];
@@ -20,12 +20,14 @@ module.exports = function (api) {
     "@babel/plugin-syntax-dynamic-import",
     ["@babel/plugin-transform-runtime", {
       "regenerator": true,
+      "corejs": 3,
       "useESModules": true
     }]
   ];
 
   return {
     presets,
-    plugins
+    plugins,
+    sourceType: 'unambiguous'
   };
 }

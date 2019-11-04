@@ -11,19 +11,17 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
-import { parse } from 'marked'
-import DynamicVc from './DynamicVc.vue'
+import * as marked from 'marked'
+import DynamicVcFactory from './DynamicVc'
+import SmartLink from './SmartLink.vue'
+import staticHostFetch from '../fetch'
 
 @Component({
   components: {
-    DynamicVc
+    DynamicVc: DynamicVcFactory({ SmartLink: SmartLink })
   }
 })
 export default class Markdown extends Vue {
-  constructor() {
-    super()
-  }
-
   @Prop(String) markdown!: string
   @Prop(URL) markdownUrl!: URL
 
@@ -72,7 +70,7 @@ export default class Markdown extends Vue {
 
   static fetchMdFromUrl(url: URL): Promise<string> {
     let req = new Request(url.href)
-    return fetch(req).then(res => {
+    return staticHostFetch(req).then(res => {
       if (!res.ok) throw new Error(`HTTP Error loading ${url.href}: ${res.statusText}`)
 
       return res.text()
@@ -80,13 +78,26 @@ export default class Markdown extends Vue {
   }
 
   static parse(raw: string) {
-    let parsed = parse(raw, { sanitize: true })
-    // Wrap in root element and set router-links (url prefixed with '@')
+    const renderer = new marked.Renderer();
+    renderer.link = (href, title, text) => {
+      return `<SmartLink to="${href}" class="link">${text}</SmartLink>`
+    }
+
+    let parsed = marked.parse(raw, { renderer: renderer })
+    console.log(parsed)
+    // Wrap in root element, set router-links, increase
     let out =
       '<div>' +
       parsed.replace(
-        /<a href="@([^<>]*)">([^<>]*)<\/a>/g,
-        '<router-link to="$1">$2</router-link>'
+        /<a href="([^<>]*)">([^<>]*)<\/a>/g,
+        '<router-link to="hhh$1">$2</router-link>'
+      ).replace(
+        /<h(\d) id="([^<>]*)">([^<>]*)<\/h\d>/g,
+        (m, h, id, text) => {
+          h = Number.parseInt(h) + 2
+          return `<h${h} id="${id}">${text}</h${h}>`
+        }
+        
       ) +
       '</div>'
     return out
@@ -95,8 +106,12 @@ export default class Markdown extends Vue {
 </script>
 
 <style lang="scss">
-.markdown h2 {
-  margin-top: 0;
+@import '../style/style.scss';
+
+.markdown {
+  h3 {
+    @include h3-style();
+  }
 }
 
 .banner {

@@ -5,7 +5,7 @@
       "name": "Kinect Mouse Tracker",
       "technologies": ["C++", "hardware-interfacing", "OpenCV"],
       "gitUrl": "https://github.com/ubipo/kmt",
-      "short": "Kinect Mouse Tracker processes live Microsoft kinect data to deduce a mouse's position inside an enclosed pen. Made during my internship at NERF.",
+      "short": "Processes live Microsoft kinect data to deduce a mouse's position inside an enclosed pen. Made during my internship at NERF.",
       "longMdUrl": "@/kmt.md",
       "imgUrl": "@/kmt.jpg"
     },
@@ -13,54 +13,54 @@
       "abrv": "DSpay",
       "name": "DSpay - Digital School Pay",
       "technologies": ["Web", "JavaScript", "Microcontrollers", "Node.js", "SQL"],
-      "short": "DSpay is my high-school thesis which researches the viability and implements a prototype of a digital payment system at school."
+      "short": "My high-school thesis which researches the viability and implements a prototype of a digital payment system at school."
     },
     {
       "abrv": "OCIC",
       "name": "Osm Contact Info Corrector",
       "technologies": ["TypeScript", "Web", "Webpack"],
       "gitUrl": "https://github.com/ubipo/opf",
-      "short": "Osm Contact Info Corrector is a webapp to add and correct contact info on openstreetmap.",
+      "short": "Webapp to add and correct contact info on openstreetmap.",
       "imgUrl": "@/ocic.jpg",
-      "siteUrl": "opf.osm.be"
+      "siteUrl": "https://opf.osm.be"
     },
     {
       "name": "Trend-Friends",
       "technologies": ["Web"],
       "gitUrl": "https://github.com/ubipo/trend-friends",
-      "short": "A school assignment to make a static, accessible site.",
+      "short": "School assignment to make a static, accessible site.",
       "imgUrl": "@/trend-friends.jpg"
     },
     {
       "abrv": "EWM",
       "name": "Esp Water Meter",
       "technologies": ["C++", "Microcontrollers", "hardware-interfacing", "OpenCV", "Python"],
-      "short": "Esp Water Meter is a system consisting of an Esp with Arducam and a Python flask server running on a Raspberry pi to process pictures of a water usage meter."
+      "short": "OCR water usage monitoring. Consisting of an Esp with Arducam and a Python flask server running on a Raspberry pi."
     },
     {
       "abrv": "DCNT",
       "name": "Dorm Controller 9000",
       "technologies": ["C++", "Microcontrollers", "hardware-interfacing", "Web"],
       "gitUrl": "https://github.com/ubipo/dcnt",
-      "short": "Dorm Controller 9000 is a hobby project that smoothly wakes me up by controlling several relays and an rgb led strip using a custom HTTP server running on a ESP-12E microcontroller."
+      "short": "Hobby domotics project with a custom HTTP server running on an ESP-12E microcontroller."
     },
     {
       "name": "Ubokeh",
       "technologies": ["C++"],
       "gitUrl": "https://github.com/ubipo/ubokeh",
-      "short": "My Unnecessary Badly-Documented and Overly Complicated Esp Http-Server is the heart of DCNT [TODO: link]."
+      "short": "The Unnecessary Badly-Documented and Overly Complicated Esp Http-Server, at the heart of DCNT."
     },
     {
       "name": "Sel",
       "technologies": ["C++", "Python"],
       "gitUrl": "https://github.com/ubipo/sel",
-      "short": "The Sel Embedded Logger combined with the Sel Tcp Log Server form my logging solution for DCNT."
+      "short": "Super simple logging solution for DCNT."
     },
     {
       "name": "This site ;)",
       "technologies": ["TypeScript", "Web", "Webpack", "Vue.js"],
       "gitUrl": "https://github.com/ubipo/pieterfiers.net",
-      "short": "This site is hosted by github pages and runs Vue.js.",
+      "short": "Dynamic in more than one way, with reusable Vue.js templates and easily updated Ajax content.",
       "urlSafeName": "this-site"
     }
   ],

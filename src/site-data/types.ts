@@ -4,6 +4,7 @@ export interface Project {
   urlSafeName: string
   short: string
   longMdUrl?: URL
+  siteUrl?: URL
   gitUrl?: URL
   imgUrl?: URL
   technologies: Technology[]

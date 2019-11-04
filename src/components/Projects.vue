@@ -1,11 +1,13 @@
 <template>
   <div>
     <h1 class="page-title">Projects</h1>
-    <ProjectShort
+    <article
       v-for="project in siteData.projects"
       :key="project.name"
-      :project="project"
-    ></ProjectShort>
+      class="article-card"
+    >
+      <ProjectShort :project="project"></ProjectShort>
+    </article>
   </div>
 </template>
 

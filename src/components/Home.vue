@@ -1,24 +1,26 @@
 <template>
   <div>
-    <h1 class="page-title">Pieter Fiers</h1>
-    <Markdown :markdown-url="url"></Markdown>
-    <figure>
-      <img src="/content/home.jpg" />
-    </figure>
+    <article class="article-card">
+      <h1 class="page-title">Pieter Fiers</h1>
+      <Markdown :markdown-url="url"></Markdown>
+      <figure>
+        <img :src="staticUrl('/content/home.jpg')" />
+      </figure>
+    </article>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import Component, { mixins } from 'vue-class-component'
 import Markdown from './Markdown.vue'
+import StaticUrl from './mixins/StaticUrl'
 
 @Component({
   components: {
     Markdown
   }
 })
-export default class Home extends Vue {
+export default class Home extends mixins(StaticUrl) {
   private url: URL = new URL(document.location.origin + '/content/home.md')
 }
 </script>

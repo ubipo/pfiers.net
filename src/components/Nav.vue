@@ -6,7 +6,7 @@
         <li class="navlist__item navlist__item--title">
           <router-link class="navlist__link navlist__link--title" to="/">
             <h1 class="navlist__heading">
-              <span v-if="windowWidth > 650">Pieter Fiers</span><span v-else>PF</span>>
+              <span v-if="windowWidth > 650">Pieter Fiers</span><span v-else>PF</span>
             </h1>
           </router-link>
         </li>
@@ -66,6 +66,8 @@ export default class Nav extends Vue {
   margin: 0;
   padding: 0;
   display: flex;
+  box-shadow: 0px 5px 12px 0px rgba(0, 0, 0, 0.4);
+  position: relative;
 }
 
 .navlist__item {

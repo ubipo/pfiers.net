@@ -4,7 +4,8 @@ import {
   SerializedProject,
   SerializedTechnology
 } from './validate/serialized-site-data-schema'
-import { buildMode } from '../../versionInfo'
+import { strictMode } from '../../runtime-info/buildInfo'
+import { toStaticHostUrl } from '../../runtime-info/envInfo'
 
 function makeUrlSafe(url: string): string {
   return encodeURIComponent(url.toLowerCase().replace(/ ?[ -] ?/g, '-'))
@@ -16,7 +17,7 @@ function toContentUrl(urlString: string | undefined) {
   if (urlString.substr(0, 2) === '@/')
     urlString = `${document.location.origin}/content/${urlString.slice(2)}`
 
-  return new URL(urlString)
+  return toStaticHostUrl(new URL(urlString))
 }
 
 function deserializeProjects(sProjects: SerializedProject[]) {
@@ -41,6 +42,7 @@ function deserializeProjects(sProjects: SerializedProject[]) {
       short: p.short,
       longMdUrl: toContentUrl(p.longMdUrl),
       urlSafeName: p.urlSafeName === undefined ? makeUrlSafe(p.name) : p.urlSafeName,
+      siteUrl: p.siteUrl === undefined ? undefined : new URL(p.siteUrl),
       gitUrl: p.gitUrl === undefined ? undefined : new URL(p.gitUrl),
       imgUrl: toContentUrl(p.imgUrl),
       technologies: technologiesMock
@@ -73,7 +75,7 @@ function deserializeTechnologies(sTechnologies: SerializedTechnology[]) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function deserialize(serializedSiteData: any): Promise<SiteData> {
-  if (buildMode === 'development') {
+  if (strictMode) {
     const validateSerializedSiteData = await import(
       /* webpackChunkName: "dev-validate-site-data" */ './validate'
     )

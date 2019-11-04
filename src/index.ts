@@ -3,15 +3,14 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
 import Main from './components/Main'
-import { version, buildMode } from './versionInfo'
+import { version, devMode, strictMode } from './runtime-info/buildInfo'
 
-console.info(`piterfiers.net@${version} ${buildMode}`) // eslint-disable-line no-console
+// eslint-disable-next-line no-console
+console.info(
+  `pieterfiers.net@${version} ${devMode ? 'dev' : ''} ${strictMode ? 'strict' : ''}`
+)
 
-const a = () => Object.assign({}, {})
-a()
+window.onunload = () => {} // cache fix
 
 const main = new Main()
-
-window.addEventListener('load', () => {
-  main.$mount('#app')
-})
+main.$mount('#app')

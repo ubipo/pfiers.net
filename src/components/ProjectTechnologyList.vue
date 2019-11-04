@@ -34,6 +34,7 @@ export default class ProjectTechnologyList extends Vue {
   display: flex;
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .icons__item {
