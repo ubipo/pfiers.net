@@ -2,33 +2,19 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const version = require('./package.json').version;
-const BrowserslistUseragentRegexp = require('browserslist-useragent-regexp');
-const browserListQueries = require('./browserListQueries');
-
-function browserslistQueryToUseragentRegexp(query) {
-  return BrowserslistUseragentRegexp.getUserAgentRegExp({
-    browsers: query,
-    allowHigherVersions: true
-  });
-}
 
 exports.templateParameters = function(buildMode) {
   return {
     buildInfo: {
       version: version,
-      buildMode: buildMode,
-      browserRegexps: {
-        modern: browserslistQueryToUseragentRegexp(browserListQueries.modern).source,
-        legacy: browserslistQueryToUseragentRegexp(browserListQueries.legacy).source
-      }
+      buildMode: buildMode
     }
   }
 }
 
 exports.common = {
   entry: {
-    main: './src/index.ts',
-    inject: './inject/index.js'
+    main: './src/index.ts'
   },
   module: {
     rules: [

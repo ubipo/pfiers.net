@@ -1,5 +1,3 @@
-const browserListQueries = require('./browserListQueries');
-
 module.exports = function (api) {
   api.cache(true);
 
@@ -7,7 +5,7 @@ module.exports = function (api) {
     "@babel/typescript",
     ["@babel/preset-env", {
       "useBuiltIns": "entry",
-      "targets": browserListQueries.modern, // Default for dev, gets overridden in webpack prod by BabelMultiTargetPlugin
+      "targets": "last 2 Chrome versions and last 2 Firefox version",
       "corejs": 3
     }]
   ];

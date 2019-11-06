@@ -21,6 +21,3 @@ recursive("src", (err, files) => {
     });
   }
 });
-
-// compile from file
-//

@@ -83,24 +83,7 @@ export default class Markdown extends Vue {
       return `<SmartLink to="${href}" class="link">${text}</SmartLink>`
     }
 
-    let parsed = marked.parse(raw, { renderer: renderer })
-    console.log(parsed)
-    // Wrap in root element, set router-links, increase
-    let out =
-      '<div>' +
-      parsed.replace(
-        /<a href="([^<>]*)">([^<>]*)<\/a>/g,
-        '<router-link to="hhh$1">$2</router-link>'
-      ).replace(
-        /<h(\d) id="([^<>]*)">([^<>]*)<\/h\d>/g,
-        (m, h, id, text) => {
-          h = Number.parseInt(h) + 2
-          return `<h${h} id="${id}">${text}</h${h}>`
-        }
-        
-      ) +
-      '</div>'
-    return out
+    return marked.parse(raw, { renderer: renderer })
   }
 }
 </script>
