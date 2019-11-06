@@ -8,7 +8,7 @@ const BUILDMODE = 'production'
 module.exports = merge(common, {
   mode: BUILDMODE,
   output: {
-    publicPath: 'https://sh.pieterfiers.net/'
+    publicPath: 'https://vc.pieterfiers.net/'
   },
   module: {
     rules: [
