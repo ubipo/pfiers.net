@@ -8,8 +8,7 @@
     "local": "webpack --config webpack.local-prod.js",
     "start": "webpack-dev-server --config webpack.dev.js",
     "compile-json-schemas": "node ./compile-json-schemas",
-    "check-types": "tsc",
-    "upload-index": "sh -c \"AWS_SHARED_CREDENTIALS_FILE=.aws/credentials AWS_CONFIG_FILE=.aws/config aws s3 cp index.html  s3://pieterfiers.net-index/\""
+    "check-types": "tsc"
   },
   "repository": {
     "type": "git",
