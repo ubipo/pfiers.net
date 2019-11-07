@@ -32,7 +32,6 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       template: 'src/index.ejs',
       filename: 'index.html',
-      chunks: ['main'],
       templateParameters: templateParameters(BUILDMODE)
     })
   ],
