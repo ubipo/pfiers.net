@@ -1,6 +1,6 @@
 const isLocal = ['0.0.0.0', '127.0.0.1', 'localhost'].includes(document.location.hostname)
 const isTestLocal = document.location.hostname === 'testlocal.pieterfiers.net'
-const staticHost = isLocal ? document.location.host : 'sh.pieterfiers.net'
+const staticHost = isLocal ? document.location.host : 'vc.pieterfiers.net'
 const staticHostProtocol = isTestLocal ? 'http' : 'https:'
 const staticHostPort = isTestLocal ? 8000 : 443
 
