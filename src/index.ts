@@ -2,8 +2,11 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
-import { infoString, setWebpackPublicPath, toDistUrl } from './enviroment'
+// @ts-ignore
 import Main from './components/Main'
+import { infoString } from './enviroment/content'
+import { setWebpackPublicPath } from './enviroment/runtime'
+import { toDistUrl } from './enviroment/dist'
 
 // eslint-disable-next-line no-console
 console.info(infoString())

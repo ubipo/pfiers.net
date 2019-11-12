@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex, { StoreOptions, Store } from 'vuex'
 import { RootState } from './types'
 import { siteData } from './site-data'
-import { strictMode } from './enviroment'
+import { strictMode } from './enviroment/runtime'
 
 Vue.use(Vuex)
 

@@ -1,5 +1,5 @@
-import { toDistUrl } from '../enviroment'
 import { injectScript, supportsModule, injectUnsupportedBrowserWarning } from './util'
+import { toDistUrl } from '@/enviroment/dist'
 
 const botSigs = ['bot', 'crawl', 'spider']
 const ua = window.navigator.userAgent

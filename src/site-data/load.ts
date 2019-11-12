@@ -1,9 +1,8 @@
 import { SiteData } from './types'
 import deserialize from './deserialize'
-import { toContentUrl } from '@/enviroment'
-import { toUrl } from '@/url'
+import { toContentUrl } from '@/enviroment/content'
 
-const siteDataUrl = toContentUrl(toUrl('@/site-data.json'))
+const siteDataUrl = toContentUrl('@/site-data.json')
 export default function load(): Promise<SiteData> {
   const req = new Request(siteDataUrl.href)
   return new Promise((resolve, reject) => {

@@ -4,9 +4,9 @@ import {
   SerializedProject,
   SerializedTechnology
 } from './validate/serialized-site-data-schema'
-import { strictMode } from '../../enviroment'
-import { toContentUrl } from '../../enviroment'
 import { toUrl } from '@/url'
+import { strictMode } from '@/enviroment/runtime'
+import { toContentUrl } from '@/enviroment/content'
 
 function makeUrlSafe(url: string): string {
   return encodeURIComponent(url.toLowerCase().replace(/ ?[ -] ?/g, '-'))
