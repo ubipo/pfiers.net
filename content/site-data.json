@@ -64,7 +64,7 @@
       "urlSafeName": "this-site"
     }
   ],
-  "technologies":[
+  "technologies": [
     {
       "name": "OpenCV"
     },

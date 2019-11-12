@@ -4,20 +4,17 @@ import {
   SerializedProject,
   SerializedTechnology
 } from './validate/serialized-site-data-schema'
-import { strictMode } from '../../runtime-info/buildInfo'
-import { toStaticHostUrl } from '../../runtime-info/envInfo'
+import { strictMode } from '../../enviroment'
+import { toContentUrl } from '../../enviroment'
+import { toUrl } from '@/url'
 
 function makeUrlSafe(url: string): string {
   return encodeURIComponent(url.toLowerCase().replace(/ ?[ -] ?/g, '-'))
 }
 
-function toContentUrl(urlString: string | undefined) {
-  if (urlString === undefined) return undefined
-
-  if (urlString.substr(0, 2) === '@/')
-    urlString = `${document.location.origin}/content/${urlString.slice(2)}`
-
-  return toStaticHostUrl(new URL(urlString))
+function falsyOrFunc<T, S>(param: T | undefined, func: (param: T) => S): S | undefined {
+  if (!param) return
+  return func(param)
 }
 
 function deserializeProjects(sProjects: SerializedProject[]) {
@@ -32,7 +29,7 @@ function deserializeProjects(sProjects: SerializedProject[]) {
     // Temporary mock technology object, to be replaced in cyclic pass
     const technologiesMock = p.technologies.map(technology => ({
       name: technology,
-      urlSafeName: '',
+      urlSafeName: makeUrlSafe(technology),
       projects: []
     }))
 
@@ -40,11 +37,11 @@ function deserializeProjects(sProjects: SerializedProject[]) {
       abrv: p.abrv,
       name: p.name,
       short: p.short,
-      longMdUrl: toContentUrl(p.longMdUrl),
+      longMdUrl: falsyOrFunc(p.longMdUrl, toContentUrl),
       urlSafeName: p.urlSafeName === undefined ? makeUrlSafe(p.name) : p.urlSafeName,
-      siteUrl: p.siteUrl === undefined ? undefined : new URL(p.siteUrl),
-      gitUrl: p.gitUrl === undefined ? undefined : new URL(p.gitUrl),
-      imgUrl: toContentUrl(p.imgUrl),
+      siteUrl: falsyOrFunc(p.siteUrl, toUrl),
+      gitUrl: falsyOrFunc(p.gitUrl, toUrl),
+      imgUrl: falsyOrFunc(p.imgUrl, toContentUrl),
       technologies: technologiesMock
     }
   })
@@ -66,7 +63,7 @@ function deserializeTechnologies(sTechnologies: SerializedTechnology[]) {
       name: t.name,
       urlSafeName: urlSafeName,
       short: t.short,
-      longMdUrl: toContentUrl(t.longMdUrl),
+      longMdUrl: falsyOrFunc(t.longMdUrl, toContentUrl),
       iconUrl: toContentUrl(`@/tech-icons/${iconName}.svg`),
       projects: []
     }
@@ -76,10 +73,11 @@ function deserializeTechnologies(sTechnologies: SerializedTechnology[]) {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function deserialize(serializedSiteData: any): Promise<SiteData> {
   if (strictMode) {
-    const validateSerializedSiteData = await import(
+    const imp = await import(
       /* webpackChunkName: "dev-validate-site-data" */ './validate'
     )
-    const res = await validateSerializedSiteData.default(serializedSiteData)
+    const validateSerializedSiteData = imp.default
+    const res = validateSerializedSiteData(serializedSiteData)
     if (res !== undefined)
       throw new DeserializationException(
         `serializedSiteData does not follow jschema: ${res}`

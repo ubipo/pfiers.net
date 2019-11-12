@@ -14,7 +14,6 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 import { Prop, Watch } from 'vue-property-decorator'
 import { Technology } from '../site-data/types'
-import staticHostFetch from '../fetch'
 
 @Component
 export default class TechnologyBadge extends Vue {
@@ -60,7 +59,7 @@ export default class TechnologyBadge extends Vue {
 
   static fetchSvgFromUrl(url: URL): Promise<string> {
     let req = new Request(url.href)
-    return staticHostFetch(req).then(res => {
+    return fetch(req).then(res => {
       if (!res.ok) throw new Error(`HTTP Error loading ${url.href}: ${res.statusText}`)
 
       return res.text()

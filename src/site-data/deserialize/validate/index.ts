@@ -1,5 +1,5 @@
 import serializedSiteDataSchema from './serialized-site-data.jschema'
-import * as Ajv from 'ajv'
+import Ajv from 'ajv'
 const ajv = new Ajv()
 const ajvValidate = ajv.compile(JSON.parse(serializedSiteDataSchema))
 

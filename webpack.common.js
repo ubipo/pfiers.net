@@ -1,20 +1,13 @@
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const version = require('./package.json').version;
+const webpack = require('webpack')
 
-exports.templateParameters = function(buildMode) {
-  return {
-    buildInfo: {
-      version: version,
-      buildMode: buildMode
-    }
-  }
-}
-
-exports.common = {
+module.exports = (mode) => ({
+  mode,
   entry: {
-    main: './src/index.ts'
+    main: './src/index.ts',
+    inject: './src/inject/index.ts'
   },
   module: {
     rules: [
@@ -28,7 +21,7 @@ exports.common = {
         ]
       },
       {
-        test: /\.(md|txt|jschema)$/,
+        test: /\.(md|txt|jschema|html)$/,
         use: 'raw-loader'
       },
       {
@@ -57,6 +50,12 @@ exports.common = {
     path: __dirname,
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      BUILD_INFO: {
+        version: JSON.stringify(version),
+        mode: JSON.stringify(mode)
+      }
+    })
   ]
-}
+});

@@ -1,13 +1,14 @@
 import { SiteData } from './types'
 import deserialize from './deserialize'
-import staticHostFetch from '../fetch'
+import { toContentUrl } from '@/enviroment'
+import { toUrl } from '@/url'
 
+const siteDataUrl = toContentUrl(toUrl('@/site-data.json'))
 export default function load(): Promise<SiteData> {
-  const filename = 'site-data.json'
-  const req = new Request(`/content/${filename}`)
+  const req = new Request(siteDataUrl.href)
   return new Promise((resolve, reject) => {
-    staticHostFetch(req).then(res => {
-      if (!res.ok) throw new Error(`HTTP error fetching ${filename}: ${res.statusText}`)
+    fetch(req).then(res => {
+      if (!res.ok) throw new Error(`HTTP error fetching site data: ${res.statusText}`)
       res.json().then(serializedSiteData => {
         deserialize(serializedSiteData).then(resolve, reject)
       })

@@ -1,11 +1,8 @@
 const merge = require('webpack-merge');
-const { common, templateParameters }  = require('./webpack.common.js');
+const common = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const BUILDMODE = 'development'
-
-module.exports = merge(common, {
-  mode: BUILDMODE,
+module.exports = merge(common('development'), {
   output: {
     publicPath: '/'
   },
@@ -32,7 +29,7 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       template: 'src/index.ejs',
       filename: 'index.html',
-      templateParameters: templateParameters(BUILDMODE)
+      chunks: ['main']
     })
   ],
   devServer: {

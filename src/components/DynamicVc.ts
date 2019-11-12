@@ -16,7 +16,7 @@ function DynamicVcFactory(components: {
     render: function(createElement) {
       const content = this.content || '<p class="not-available-text">No content</p>'
       return createElement({
-        name: 'hey',
+        name: 'DynamicVcContent',
         components: components,
         template: content
       })

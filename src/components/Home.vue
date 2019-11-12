@@ -2,9 +2,9 @@
   <div>
     <article class="article-card">
       <h1 class="page-title">Pieter Fiers</h1>
-      <Markdown :markdown-url="url"></Markdown>
+      <Markdown :markdown-url="contentUrl('@/home.md')"></Markdown>
       <figure>
-        <img :src="staticUrl('/content/home.jpg')" />
+        <img :src="contentUrl('@/home.jpg')" />
       </figure>
     </article>
   </div>
@@ -13,16 +13,14 @@
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component'
 import Markdown from './Markdown.vue'
-import StaticUrl from './mixins/StaticUrl'
+import ContentUrl from './mixins/ContentUrl'
 
 @Component({
   components: {
     Markdown
   }
 })
-export default class Home extends mixins(StaticUrl) {
-  private url: URL = new URL(document.location.origin + '/content/home.md')
-}
+export default class Home extends mixins(ContentUrl) {}
 </script>
 
 <style lang="scss">

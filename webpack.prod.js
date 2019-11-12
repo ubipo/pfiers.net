@@ -1,12 +1,10 @@
 const merge = require('webpack-merge');
-const { common, templateParameters } = require('./webpack.common.js');
+const common = require('./webpack.common.js');
 const BabelMultiTargetPlugin = require('webpack-babel-multi-target-plugin').BabelMultiTargetPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
-const BUILDMODE = 'production'
-
-module.exports = merge(common, {
-  mode: BUILDMODE,
+module.exports = merge(common('production'), {
   output: {
     publicPath: 'https://vc.pieterfiers.net/'
   },
@@ -34,7 +32,10 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       template: 'src/index.ejs',
       filename: 'index.html',
-      templateParameters: templateParameters(BUILDMODE)
-    })
+      chunks: ['inject'],
+      excludeChunks: ['inject.modern'],
+      inlineSource: '.(js|css)$'
+    }),
+    new HtmlWebpackInlineSourcePlugin()
   ]
 });

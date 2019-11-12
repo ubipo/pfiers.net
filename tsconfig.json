@@ -17,6 +17,11 @@
         "suppressWhileTypeErrorsPresent": false
       }
     ],
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "~/*": ["*"]
+    },
     "allowSyntheticDefaultImports": true
   },
   "include": [

@@ -16,6 +16,14 @@ import DynamicVcFactory from './DynamicVc'
 import SmartLink from './SmartLink.vue'
 import staticHostFetch from '../fetch'
 
+function markdownRendererFactory() {
+  const renderer = new marked.Renderer()
+  renderer.link = (href, title, text) => {
+    return `<SmartLink to="${href}" class="link">${text}</SmartLink>`
+  }
+  return renderer
+}
+
 @Component({
   components: {
     DynamicVc: DynamicVcFactory({ SmartLink: SmartLink })
@@ -27,6 +35,8 @@ export default class Markdown extends Vue {
 
   private content: string | undefined = ''
   private error: string | undefined = ''
+
+  private static renderer: marked.Renderer = markdownRendererFactory()
 
   @Watch('markdown', {})
   @Watch('markdownUrl', {})
@@ -69,21 +79,16 @@ export default class Markdown extends Vue {
   }
 
   static fetchMdFromUrl(url: URL): Promise<string> {
-    let req = new Request(url.href)
-    return staticHostFetch(req).then(res => {
+    const req = new Request(url.href)
+    return fetch(req).then(res => {
       if (!res.ok) throw new Error(`HTTP Error loading ${url.href}: ${res.statusText}`)
-
       return res.text()
     })
   }
 
   static parse(raw: string) {
-    const renderer = new marked.Renderer();
-    renderer.link = (href, title, text) => {
-      return `<SmartLink to="${href}" class="link">${text}</SmartLink>`
-    }
-
-    return marked.parse(raw, { renderer: renderer })
+    const markdown = marked.parse(raw, { renderer: this.renderer })
+    return `<div>${markdown}</div>`
   }
 }
 </script>

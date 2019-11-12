@@ -2,13 +2,12 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
+import { infoString, setWebpackPublicPath, toDistUrl } from './enviroment'
 import Main from './components/Main'
-import { version, devMode, strictMode } from './runtime-info/buildInfo'
 
 // eslint-disable-next-line no-console
-console.info(
-  `pieterfiers.net@${version} ${devMode ? 'dev' : ''} ${strictMode ? 'strict' : ''}`
-)
+console.info(infoString())
+setWebpackPublicPath(toDistUrl('/'))
 
 window.onunload = () => {} // cache fix
 
