@@ -39,12 +39,18 @@ module.exports = merge(common('production'), {
         headless: false,
         //renderAfterDocumentEvent: 'app-loaded',
         renderAfterTime: 5000,
+        args: [
+          '--disable-web-security',
+        ],
       }),
       postProcess (renderedRoute) {
         // Remove all webpack bundle scripts (injected manually by embedded inject script)
         //    anything except path or end of src \/                \/ no more path segements
         const re = /<script.*? src="https?:\/\/[^\/"]*?\/bundle\/[^\/"]*?\.(?:chunk|bundle)\.js".*?<\/script>/gm
         renderedRoute.html = renderedRoute.html.split(re).join('')
+          .replace('http://content.local:8000', 'https://pfiers.net')
+          .replace('http://dist.local:8000', 'https://pfiers.net')
+          .replace('http://localhost:8000', 'https://pfiers.net')
         return renderedRoute
       },
     }),
@@ -66,6 +72,7 @@ module.exports = merge(common('production'), {
     new HtmlWebpackInlineSourcePlugin(),
     new CopyPlugin([
       { from: 'content', to: 'content' },
+      { from: 'CNAME' },
     ]),
     new CleanWebpackPlugin()
   ]

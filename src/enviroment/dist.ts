@@ -7,7 +7,7 @@ const distOrigins: OriginDefinition = {
   dev: document.location.origin,
   localProd: 'http://dist.local:8000',
   prod: 'https://pfiers.net',
-  prerender: document.location.origin,
+  prerender: 'http://dist.local:8000', // To be replaced with prod origin in postprocess
 }
 
 export const distOrigin = new URL(distOrigins[originName])

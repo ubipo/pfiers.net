@@ -8,7 +8,7 @@ const contentOrigins: OriginDefinition = {
   dev: document.location.origin,
   localProd: 'http://content.local:8000',
   prod: 'https://pfiers.net',
-  prerender: document.location.origin,
+  prerender: 'http://content.local:8000', // To be replaced with prod origin in postprocess
 }
 
 export const contentOrigin = new URL(contentOrigins[originName])
