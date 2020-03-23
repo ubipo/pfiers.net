@@ -29,3 +29,15 @@ export interface SiteDataState {
   error?: string
   loading: boolean
 }
+
+export class ContentUrl extends URL {
+  constructor(url: URL) {
+    super(url.href)
+  }
+}
+
+export class DistUrl extends URL {
+  constructor(url: URL) {
+    super(url.href)
+  }
+}

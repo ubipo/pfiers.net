@@ -2,6 +2,7 @@ import { toUrl, isRelative, withOrigin } from '@/util/url'
 import { originName, version, name } from '.'
 import { strictMode } from './runtime'
 import { OriginDefinition } from './util'
+import { ContentUrl } from '@/store/site-data/types'
 
 const contentOrigins: OriginDefinition = {
   dev: document.location.origin,
@@ -20,7 +21,7 @@ export function toContentUrl(url: URL | string) {
   if (url.pathname.startsWith('@', 1))
     // pathname starts with '/'
     url.pathname = `/content${url.pathname.slice(2)}`
-  return url
+  return new ContentUrl(url)
 }
 
 export function infoString() {

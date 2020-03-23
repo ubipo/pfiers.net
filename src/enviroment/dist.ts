@@ -1,6 +1,7 @@
 import { originName } from '.'
 import { toUrl, isRelative, withOrigin } from '@/util/url'
 import { OriginDefinition } from './util'
+import { DistUrl } from '@/store/site-data/types'
 
 const distOrigins: OriginDefinition = {
   dev: document.location.origin,
@@ -14,5 +15,5 @@ export const distOrigin = new URL(distOrigins[originName])
 export function toDistUrl(url: URL | string) {
   if (typeof url === 'string') url = toUrl(url)
   if (!isRelative(url)) return url
-  return withOrigin(url, distOrigin)
+  return new DistUrl(withOrigin(url, distOrigin))
 }
