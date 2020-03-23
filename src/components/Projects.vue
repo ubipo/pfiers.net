@@ -1,21 +1,24 @@
 <template>
-  <div>
-    <h1 class="page-title">Projects</h1>
+  <div class="card-grid">
     <article
+      class="card"
       v-for="project in siteData.projects"
       :key="project.name"
-      class="article-card"
     >
-      <ProjectShort :project="project"></ProjectShort>
+      <div class="card__content">
+        <ProjectShort :project="project"></ProjectShort>
+      </div>
     </article>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Component } from 'vue-property-decorator'
+import { mixins } from "vue-class-component";
 import ProjectShort from './ProjectShort.vue'
-import { SiteData } from '../site-data/types'
+import { SiteData } from '@/store/site-data/types'
 import { namespace } from 'vuex-class'
+import CardGrid from "./mixins/CardGrid";
 
 const ns = namespace('siteData')
 
@@ -24,8 +27,12 @@ const ns = namespace('siteData')
     ProjectShort
   }
 })
-export default class Projects extends Vue {
+export default class Projects extends mixins(CardGrid) {
   @ns.Getter('data') siteData!: SiteData | undefined
+
+  public mounted() {
+    this.cardGridInit()
+  }
 }
 </script>
 

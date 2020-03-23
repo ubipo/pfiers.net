@@ -14,7 +14,7 @@ function DynamicVcFactory(components: {
       }
     },
     render: function(createElement) {
-      const content = this.content || '<p class="not-available-text">No content</p>'
+      const content = `<div>${this.content}</div>` || '<div></div><p class="not-available-text">No content</p>'
       return createElement({
         name: 'DynamicVcContent',
         components: components,

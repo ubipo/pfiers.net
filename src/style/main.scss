@@ -1,4 +1,5 @@
 @import './style.scss';
+@import './card.scss';
 
 .error-title {
   color: hsl(0, 64%, 43%);
@@ -31,12 +32,8 @@
   font-style: italic;
 }
 
-.article-card {
-  background-color: #fff;
-  box-shadow: 5px 5px 12px 0px rgba(0, 0, 0, 0.4);
-  padding: 15px;
-  border-radius: 5px;
-  margin-bottom: 1.5rem;
+section {
+  margin-bottom: 2rem;
 }
 
 .button {

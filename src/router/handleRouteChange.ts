@@ -10,9 +10,7 @@ import {
   setDocRobots
 } from './util'
 
-const titlePostfix = 'Pieter Fiers'
-
-export default function handleRouteChange(route: Route) {
+export default function handleRouteChange(route: Route, titlePostfix: string) {
   const parentChain = getParentChain(route)
   for (const parent of parentChain) {
     if (typeof parent.meta.beforeDataAccess === 'function')
@@ -23,7 +21,9 @@ export default function handleRouteChange(route: Route) {
   if (nearestWithTitle == undefined)
     throw new Error('There must be a route with a title as per CustomRouteConfig')
   const title = getDataVal(nearestWithTitle.meta.data.title, route)
-  const pageTitle = title ? `${title} | ${titlePostfix}` : titlePostfix
+  let pageTitle = title
+  if (!route.meta.data?.noTitlePostfix)
+    pageTitle = title ? `${title} - ${titlePostfix}` : titlePostfix
   document.title = pageTitle
 
   const nearestWithDescription = nearestWithData(route, parentChain, 'description')

@@ -6,7 +6,7 @@
     :content="content"
   ></dynamic-vc>
   <!-- TODO: italic -->
-  <p v-else>No markdown</p>
+  <p v-else>No markdown    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
 </template>
 
 <script lang="ts">
@@ -14,7 +14,6 @@ import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import * as marked from 'marked'
 import DynamicVcFactory from './DynamicVc'
 import SmartLink from './SmartLink.vue'
-import staticHostFetch from '../fetch'
 
 function markdownRendererFactory() {
   const renderer = new marked.Renderer()

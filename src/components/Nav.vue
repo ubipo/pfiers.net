@@ -1,27 +1,25 @@
 <template>
-  <div>
-    <div></div>
-    <nav>
+  <div class="nav-cont">
+    <div class="nav-cont__buffer"></div>
+    <nav class="nav-cont__content">
       <ul class="navlist">
-        <li class="navlist__item navlist__item--title">
+        <li class="navlist__item navlist__item--title" :class="{'navlist__item--active': subIsActive('/')}">
           <router-link class="navlist__link navlist__link--title" to="/">
             <h1 class="navlist__heading">
-              <span v-if="windowWidth > 650">Pieter Fiers</span><span v-else>PF</span>
+              <span class="navlist__txt navlist__txt--full">Pieter Fiers</span>
+              <span class="navlist__txt navlist__txt--abrv">PF</span>
             </h1>
           </router-link>
         </li>
-        <li v-for="(page, index) in pages" :key="index" class="navlist__item">
+        <li v-for="(page, index) in pages" :key="index" class="navlist__item" :class="{'navlist__item--active': subIsActive(`/${page.full}`)}">
           <router-link class="navlist__link" :to="`/${page.full}`">
-            <span v-if="windowWidth > 650">
-              {{ page.full | capitalize }}
-            </span>
-            <span v-else>
-              {{ page.abrv | capitalize }}
-            </span>
+            <span class="navlist__txt navlist__txt--full">{{ page.full | capitalize }}</span>
+            <span class="navlist__txt navlist__txt--abrv">{{ page.abrv | capitalize }}</span>
           </router-link>
         </li>
       </ul>
     </nav>
+    <div class="nav-cont__buffer"></div>
   </div>
 </template>
 
@@ -44,23 +42,42 @@ export default class Nav extends Vue {
     super()
   }
 
-  windowWidth: number = window.innerWidth
-
   pages: PageName[] = [
     { full: 'projects', abrv: 'proj' },
     { full: 'technologies', abrv: 'tech' }
   ]
 
-  public mounted() {
-    window.onresize = () => {
-      this.windowWidth = window.innerWidth
-    }
+  public subIsActive(input: string) {
+    const paths = Array.isArray(input) ? input : [input];
+    
+    return paths.some(path => {
+    	return this.$route.path === path // current path starts with this path string
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../style/style.scss';
+
+.nav-cont {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-cont__content {
+  flex-grow: 1;
+  width: 100%;
+  max-width: 70rem;
+}
+
+// To cover box shadow on side
+.nav-cont__buffer {
+  flex-grow: 1;
+  background-color: #fff;
+  z-index: 10;
+}
+
 
 .navlist {
   margin: 0;
@@ -77,7 +94,11 @@ export default class Nav extends Vue {
 }
 
 .navlist__item--title {
-  flex-grow: 0.3;
+  // flex-grow: 0.3;
+}
+
+.navlist__item--active {
+  flex-grow: 2;
 }
 
 .navlist__link {
@@ -98,14 +119,37 @@ export default class Nav extends Vue {
   &:focus,
   &:hover {
     padding-bottom: 0.5rem;
-    border-bottom: 5px solid $secondary-color;
+    border-bottom: 3px solid $secondary-color;
   }
 }
 
 .router-link-exact-active,
 .router-link-active:not(.navlist__link--title) {
-  padding-bottom: 0.5rem;
-  border-bottom: 5px solid $secondary-color;
+  padding-bottom: 0.5rem !important;
+  border-bottom: 5px solid $secondary-color !important;
+  color: $secondary-color;
+
+  h1 {
+    color: $secondary-color; // Overrides general h1 color
+  }
+}
+
+.navlist__txt--full {
+  display: none;
+}
+
+.navlist__txt--abrv {
+  display: inline;
+}
+
+@media only screen and (min-width: 650px) {
+  .navlist__txt--full {
+    display: inline;
+  }
+
+  .navlist__txt--abrv {
+    display: none;
+  }
 }
 
 .navlist__heading {

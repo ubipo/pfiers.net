@@ -16,7 +16,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import TechnologyBadge from './TechnologyBadge.vue'
-import { Project } from '../site-data/types'
+import { Project } from '@/store/site-data/types'
 import { Prop } from 'vue-property-decorator'
 
 @Component({
@@ -33,6 +33,7 @@ export default class ProjectTechnologyList extends Vue {
 .icons {
   display: flex;
   list-style: none;
+  flex-direction: row;
   padding: 0;
   margin: 0;
 }
@@ -42,6 +43,20 @@ export default class ProjectTechnologyList extends Vue {
   width: 50px;
   background-color: hsl(120, 80, 35);
   margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+@media only screen and (min-width: 650px) {
+  .icons {
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    max-width: calc((50px + 5px) * 3);
+  }
+
+  .icons__item {
+    margin-left: 5px;
+    margin-right: 0;
+  }
 }
 
 .icons__icon {

@@ -1,6 +1,7 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const version = require('./package.json').version;
+const name = require('./package.json').name;
 const webpack = require('webpack')
 
 module.exports = (mode) => ({
@@ -25,13 +26,13 @@ module.exports = (mode) => ({
         use: 'raw-loader'
       },
       {
-        test: /\.(png|jp(e*)g|svg)$/,  
+        test: /\.(png|jp(e*)g|svg)$/,
         use: [{
             loader: 'url-loader',
-            options: { 
+            options: {
                 limit: 8000,
                 name: 'images/[hash]-[name].[ext]'
-            } 
+            }
         }]
       }
     ]
@@ -45,14 +46,15 @@ module.exports = (mode) => ({
     }
   },
   output: {
-    filename: "dist/[name].bundle.js",
-    chunkFilename: "dist/[name].bundle.js",
-    path: __dirname,
+    path: path.resolve(__dirname, 'dist'),
+    filename: "bundle/[name].bundle.js",
+    chunkFilename: "bundle/[name].chunk.js",
   },
   plugins: [
     new VueLoaderPlugin(),
     new webpack.DefinePlugin({
       BUILD_INFO: {
+        name: JSON.stringify(name),
         version: JSON.stringify(version),
         mode: JSON.stringify(mode)
       }

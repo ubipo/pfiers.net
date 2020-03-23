@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <article class="article-card">
-      <h1 class="page-title">Pieter Fiers</h1>
-      <Markdown :markdown-url="contentUrl('@/home.md')"></Markdown>
-      <figure>
-        <img :src="contentUrl('@/home.jpg')" />
-      </figure>
+  <div class="card-column">
+    <article class="card">
+      <div class="card__content">
+        <h1 class="page-title">Pieter Fiers</h1>
+        <Markdown :markdown-url="contentUrl('@/home.md')"></Markdown>
+        <figure>
+          <img :src="contentUrl('@/home-md.png')" />
+        </figure>
+      </div>
     </article>
   </div>
 </template>
@@ -14,13 +16,18 @@
 import Component, { mixins } from 'vue-class-component'
 import Markdown from './Markdown.vue'
 import ContentUrl from './mixins/ContentUrl'
+import CardGrid from "./mixins/CardGrid";
 
 @Component({
   components: {
     Markdown
   }
 })
-export default class Home extends mixins(ContentUrl) {}
+export default class Home extends mixins(ContentUrl, CardGrid) {
+  public mounted() {
+    this.cardGridInit()
+  }
+}
 </script>
 
 <style lang="scss">

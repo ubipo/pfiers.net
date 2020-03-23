@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from '../store'
 import { asSubroute } from './util'
 import { CustomRouteConfig } from './types'
 import handleRouteChange from './handleRouteChange'
+import { store } from '@/store'
 
 Vue.use(VueRouter)
 
 const baseUrl = document.location.origin
+const titlePostfix = 'pfiers'
 
 const routes: CustomRouteConfig[] = [
   ...asSubroute(
@@ -15,10 +16,11 @@ const routes: CustomRouteConfig[] = [
     {
       path: '',
       component: () =>
-        import(/* webpackChunkName: "vue-home" */ '../components/Home.vue'),
+        import(/* webpackChunkName: "vue-home" */ '@/components/Home.vue'),
       meta: {
         data: {
           title: 'Pieter Fiers',
+          noTitlePostfix: true,
           description:
             "Pieter Fiers's portfolio. All my favorite projects, technologies and more.",
           canonicalUrl: new URL(baseUrl)
@@ -31,7 +33,7 @@ const routes: CustomRouteConfig[] = [
         {
           path: '',
           component: () =>
-            import(/* webpackChunkName: "vue-projects" */ '../components/Projects.vue'),
+            import(/* webpackChunkName: "vue-projects" */ '@/components/Projects.vue'),
           meta: {
             data: {
               title: 'Projects',
@@ -45,7 +47,7 @@ const routes: CustomRouteConfig[] = [
             path: '/:projectName',
             component: () =>
               import(
-                /* webpackChunkName: "vue-project-detail" */ '../components/ProjectDetail.vue'
+                /* webpackChunkName: "vue-project-detail" */ '@/components/ProjectDetail.vue'
               ),
             props: route => ({
               project: store.getters['siteData/projectByUrlSafeName'](
@@ -74,7 +76,7 @@ const routes: CustomRouteConfig[] = [
           path: '',
           component: () =>
             import(
-              /* webpackChunkName: "vue-technologies" */ '../components/Technologies.vue'
+              /* webpackChunkName: "vue-technologies" */ '@/components/Technologies.vue'
             ),
           meta: {
             data: {
@@ -90,7 +92,7 @@ const routes: CustomRouteConfig[] = [
             path: '/:technologyName',
             component: () =>
               import(
-                /* webpackChunkName: "vue-technology-detail" */ '../components/TechnologyDetail.vue'
+                /* webpackChunkName: "vue-technology-detail" */ '@/components/TechnologyDetail.vue'
               ),
             props: route => ({
               technology: store.getters['siteData/technologyByUrlSafeName'](
@@ -118,7 +120,7 @@ const routes: CustomRouteConfig[] = [
   {
     path: '*',
     component: () =>
-      import(/* webpackChunkName: "vue-not-found" */ '../components/NotFound.vue'),
+      import(/* webpackChunkName: "vue-not-found" */ '@/components/NotFound.vue'),
     meta: {
       data: {
         title: 'Not Found',
@@ -135,16 +137,17 @@ const router = new VueRouter({
   mode: 'history',
   scrollBehavior: (to, from, savedPosition) =>
     savedPosition ? savedPosition : { x: 0, y: 0 }
-})
+  }
+)
 
 router.afterEach(to => {
   if (store.getters['siteData/data'] != undefined) {
-    handleRouteChange(to)
+    handleRouteChange(to, titlePostfix)
   } else {
     store.watch(
       (state, getters) => getters['siteData/data'],
       newValue => {
-        if (newValue != undefined) handleRouteChange(router.currentRoute)
+        if (newValue != undefined) handleRouteChange(router.currentRoute, titlePostfix)
       }
     )
   }

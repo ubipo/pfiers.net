@@ -10,4 +10,5 @@ export interface OriginDefinition {
   dev: string
   localProd: string
   prod: string
+  prerender: string
 }

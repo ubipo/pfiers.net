@@ -25,7 +25,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import TechnologyBadge from './TechnologyBadge.vue'
-import { Technology } from '../site-data/types'
+import { Technology } from '@/store/site-data/types'
 
 @Component({
   components: {

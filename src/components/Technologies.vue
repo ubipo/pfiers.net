@@ -1,21 +1,24 @@
 <template>
-  <div>
-    <h2 class="page-title">Technologies</h2>
+  <div class="card-grid">
     <article
+      class="card"
       v-for="technology in siteData.technologies"
       :key="technology.name"
-      class="article-card"
     >
-      <TechnologyShort :technology="technology"></TechnologyShort>
+      <div class="card__content">
+        <TechnologyShort :technology="technology"></TechnologyShort>
+      </div>
     </article>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Component } from 'vue-property-decorator'
+import { mixins } from "vue-class-component";
 import TechnologyShort from './TechnologyShort.vue'
-import { SiteData } from '../site-data/types'
+import { SiteData } from '@/store/site-data/types'
 import { namespace } from 'vuex-class'
+import CardGrid from "./mixins/CardGrid";
 
 const ns = namespace('siteData')
 
@@ -24,8 +27,12 @@ const ns = namespace('siteData')
     TechnologyShort
   }
 })
-export default class Technologies extends Vue {
+export default class Technologies extends mixins(CardGrid) {
   @ns.Getter('data') siteData!: SiteData | undefined
+
+  public mounted() {
+    this.cardGridInit()
+  }
 }
 </script>
 

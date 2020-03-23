@@ -13,7 +13,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { Prop, Watch } from 'vue-property-decorator'
-import { Technology } from '../site-data/types'
+import { Technology } from '@/store/site-data/types'
 
 @Component
 export default class TechnologyBadge extends Vue {

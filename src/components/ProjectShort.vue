@@ -1,10 +1,12 @@
 <template>
   <div>
     <div class="project__header">
+      <ProjectTechnologyList class="tech-list tech-list--float" :project="project" />
       <h3 :id="project.urlSafeName" class="project__header__title">{{ project.name }}</h3>
-      <ProjectTechnologyList :project="project" />
+      <ProjectTechnologyList class="tech-list tech-list--under" :project="project" />
+      <p>{{ project.short }}</p>
     </div>
-    <p>{{ project.short }}</p>
+    
     <router-link
       v-if="project.longMdUrl"
       :to="`/projects/${project.urlSafeName}`"
@@ -24,7 +26,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import ProjectTechnologyList from './ProjectTechnologyList.vue'
 import ButtonGroup from './ButtonGroup.vue'
-import { Project } from '../site-data/types'
+import { Project } from '@/store/site-data/types'
 
 @Component({
   components: {
@@ -50,13 +52,35 @@ img {
 }
 
 .project__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
 
   .project__header__title {
     @include h3-style();
     margin-top: 0.2em;
   }
 }
+
+
+.tech-list--float {
+  display: none;
+}
+
+.tech-list--under {
+  display: block;
+}
+
+@media only screen and (min-width: 650px) {
+  .tech-list--float {
+    display: block;
+    float: right;
+  }
+
+  .tech-list--under {
+    display: none;
+  }
+}
+
+
 </style>

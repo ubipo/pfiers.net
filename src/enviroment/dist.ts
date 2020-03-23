@@ -1,11 +1,12 @@
 import { originName } from '.'
-import { toUrl, isRelative, withOrigin } from '@/url'
+import { toUrl, isRelative, withOrigin } from '@/util/url'
 import { OriginDefinition } from './util'
 
 const distOrigins: OriginDefinition = {
   dev: document.location.origin,
   localProd: 'http://dist.local:8000',
-  prod: 'https://pieterfiers.net'
+  prod: 'https://pfiers.net',
+  prerender: document.location.origin,
 }
 
 export const distOrigin = new URL(distOrigins[originName])

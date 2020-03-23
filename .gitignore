@@ -3,3 +3,4 @@ scratch
 .directory
 stats.json
 .aws
+.vscode

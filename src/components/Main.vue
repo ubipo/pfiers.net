@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrapper">
+  <div id="app" class="page-wrapper">
     <Nav />
     <div class="main">
       <main class="main__content">
@@ -28,10 +28,10 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import Nav from './Nav.vue'
-import router from '../router'
+import router from '@/router'
 import { namespace } from 'vuex-class'
-import store from '../store'
-import { SiteData } from '../site-data/types'
+import { store } from '@/store'
+import { SiteData } from '@/store/site-data/types'
 
 const ns = namespace('siteData')
 
@@ -49,9 +49,11 @@ export default class Main extends Vue {
   @ns.Action('load') loadSiteData!: () => Promise<null>
 
   public created() {
-    this.loadSiteData().catch(() => 0)
+    // this.loadSiteData().catch(() => 0).then(e => {
+    //   document.dispatchEvent(new Event('app-loaded'))
+    // })
   }
-
+  
   sdlStatus = {
     loaded: false,
     err: null
@@ -88,21 +90,20 @@ h3 {
 .main {
   display: flex;
   justify-content: center;
-  // background-image: url(../../static/interlaced.png);
+  background-image: url('/content/bg.png');
   background-color: hsl(0, 0, 95%);
+  background-size: 100vw;
   flex-grow: 1;
 }
 
 .main__content {
-  margin-top: 0.5rem;
-  padding: 1rem;
-  max-width: 60rem;
+  margin: 1rem 0.5rem 2rem 0.5rem;
   width: 100%;
 }
 
 @media only screen and (min-width: 650px) {
   .main__content {
-    margin-top: 2rem;
+    margin: 4rem 14rem 10rem 14rem;
   }
 }
 
