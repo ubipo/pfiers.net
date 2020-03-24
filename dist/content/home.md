@@ -4,3 +4,5 @@ Hi! I like maps, microcontrollers and making convoluted programs for simple prob
 
 Want to get in touch?  
 pieter@pfiers.net — [LinkedIn](https://www.linkedin.com/in/pieter-fiers-00916b1a2) — [GitHub](https://github.com/ubipo)
+
+![Computer rendered top-down view of buildings and river](/content/home-md-min.png "OSM and BlenderGIS going together like open data and OSS")

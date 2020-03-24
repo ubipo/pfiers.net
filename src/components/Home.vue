@@ -4,9 +4,6 @@
       <div class="card__content">
         <h1 class="page-title">Pieter Fiers</h1>
         <Markdown :markdown-url="contentUrl('@/home.md')"></Markdown>
-        <figure>
-          <img :src="contentUrl('@/home-md-min.png')" />
-        </figure>
       </div>
     </article>
   </div>
