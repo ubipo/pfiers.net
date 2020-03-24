@@ -13,7 +13,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = merge(common('production'), {
   output: {
-    publicPath: 'https://vc.pieterfiers.net/'
+    publicPath: 'https://pfiers.net/'
   },
   module: {
     rules: [
