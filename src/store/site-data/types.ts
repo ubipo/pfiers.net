@@ -3,10 +3,10 @@ export interface Project {
   name: string
   urlSafeName: string
   short: string
-  longMdUrl?: URL
-  siteUrl?: URL
-  gitUrl?: URL
-  imgUrl?: URL
+  longMdUrl?: TaggedUrl
+  siteUrl?: TaggedUrl
+  gitUrl?: TaggedUrl
+  imgUrl?: TaggedUrl
   technologies: Technology[]
 }
 
@@ -14,8 +14,8 @@ export interface Technology {
   name: string
   urlSafeName: string
   short?: string
-  longMdUrl?: URL
-  iconUrl?: URL
+  longMdUrl?: TaggedUrl
+  iconUrl?: TaggedUrl
   projects: Project[]
 }
 
@@ -30,14 +30,19 @@ export interface SiteDataState {
   loading: boolean
 }
 
-export class ContentUrl extends URL {
-  constructor(url: URL) {
-    super(url.href)
-  }
+// URL Class cannot be extended so this will have to do
+export interface TaggedUrl extends URL {
+  isDistUrl: boolean
+  isContentUrl: boolean
 }
 
-export class DistUrl extends URL {
-  constructor(url: URL) {
-    super(url.href)
-  }
+export function tagUrl(url: URL, isDistUrl = false, isContentUrl = false) {
+  const taggedUrl = (url as TaggedUrl)
+  taggedUrl.isDistUrl = isDistUrl
+  taggedUrl.isContentUrl = isContentUrl
+  return taggedUrl
+}
+
+export function isTaggedUrl(object: any): object is TaggedUrl {
+  return object instanceof URL && 'isDistUrl' in object && 'isContentUrl' in object;
 }

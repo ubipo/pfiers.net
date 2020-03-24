@@ -1,10 +1,12 @@
+import { tagUrl } from "@/store/site-data/types"
+
 export function isHttpUrl(url: URL) {
   return ['http:', 'https:'].includes(url.protocol)
 }
 
 const REL_PROTOCOL = 'relative:'
 export function toUrl(urlStr: string) {
-  return new URL(urlStr, `${REL_PROTOCOL}/`)
+  return tagUrl(new URL(urlStr, `${REL_PROTOCOL}/`))
 }
 
 export function isRelative(url: URL) {
@@ -12,7 +14,7 @@ export function isRelative(url: URL) {
 }
 
 function clone(url: URL) {
-  return new URL(url.href)
+  return tagUrl(new URL(url.href))
 }
 
 export function withOrigin(url: URL, originUrl: URL) {

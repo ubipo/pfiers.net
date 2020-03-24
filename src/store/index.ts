@@ -7,9 +7,10 @@ import { isPrerender } from '@/enviroment';
 import cloneDeepWith from "lodash/cloneDeepWith";
 import isString from "lodash/isString";
 import { Exception } from '@/util/exception';
-import { DistUrl, ContentUrl } from './site-data/types';
+import { isTaggedUrl } from './site-data/types';
 import { toDistUrl } from '@/enviroment/dist';
 import { toContentUrl } from '@/enviroment/content';
+import { toUrl } from '@/util/url';
 // @ts-ignore
 
 Vue.use(Vuex)
@@ -36,7 +37,7 @@ export function init() {
         if (val.startsWith('s')) {
           return withoutPrefix
         } else if (val.startsWith('u')) {
-          return new URL(withoutPrefix)
+          return toUrl(withoutPrefix)
         } else if (val.startsWith('c')) {
           return toContentUrl(withoutPrefix)
         } else if (val.startsWith('d')) {
@@ -59,12 +60,16 @@ export function init() {
       const state = cloneDeepWith(store.state, val => {
         if (isString(val)) {
           return `s${val}`
-        } else if (val instanceof ContentUrl) {
-          return `c${val.pathname + val.search + val.hash}`
-        } else if (val instanceof DistUrl) {
-          return `d${val.pathname + val.search + val.hash}`
         } else if (val instanceof URL) {
-          return `u${val}`
+          const fullPath = val.pathname + val.search + val.hash
+          if (isTaggedUrl(val)) {
+            if (val.isContentUrl) {
+              return `c${fullPath}`
+            } else if (val.isDistUrl) {
+              return `d${fullPath}`
+            }
+          }
+          return `u${val.href}`
         }
       })
       script.textContent = stringify(state)

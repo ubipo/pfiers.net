@@ -16,18 +16,13 @@
 import Component, { mixins } from 'vue-class-component'
 import Markdown from './Markdown.vue'
 import ContentUrl from './mixins/ContentUrl'
-import CardGrid from "./mixins/CardGrid";
 
 @Component({
   components: {
     Markdown
   }
 })
-export default class Home extends mixins(ContentUrl, CardGrid) {
-  public mounted() {
-    this.cardGridInit()
-  }
-}
+export default class Home extends mixins(ContentUrl) {}
 </script>
 
 <style lang="scss">
