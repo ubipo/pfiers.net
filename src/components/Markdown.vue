@@ -6,7 +6,7 @@
     :content="content"
   ></dynamic-vc>
   <!-- TODO: italic -->
-  <p v-else>No markdown    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
+  <p v-else>No markdown</p>
 </template>
 
 <script lang="ts">

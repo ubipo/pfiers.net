@@ -23,7 +23,7 @@
 
 .link {
   @include text();
-  color: $primary-color;
+  color: scale-color($color:  $primary-color, $lightness: -10%); // Normal text WCAG AA
   text-decoration: underline;
   text-decoration-style: dotted;
 }
