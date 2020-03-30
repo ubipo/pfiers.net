@@ -99,6 +99,11 @@ export default class Markdown extends Vue {
   h3 {
     @include h3-style();
   }
+
+  li {
+    @include text();
+    color: $text-color;
+  }
 }
 
 .banner {

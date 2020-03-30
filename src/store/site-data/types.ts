@@ -15,7 +15,7 @@ export interface Technology {
   urlSafeName: string
   short?: string
   longMdUrl?: TaggedUrl
-  iconUrl?: TaggedUrl
+  iconName: string
   projects: Project[]
 }
 
