@@ -1,14 +1,6 @@
 {
   "projects": [
     {
-      "name": "Andin",
-      "technologies": ["Android", "Kotlin", "GraphQL", "Go", "Python", "SQL"],
-      "gitUrl": "https://github.com/ubipo/andin-api",
-      "short": "An indoor map for android.",
-      "longMdUrl": "@/andin.md",
-      "imgUrl": "@/andin.jpg"
-    },
-    {
       "abrv": "KMT",
       "name": "Kinect Mouse Tracker",
       "technologies": ["C++", "Hardware interfacing", "OpenCV"],
@@ -75,18 +67,6 @@
   "technologies": [
     {
       "name": "OpenCV"
-    },
-    {
-      "name": "Android"
-    },
-    {
-      "name": "Kotlin"
-    },
-    {
-      "name": "GraphQL"
-    },
-    {
-      "name": "Go"
     },
     {
       "name": "C++",

@@ -3,7 +3,6 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const version = require('./package.json').version;
 const name = require('./package.json').name;
 const webpack = require('webpack')
-const SvgSpritePlugin = require('svg-sprite-loader/plugin')
 
 module.exports = (mode) => ({
   mode,
@@ -27,21 +26,14 @@ module.exports = (mode) => ({
         use: 'raw-loader'
       },
       {
-        test: /\.(png|jp(e*)g)$/,
+        test: /\.(png|jp(e*)g|svg)$/,
         use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 8000,
-            name: 'images/[hash]-[name].[ext]'
-          }
+            loader: 'url-loader',
+            options: {
+                limit: 8000,
+                name: 'images/[hash]-[name].[ext]'
+            }
         }]
-      },
-      {
-        test: /\.svg$/,
-        loader: 'svg-sprite-loader',
-        options: {
-          extract: true
-        }
       }
     ]
   },
@@ -66,7 +58,6 @@ module.exports = (mode) => ({
         version: JSON.stringify(version),
         mode: JSON.stringify(mode)
       }
-    }),
-    new SvgSpritePlugin()
+    })
   ]
 });
