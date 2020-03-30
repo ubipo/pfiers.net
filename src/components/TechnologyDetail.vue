@@ -30,5 +30,9 @@ import { Technology } from '@/store/site-data/types'
 })
 export default class TechnologyDetail extends Vue {
   @Prop(Object) technology!: Technology
+
+  public mounted() {
+    this.$nextTick(() => this.$emit('content-load'))
+  }
 }
 </script>

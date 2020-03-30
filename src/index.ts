@@ -18,7 +18,9 @@ setWebpackPublicPath(toDistUrl('/'))
 window.onunload = () => {} // cache fix
 
 // Init store
-store.init()
+store.init().then(() => {
+  console.log("Store init")
+})
 
 
 const main = new Main()

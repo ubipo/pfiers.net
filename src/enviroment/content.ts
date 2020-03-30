@@ -1,17 +1,18 @@
-import { toUrl, isRelative, withOrigin } from '@/util/url'
+import { toUrl, isRelative, withOrigin, clone, withHostname } from '@/util/url'
 import { originName, version, name } from '.'
 import { strictMode } from './runtime'
 import { OriginDefinition } from './util'
-import { TaggedUrl, tagUrl } from '@/store/site-data/types'
+import { tagUrl } from '@/store/site-data/types'
 
+const contentLocalOrigin = withHostname(new URL(document.location.href), "content.local").origin
 const contentOrigins: OriginDefinition = {
   dev: document.location.origin,
-  localProd: 'http://content.local:8000',
+  localProd: contentLocalOrigin,
   prod: 'https://pfiers.net',
-  prerender: 'http://content.local:8000', // To be replaced with prod origin in postprocess
+  prerender: contentLocalOrigin, // To be replaced with prod origin in postprocess
 }
 
-export const contentOrigin = new URL(contentOrigins[originName])
+export const contentOrigin = contentOrigins[originName]
 
 export function toContentUrl(url: URL | string) {
   if (typeof url === 'string') url = toUrl(url)

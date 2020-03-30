@@ -18,7 +18,7 @@
             <div class="loading-msg__spinner"><div></div></div>
           </div>
         </div>
-        <router-view v-else></router-view>
+        <router-view v-else v-on:content-load="contentLoad"></router-view>
       </main>
     </div>
   </div>
@@ -57,6 +57,11 @@ export default class Main extends Vue {
   sdlStatus = {
     loaded: false,
     err: null
+  }
+
+  public contentLoad() {
+    console.log("App load")
+    document.dispatchEvent(new Event('app-loaded'))
   }
 }
 </script>

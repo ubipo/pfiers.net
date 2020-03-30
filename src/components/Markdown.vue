@@ -71,6 +71,8 @@ export default class Markdown extends Vue {
     }).then(content => {
         this.content = content == undefined ? undefined : Markdown.parse(content)
         this.error = undefined
+        console.log("Markdown content load")
+        this.$nextTick(() => this.$emit('content-load'))
     }).catch(error => {
         this.content = undefined
         this.error = error

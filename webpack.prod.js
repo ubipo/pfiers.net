@@ -39,7 +39,7 @@ module.exports = merge(common('production'), {
           prerender: String(true)
         },
         headless: false,
-        //renderAfterDocumentEvent: 'app-loaded',
+        renderAfterDocumentEvent: 'app-loaded',
         renderAfterTime: 5000,
         args: [
           '--disable-web-security',
@@ -47,17 +47,17 @@ module.exports = merge(common('production'), {
       }),
       postProcess (context) {
         // GH pages serves dirs with slash
-        if (!context.route.endsWith('/')) {
-          context.outputPath = path.join(__dirname, 'dist', `${context.route}.html`)
-        }
+        // if (!context.route.endsWith('/')) {
+        //   context.outputPath = path.join(__dirname, 'dist', `${context.route}.html`)
+        // }
 
         // Remove all webpack bundle scripts (injected manually by embedded inject script)
         //    anything except path or end of src \/                \/ no more path segements
         const re = /<script.*? src="https?:\/\/[^\/"]*?\/bundle\/[^\/"]*?\.(?:chunk|bundle)\.js".*?<\/script>/gm
         context.html = context.html.split(re).join('')
-          .replace('http://content.local:8000', 'https://pfiers.net')
-          .replace('http://dist.local:8000', 'https://pfiers.net')
-          .replace('http://localhost:8000', 'https://pfiers.net')
+          .replace(/http:\/\/content.local:8000/g, 'https://pfiers.net')
+          .replace(/http:\/\/dist.local:8000/g, 'https://pfiers.net')
+          .replace(/http:\/\/localhost:8000/g, 'https://pfiers.net')
         return context
       },
     }),

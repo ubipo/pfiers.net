@@ -88,5 +88,8 @@
     "webpack-dev-server": "^3.10.3",
     "webpack-merge": "^4.2.2",
     "xml-js": "^1.6.11"
+  },
+  "dependencies": {
+    "local-web-server": "^4.0.0"
   }
 }

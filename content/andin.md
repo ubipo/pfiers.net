@@ -1,6 +1,6 @@
 This is something I've had on my mind for a while; a good mobile app to view [the indoor mapping data](https://wiki.openstreetmap.org/wiki/Simple_Indoor_Tagging) that's already in [OpenStreetMap](https://www.openstreetmap.org/).
 I plan to release the app publicly, so I'm working towards a fully functional, usueful version (not an mvp or tech demo).
-A big part of that will be the routing engine I'm currently working on. See a sneak preview of the navgraph generation below.
+A big part of that will be the routing engine I'm currently working on. See a sneak peek of the navgraph generation below.
 
 ![Graph (points connected by lines) showing possible paths through a corridor in a building.](/content/andin-navgraph.png "Navgraph for a simple building")
 

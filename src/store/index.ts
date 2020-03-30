@@ -28,7 +28,7 @@ const storeOptions: StoreOptions<RootState> = {
 
 export const store = new Store<RootState>(storeOptions)
 
-export function init() {
+export async function init() {
   const eInitialStoreState = document.getElementById('initial-store-state')
   if (eInitialStoreState != null) {
     const initialState = parse(eInitialStoreState.textContent || '', (_, val) => {
@@ -52,30 +52,33 @@ export function init() {
     return
   }
 
-  store.dispatch('siteData/load').then(e => {
-    if (isPrerender) {
-      const script = document.createElement(`script`)
-      script.type = 'application/json'
-      script.id = 'initial-store-state'
-      const state = cloneDeepWith(store.state, val => {
-        if (isString(val)) {
-          return `s${val}`
-        } else if (val instanceof URL) {
-          const fullPath = val.pathname + val.search + val.hash
-          if (isTaggedUrl(val)) {
-            if (val.isContentUrl) {
-              return `c${fullPath}`
-            } else if (val.isDistUrl) {
-              return `d${fullPath}`
-            }
-          }
-          return `u${val.href}`
-        }
-      })
-      script.textContent = stringify(state)
-      document.head.appendChild(script)
-    }
-  }).catch(err => {
+  try {
+    await store.dispatch('siteData/load')
+  } catch (err) {
     console.error(`Error loading site data: ${err}`)
-  })
+    throw err
+  }
+  
+  if (isPrerender) {
+    const script = document.createElement(`script`)
+    script.type = 'application/json'
+    script.id = 'initial-store-state'
+    const state = cloneDeepWith(store.state, val => {
+      if (isString(val)) {
+        return `s${val}`
+      } else if (val instanceof URL) {
+        const fullPath = val.pathname + val.search + val.hash
+        if (isTaggedUrl(val)) {
+          if (val.isContentUrl) {
+            return `c${fullPath}`
+          } else if (val.isDistUrl) {
+            return `d${fullPath}`
+          }
+        }
+        return `u${val.href}`
+      }
+    })
+    script.textContent = stringify(state)
+    document.head.appendChild(script)
+  }
 }

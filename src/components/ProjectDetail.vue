@@ -10,7 +10,7 @@
           No detailed description available.
         </p>
         <article v-else>
-          <Markdown :markdown-url="project.longMdUrl"></Markdown>
+          <Markdown :markdown-url="project.longMdUrl" v-on:content-load="contentLoad"></Markdown>
         </article>
       </div>
     </article>
@@ -33,5 +33,16 @@ import { Project } from '@/store/site-data/types'
 })
 export default class ProjectDetail extends Vue {
   @Prop(Object) project!: Project
+
+  public mounted() {
+    if (this.project.longMdUrl == undefined) {
+      this.$emit('content-load')
+    }
+  }
+
+  public contentLoad() {
+    console.log("Conent load")
+    this.$emit('content-load')
+  }
 }
 </script>

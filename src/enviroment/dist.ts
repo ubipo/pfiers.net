@@ -1,16 +1,17 @@
 import { originName } from '.'
-import { toUrl, isRelative, withOrigin } from '@/util/url'
+import { toUrl, isRelative, withOrigin, clone, withHostname } from '@/util/url'
 import { OriginDefinition } from './util'
-import { TaggedUrl, tagUrl } from '@/store/site-data/types'
+import { tagUrl } from '@/store/site-data/types'
 
+const contentLocalOrigin = withHostname(new URL(document.location.href), "dist.local").origin
 const distOrigins: OriginDefinition = {
   dev: document.location.origin,
-  localProd: 'http://dist.local:8000',
+  localProd: contentLocalOrigin,
   prod: 'https://pfiers.net',
-  prerender: 'http://dist.local:8000', // To be replaced with prod origin in postprocess
+  prerender: contentLocalOrigin, // To be replaced with prod origin in postprocess
 }
 
-export const distOrigin = new URL(distOrigins[originName])
+export const distOrigin = distOrigins[originName]
 
 export function toDistUrl(url: URL | string) {
   if (typeof url === 'string') url = toUrl(url)

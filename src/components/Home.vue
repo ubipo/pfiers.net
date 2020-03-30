@@ -3,7 +3,7 @@
     <article class="card">
       <div class="card__content">
         <h1 class="page-title">Pieter Fiers</h1>
-        <Markdown :markdown-url="contentUrl('@/home.md')"></Markdown>
+        <Markdown :markdown-url="contentUrl('@/home.md')" v-on:content-load="contentLoad"></Markdown>
       </div>
     </article>
   </div>
@@ -19,7 +19,11 @@ import ContentUrl from './mixins/ContentUrl'
     Markdown
   }
 })
-export default class Home extends mixins(ContentUrl) {}
+export default class Home extends mixins(ContentUrl) {
+  public contentLoad() {
+    this.$emit('content-load')
+  }
+}
 </script>
 
 <style lang="scss">

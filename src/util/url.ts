@@ -13,14 +13,21 @@ export function isRelative(url: URL) {
   return url.protocol === REL_PROTOCOL
 }
 
-function clone(url: URL) {
-  return tagUrl(new URL(url.href))
+export function clone(url: URL | string) {
+  const href = typeof url === "string" ? url : url.href
+  return tagUrl(new URL(href))
 }
 
-export function withOrigin(url: URL, originUrl: URL) {
-  let transformed = clone(originUrl)
+export function withOrigin(url: URL, origin: string) {
+  let transformed = clone(origin)
   transformed.pathname = url.pathname
   transformed.search = url.search
   transformed.hash = url.hash
+  return transformed
+}
+
+export function withHostname(url: URL, hostname: string) {
+  let transformed = clone(url)
+  transformed.hostname = hostname
   return transformed
 }

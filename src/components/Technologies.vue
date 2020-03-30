@@ -32,6 +32,7 @@ export default class Technologies extends mixins(CardGrid) {
 
   public mounted() {
     this.cardGridInit()
+    this.$nextTick(() => this.$emit('content-load'))
   }
 }
 </script>
