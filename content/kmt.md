@@ -4,4 +4,4 @@ To collect experimental data and/or change visual stimulation patterns in real-t
 
 ![Experimental setup of kmt](/content/kmt-setup-cropped.jpg "Setup (enclosed pen)")
 
-![Screen capture of kmt with mouse outlined](/content/kmt.jpg "Spplication preview output")
+![Screen capture of kmt with mouse outlined](/content/kmt.jpg "Application preview output")

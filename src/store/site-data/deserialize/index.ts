@@ -30,6 +30,7 @@ function deserializeProjects(sProjects: SerializedProject[]) {
     const technologiesMock = p.technologies.map(technology => ({
       name: technology,
       urlSafeName: makeUrlSafe(technology),
+      iconName: '',
       projects: []
     }))
 
@@ -64,7 +65,7 @@ function deserializeTechnologies(sTechnologies: SerializedTechnology[]) {
       urlSafeName: urlSafeName,
       short: t.short,
       longMdUrl: falsyOrFunc(t.longMdUrl, toContentUrl),
-      iconUrl: toContentUrl(`@/tech-icons/${iconName}.svg`),
+      iconName: iconName,
       projects: []
     }
   })

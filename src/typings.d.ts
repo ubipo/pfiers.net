@@ -22,3 +22,13 @@ declare module '*.html' {
   const value: string
   export default value
 }
+
+declare module '*.svg' {
+  const value: {
+    id: string,
+    viewBox: string,
+    url: string
+  }
+  export default value
+}
+
