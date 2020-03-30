@@ -6,6 +6,9 @@
         <h1 class="page-title">{{ project.name }}</h1>
         <p>{{ project.short }}</p>
         <ProjectTechnologyList :project="project"></ProjectTechnologyList>
+        <br>
+        <a v-if="project.siteUrl" :href="project.siteUrl" class="button">Project site</a>
+        <a v-if="project.gitUrl" :href="project.gitUrl" class="button">Git repository</a>
         <p v-if="project.longMdUrl == undefined" class="not-available-text">
           No detailed description available.
         </p>

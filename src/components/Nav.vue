@@ -3,7 +3,7 @@
     <div class="nav-cont__buffer"></div>
     <nav class="nav-cont__content">
       <ul class="navlist">
-        <li class="navlist__item navlist__item--title" :class="{'navlist__item--active': subIsActive('/')}">
+        <li class="navlist__item navlist__item--title" :class="{'navlist__item--active': subIsActiveExact('/')}">
           <router-link class="navlist__link navlist__link--title" to="/">
             <h1 class="navlist__heading">
               <span class="navlist__txt navlist__txt--full">Pieter Fiers</span>
@@ -51,7 +51,15 @@ export default class Nav extends Vue {
     const paths = Array.isArray(input) ? input : [input];
     
     return paths.some(path => {
-    	return this.$route.path === path // current path starts with this path string
+    	return this.$route.path.startsWith(path) // current path starts with this path string
+    })
+  }
+
+  public subIsActiveExact(input: string) {
+    const paths = Array.isArray(input) ? input : [input];
+    
+    return paths.some(path => {
+      return this.$route.path === path // current path starts with this path string
     })
   }
 }

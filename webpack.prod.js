@@ -46,7 +46,7 @@ module.exports = merge(common('production'), {
         ],
       }),
       postProcess (context) {
-        // GH pages serves dirs with slash
+        // To remove the trailing slash
         // if (!context.route.endsWith('/')) {
         //   context.outputPath = path.join(__dirname, 'dist', `${context.route}.html`)
         // }
