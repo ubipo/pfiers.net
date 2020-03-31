@@ -29,7 +29,9 @@
       "abrv": "DSpay",
       "name": "DSpay - Digital School Pay",
       "technologies": ["Web", "JavaScript", "Microcontrollers", "Node.js", "SQL"],
-      "short": "My high-school thesis which researches the viability and implements a prototype of a digital payment system at school."
+      "short": "My high-school thesis which researches the viability and implements a prototype of a digital payment system at school.",
+      "longMdUrl": "@/dspay.md",
+      "imgUrl": "@/dspay.png"
     },
     {
       "abrv": "OCIC",
@@ -85,16 +87,19 @@
       "name": "OpenCV"
     },
     {
-      "name": "Android"
+      "name": "Android",
+      "wikiArticleName": "Android_(operating_system)"
     },
     {
-      "name": "Kotlin"
+      "name": "Kotlin",
+      "wikiArticleName": "Kotlin_(programming_language)"
     },
     {
       "name": "GraphQL"
     },
     {
-      "name": "Go"
+      "name": "Go",
+      "wikiArticleName": "Go_(programming_language)"
     },
     {
       "name": "C++",
@@ -102,7 +107,8 @@
     },
     {
       "name": "Hardware interfacing",
-      "iconName": "hwint"
+      "iconName": "hwint",
+      "wikiArticleName": "Computer_engineering"
     },
     {
       "name": "TypeScript",
@@ -116,7 +122,8 @@
       "name": "Webpack"
     },
     {
-      "name": "Web"
+      "name": "Web",
+      "wikiArticleName": "World_Wide_Web"
     },
     {
       "name": "Microcontrollers",
@@ -130,7 +137,8 @@
       "name": "SQL"
     },
     {
-      "name": "Python"
+      "name": "Python",
+      "wikiArticleName": "Python_(programming_language)"
     },
     {
       "name": "Vue.js",

@@ -16,6 +16,7 @@ export interface Technology {
   short?: string
   longMdUrl?: TaggedUrl
   iconName: string
+  wikiArticleName: string
   projects: Project[]
 }
 

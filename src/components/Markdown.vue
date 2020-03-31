@@ -1,7 +1,7 @@
 <template>
   <p v-if="error">{{ error }}</p>
   <dynamic-vc
-    v-else-if="content !== undefined"
+    v-else-if="content != undefined"
     class="markdown"
     :content="content"
   ></dynamic-vc>
@@ -14,11 +14,12 @@ import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import * as marked from 'marked'
 import DynamicVcFactory from './DynamicVc'
 import SmartLink from './SmartLink.vue'
+import { toContentUrl } from '../enviroment/content'
 
 function markdownRendererFactory() {
   const renderer = new marked.Renderer()
   renderer.link = (href, title, text) => {
-    return `<SmartLink to="${href}" class="link">${text}</SmartLink>`
+    return `<SmartLink to="${toContentUrl(href).href}" class="link">${text}</SmartLink>`
   }
   return renderer
 }
@@ -32,8 +33,8 @@ export default class Markdown extends Vue {
   @Prop(String) markdown!: string
   @Prop(URL) markdownUrl!: URL
 
-  private content: string | undefined = ''
-  private error: string | undefined = ''
+  private content: string | null = null
+  private error: string | null = null
 
   private static renderer: marked.Renderer = markdownRendererFactory()
 
@@ -69,12 +70,12 @@ export default class Markdown extends Vue {
         }
       }
     }).then(content => {
-        this.content = content == undefined ? undefined : Markdown.parse(content)
-        this.error = undefined
+        this.content = content == null ? null : Markdown.parse(content)
+        this.error = null
         console.log("Markdown content load")
         this.$nextTick(() => this.$emit('content-load'))
     }).catch(error => {
-        this.content = undefined
+        this.content = null
         this.error = error
     })
   }

@@ -31,6 +31,7 @@ function deserializeProjects(sProjects: SerializedProject[]) {
       name: technology,
       urlSafeName: makeUrlSafe(technology),
       iconName: '',
+      wikiArticleName: '',
       projects: []
     }))
 
@@ -57,8 +58,9 @@ function deserializeTechnologies(sTechnologies: SerializedTechnology[]) {
       )
     technologyNames.push(t.name)
 
-    const urlSafeName = t.urlSafeName === undefined ? makeUrlSafe(t.name) : t.urlSafeName
-    const iconName = t.iconName === undefined ? urlSafeName : t.iconName
+    const urlSafeName = t.urlSafeName == undefined ? makeUrlSafe(t.name) : t.urlSafeName
+    const iconName = t.iconName == undefined ? urlSafeName : t.iconName
+    const wikiArticleName = t.wikiArticleName == undefined ? t.name : t.wikiArticleName
 
     return {
       name: t.name,
@@ -66,6 +68,7 @@ function deserializeTechnologies(sTechnologies: SerializedTechnology[]) {
       short: t.short,
       longMdUrl: falsyOrFunc(t.longMdUrl, toContentUrl),
       iconName: iconName,
+      wikiArticleName: wikiArticleName,
       projects: []
     }
   })

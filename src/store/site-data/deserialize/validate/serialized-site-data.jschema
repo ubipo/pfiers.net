@@ -78,6 +78,9 @@
           "longMdUrl": {
             "type": "string"
           },
+          "wikiArticleName": {
+            "type": "string"
+          },
           "projects": {
             "type": "array",
             "items": {

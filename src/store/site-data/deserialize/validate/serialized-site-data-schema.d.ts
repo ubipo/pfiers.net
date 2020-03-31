@@ -26,5 +26,6 @@ export interface SerializedTechnology {
   iconName?: string
   short?: string
   longMdUrl?: string
+  wikiArticleName?: string
   projects?: string[]
 }
