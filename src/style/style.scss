@@ -10,6 +10,13 @@ $text-font-stack: 'Open Sans', sans-serif;
   font-family: $text-font-stack;
 }
 
+@mixin link {
+  @include text();
+  color: scale-color($color:  $primary-color, $lightness: -10%); // Normal text WCAG AA
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
 @mixin button {
   @include text;
   display: inline-block;

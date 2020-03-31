@@ -19,8 +19,10 @@ export function toContentUrl(url: URL | string) {
   if (!isRelative(url)) return tagUrl(url)
   url = withOrigin(url, contentOrigin)
   // Check for @ path indicating an asset (instead of relative link)
-  if (url.pathname.startsWith('@', 1))
-    // pathname starts with '/'
+  if (url.pathname.startsWith('@:', 1))
+    url.pathname = `/content/${url.pathname.slice(3)}`
+  else if (url.pathname.startsWith('@', 1))
+    // pathname starts with '/' (old version)
     url.pathname = `/content${url.pathname.slice(2)}`
   return tagUrl(url, false, true)
 }

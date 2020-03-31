@@ -19,7 +19,16 @@ import { toContentUrl } from '../enviroment/content'
 function markdownRendererFactory() {
   const renderer = new marked.Renderer()
   renderer.link = (href, title, text) => {
-    return `<SmartLink to="${toContentUrl(href).href}" class="link">${text}</SmartLink>`
+    console.log(href)
+    if (href.startsWith('@:')) {
+      return `<SmartLink to="${toContentUrl(href).href}" class="link">${text}</SmartLink>`
+    } else if (href.startsWith('a:')) {
+      return `<a href="${toContentUrl(`@:${href.slice(2)}`).href}" class="link">${text}</a>`
+    } else if (href.startsWith('e:')) {
+      return `<a href="${toContentUrl(href.slice(2)).href}" target="_blank" class="link">${text}</a>`
+    } else {
+      return `<a href="${href}" class="link">${text}</a>`
+    }
   }
   return renderer
 }
@@ -97,6 +106,7 @@ export default class Markdown extends Vue {
 
 <style lang="scss">
 @import '../style/style.scss';
+@import '../style/tweet.scss';
 
 .markdown {
   h3 {
@@ -106,6 +116,12 @@ export default class Markdown extends Vue {
   li {
     @include text();
     color: $text-color;
+  }
+
+  .twitter-tweet {
+    a {
+      @include link();
+    }
   }
 }
 
