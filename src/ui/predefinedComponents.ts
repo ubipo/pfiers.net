@@ -1,6 +1,7 @@
 import { App, defineAsyncComponent } from 'vue'
 import NotFound from '@/ui/components/NotFound.vue'
 import DynamicVc from '@/ui/components/util/DynamicVc.vue'
+import ContentRequired from '@/ui/components/util/ContentRequired.vue'
 
 
 export const SYNC_COMP = {
@@ -11,6 +12,10 @@ export const SYNC_COMP = {
   dynamicVc: {
     name: 'dynamic-vc',
     component: DynamicVc
+  },
+  contentRequired: {
+    name: 'content-required',
+    component: ContentRequired
   }
 }
 
@@ -38,14 +43,6 @@ export const ASYNC_COMP = {
   contentEditor: {
     name: 'contentEditor',
     component: () => import(/* webpackChunkName: "vue-content-editor" */ '@/ui/components/ContentEditor.vue'),
-  },
-  contentRequired: {
-    name: 'contentRequired',
-    component: () => import(/* webpackChunkName: "vue-content-required" */ '@/ui/components/util/ContentRequired.vue')
-  },
-  notFound: {
-    name: 'notFound',
-    component: () => import(/* webpackChunkName: "vue-not-found" */ '@/ui/components/NotFound.vue')
   }
 }
 

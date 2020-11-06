@@ -51,7 +51,7 @@ function createRoutes(): RouteRecordRaw[] {
   const projectRoutes = asSubRoutes(
     {
       path: '/projects',
-      component: ASYNC_COMP.contentRequired.component,
+      component: SYNC_COMP.contentRequired.component,
       props: route => (<ContentRequiredProps> {
         componentName: ASYNC_COMP.projects.name,
         propsFn: content => ({ projects: content.projects }),
@@ -68,7 +68,7 @@ function createRoutes(): RouteRecordRaw[] {
     [
       {
         path: '/:projectName',
-        component: ASYNC_COMP.contentRequired.component,
+        component: SYNC_COMP.contentRequired.component,
         props: route => (<ContentRequiredProps> {
           componentName: SYNC_COMP.dynamicVc.name,
           propsFn: content =>  {
@@ -110,7 +110,7 @@ function createRoutes(): RouteRecordRaw[] {
   const technologyRoutes = asSubRoutes(
     {
       path: '/technologies',
-      component: ASYNC_COMP.contentRequired.component,
+      component: SYNC_COMP.contentRequired.component,
       props: route => (<ContentRequiredProps> {
         componentName: ASYNC_COMP.technologies.name,
         propsFn: content => ({ technologies: content.technologies }),
@@ -127,7 +127,7 @@ function createRoutes(): RouteRecordRaw[] {
     [
       {
         path: '/:technologyName',
-        component: ASYNC_COMP.contentRequired.component,
+        component: SYNC_COMP.contentRequired.component,
         props: route => (<ContentRequiredProps> {
           componentName: SYNC_COMP.dynamicVc.name,
           propsFn: content => {
@@ -171,7 +171,7 @@ function createRoutes(): RouteRecordRaw[] {
     ...asSubRoutes(
       {
         path: '',
-        component: ASYNC_COMP.contentRequired.component,
+        component: SYNC_COMP.contentRequired.component,
         props: route => (<ContentRequiredProps> {
           componentName: ASYNC_COMP.home.name,
           propsFn: content => ({ home: content.home }),
@@ -190,7 +190,7 @@ function createRoutes(): RouteRecordRaw[] {
       [
         {
           path: '/edit',
-          component: ASYNC_COMP.contentRequired.component,
+          component: SYNC_COMP.contentRequired.component,
           props: _ => (<ContentRequiredProps> {
             componentName: ASYNC_COMP.contentEditor.name,
             propsFn: content => ({ content }),
@@ -210,7 +210,7 @@ function createRoutes(): RouteRecordRaw[] {
     ),
     {
       path: '/:pathMatch(.*)*',
-      component: ASYNC_COMP.notFound.component,
+      component: SYNC_COMP.notFound.component,
       meta: <SiteRouteMeta> {
         data: route => new SiteRouteMetaData(
           'Not Found',
