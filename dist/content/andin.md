@@ -2,7 +2,7 @@ This is something I've had on my mind for a while; a good mobile app to view [th
 I plan to release the app publicly, so I'm working towards a fully functional, usueful version (not an mvp or tech demo).
 A big part of that will be the routing engine I'm currently working on. See a sneak peek of the navgraph generation below.
 
-![Graph (points connected by lines) showing possible paths through a corridor in a building.](/content/andin-navgraph.png "Navgraph for a simple building")
+![Graph (points connected by lines) showing possible paths through a corridor in a building.](c:andin-navgraph.png "Navgraph for a simple building")
 
 Beacause I created multiple parts of Andin as school assignments there are three git repositories:
 - Database: [andin-db](https://github.com/ubipo/andin-db)
@@ -19,4 +19,4 @@ Graphql server that interacts with the PostgreSQL DB. The GraphQL library is [gr
 The Android app:
 Uses the Jetpack and room frameworks. Written in kotlin. [Download a preview apk](https://drive.google.com/open?id=1Ai1lHnd0jt4swu2FdFH-H_mlOKL2R0w3).
 
-![Two screenshots of the Andin android application, showing a building and a room.](/content/andin.jpg "Andin slippy map")
+![Two screenshots of the Andin android application, showing a building and a room.](c:andin.jpg "Andin slippy map")

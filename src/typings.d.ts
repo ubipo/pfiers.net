@@ -32,3 +32,8 @@ declare module '*.svg' {
   export default value
 }
 
+declare module '*.vue' {
+  import { DefineComponent } from 'vue'
+  const value: DefineComponent
+  export default value
+}

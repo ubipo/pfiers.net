@@ -1,6 +1,13 @@
-import { devMode } from '.'
+import { resolveCupUrl } from "@/url/resolve"
 
-function checkForOverride(name: string, val: boolean) {
+
+export enum OVERRIDES {
+  strictMode = 'strict-mode',
+  devMode = 'dev-mode',
+  prerender = 'prerender'
+}
+
+export function checkForOverride(name: string, val: boolean) {
   const localSorageVal = localStorage.getItem(name)
   if (localSorageVal != undefined) {
     // eslint-disable-next-line no-console
@@ -15,7 +22,5 @@ declare var __webpack_public_path__: string
 
 export function setWebpackPublicPath(path: URL) {
   // eslint-disable-next-line @typescript-eslint/camelcase
-  __webpack_public_path__ = path.href
+  __webpack_public_path__ = resolveCupUrl(path).href
 }
-
-export const strictMode = checkForOverride('strict-mode', devMode)

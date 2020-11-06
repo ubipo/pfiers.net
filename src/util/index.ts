@@ -1,3 +1,6 @@
+import { useTask } from "vue-concurrency"
+
+
 /**
  * Returns true iff {superset} contains all elements from {subset}.
  */
@@ -24,3 +27,13 @@ export function isPrimitiveArray<T>(o: any, primitive: string): o is T[] {
   return o.every(e => typeof e === primitive)
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
+
+export function asTask<T>(promise: Promise<T>) {
+  const a = useTask(function*() {
+    promise.then()
+  })
+}
+
+export function elvis<T, S>(value: T | null, fn: (value: T) => S) {
+  return value === null ? null : fn(value)
+}

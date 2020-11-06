@@ -19,6 +19,12 @@
   <input id="strict-mode-enable" type="checkbox" autocomplete="off" />
   <label for="strict-mode-enable">Enable</label>
 
+  <h2>Prerender</h2>
+  <input id="prerender-override" type="checkbox" autocomplete="off" />
+  <label for="prerender-override">Override</label>
+  <input id="prerender-enable" type="checkbox" autocomplete="off" />
+  <label for="prerender-enable">Enable</label>
+
   <h2>Useragent</h2>
   <p id="useragent-info"></p>
 
@@ -51,14 +57,17 @@
       });
     }
 
-      console.info('init')
-      
-      initOverrideEnableSwitch('dev-mode')
-      initOverrideEnableSwitch('strict-mode')
+    function init() {
+      console.info('init');
 
-      document.getElementById('useragent-info').innerHTML = window.navigator.userAgent
+      const overrides = ['dev-mode', 'strict-mode', 'prerender'];
+      overrides.forEach(initOverrideEnableSwitch);
 
-      window.onunload = () => {}; // cache fix
+      document.getElementById('useragent-info').innerHTML = window.navigator.userAgent;
+    }
+
+    init()
+    window.onunload = () => {}; // cache fix
   </script>
 </body>
 </html>

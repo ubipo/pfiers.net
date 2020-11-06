@@ -1,47 +1,31 @@
-import { Route } from 'vue-router'
-import {
-  getDataVal,
-  nearestWithData,
-  getParentChain,
-  setDocDescription,
-  getJsondLdBreadcrumbs,
-  setDocJsonLd,
-  setDocCanonicalUrl,
-  setDocRobots
-} from './util'
+import { Content } from "@/content/types"
+import { RouteLocationNormalized } from "vue-router"
+import { SiteRouteMeta } from "."
+import { getJsondLdBreadcrumbs, getParentChain as getBaseChain, setDocCanonicalUrl, setDocDescription, setDocJsonLd, setDocRobots } from "./util"
 
-export default function handleRouteChange(route: Route, titlePostfix: string) {
-  const parentChain = getParentChain(route)
-  for (const parent of parentChain) {
-    if (typeof parent.meta.beforeDataAccess === 'function')
-      parent.meta.beforeDataAccess(route)
+
+export default function setPageMetadata(
+  route: RouteLocationNormalized, titlePostfix: string, content?: Content
+  ) {
+  const baseChain = getBaseChain(route)
+  const dataChain = baseChain.map(
+    record => (record.meta as SiteRouteMeta).data(route, content)
+  )
+  const mostSpecificData = dataChain[0]
+ 
+  let pageTitle = mostSpecificData.title
+  if (!mostSpecificData.noTitlePostfix) {
+    pageTitle = mostSpecificData.title ? `${mostSpecificData.title} - ${titlePostfix}` : titlePostfix
   }
-
-  const nearestWithTitle = nearestWithData(route, parentChain, 'title')
-  if (nearestWithTitle == undefined)
-    throw new Error('There must be a route with a title as per CustomRouteConfig')
-  const title = getDataVal(nearestWithTitle.meta.data.title, route)
-  let pageTitle = title
-  if (!route.meta.data?.noTitlePostfix)
-    pageTitle = title ? `${title} - ${titlePostfix}` : titlePostfix
   document.title = pageTitle
 
-  const nearestWithDescription = nearestWithData(route, parentChain, 'description')
-  if (nearestWithDescription == undefined)
-    throw new Error('There must be a route with a description as per CustomRouteConfig')
-  const description = getDataVal(nearestWithDescription.meta.data.description, route)
-  setDocDescription(description, document)
-
-  const canonicalUrl = getDataVal(route.meta.data.canonicalUrl, route)
-  setDocCanonicalUrl(canonicalUrl, document)
-
-  const doNotIndex = getDataVal(route.meta.data.doNotIndex, route)
-  const robots = doNotIndex ? 'noindex' : 'index, follow'
+  setDocDescription(mostSpecificData.description, document)
+  setDocCanonicalUrl(mostSpecificData.canonicalUrl, document)
+  const robots = mostSpecificData.doNotIndex ? 'noindex' : 'index, follow'
   setDocRobots(robots, document)
 
   const jsonLd = getJsondLdBreadcrumbs(
-    parentChain,
-    route,
+    dataChain,
     new URL(document.location.href)
   )
   setDocJsonLd(jsonLd, document)

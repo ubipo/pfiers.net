@@ -1,5 +1,5 @@
 export class Exception extends Error {
-  public name = 'Exception'
+  // public name = 'Exception'
 }
 
 export class IllegalArgumentException extends Exception {
@@ -14,5 +14,5 @@ export class IllegalArgumentException extends Exception {
   readonly val: string
   readonly reason: string
 
-  public name = 'IllegalArgumentException'
+  // public name = 'IllegalArgumentException'
 }

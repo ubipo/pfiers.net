@@ -1,71 +1,39 @@
-import { Route } from 'vue-router'
-import {
-  CustomRootRouteConfig,
-  CustomRouteConfig,
-  RouteData,
-  DynamicMetaProp
-} from './types'
+import { RouteLocationNormalized, RouteRecordNormalized, RouteRecordRaw } from "vue-router"
+import { SiteRouteMeta, SiteRouteMetaData } from "."
 
-export function getDataVal<T>(data: DynamicMetaProp<T>, route: Route): T {
-  return data instanceof Function ? data(route) : data
-}
-
-export function getParentChain(route: Route) {
-  let routeToWalk = route.matched[route.matched.length - 1] as (
-    | CustomRouteConfig
-    | undefined)
-  const parentChain: CustomRouteConfig[] = []
+export function getParentChain(route: RouteLocationNormalized) {
+  let routeToWalk = route.matched[route.matched.length - 1]
+  const parentChain: RouteRecordNormalized[] = []
   while (routeToWalk != undefined) {
     parentChain.push(routeToWalk)
-    routeToWalk = routeToWalk.meta.parent
+    routeToWalk = routeToWalk.meta["base"]
   }
   return parentChain
 }
 
-export function asSubroute(
-  path: string,
-  root: CustomRootRouteConfig,
-  subroutes: CustomRouteConfig[]
-): CustomRouteConfig[] {
-  const modRoot = Object.assign<{}, CustomRouteConfig>({}, root)
-  modRoot.path = path
-  const modSubroutes = subroutes.map(subroute => {
-    const modSubroute = Object.assign({}, subroute)
-    modSubroute.path = path + subroute.path
-    if (modSubroute.meta.parent == undefined) modSubroute.meta.parent = modRoot
-    return modSubroute
+// The terms "parent" and "child" already have a different meaning in vue-router
+export function asSubRoutes(
+  baseRecord: RouteRecordRaw,
+  subrouteRecords: RouteRecordRaw[]
+): RouteRecordRaw[] {
+  subrouteRecords.forEach(r => {
+    r.path = baseRecord.path + r.path
+    const meta = r.meta || {}
+    if (meta["base"] === undefined)
+      meta["base"] = baseRecord
   })
-  return [modRoot, ...modSubroutes]
-}
-
-export function nearestWithData(
-  route: Route,
-  parentChain: CustomRouteConfig[],
-  key: keyof RouteData
-) {
-  const nearestByChildComponent = route.matched
-    .slice()
-    .reverse()
-    .find(p => p.meta && p.meta.data && getDataVal(p.meta.data[key], route) != undefined)
-  if (nearestByChildComponent != undefined) return nearestByChildComponent
-  const nearestByPath = parentChain.find(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    p => getDataVal<any>(p.meta.data[key], route) != undefined
-  )
-  return nearestByPath
+  return [baseRecord, ...subrouteRecords]
 }
 
 export function getJsondLdBreadcrumbs(
-  parentChain: CustomRouteConfig[],
-  route: Route,
+  metadataChain: SiteRouteMetaData[],
   defaultUrl: URL
 ) {
-  const breadCrumbItems = parentChain
-    .slice()
+  const breadCrumbItems = Array.from(metadataChain)
     .reverse()
-    .map((parent, i) => {
-      const url = getDataVal(parent.meta.data.canonicalUrl || defaultUrl, route)
-      const title = getDataVal(parent.meta.data.title, route)
+    .map((pageMetadata, i) => {
+      const url = pageMetadata.canonicalUrl || defaultUrl
+      const title = pageMetadata.title
       return {
         '@type': 'ListItem',
         position: i + 1,
