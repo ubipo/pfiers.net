@@ -20,7 +20,7 @@ function linkToAnchorElem(href: string | null, title: string | null, text: strin
     const href = withPathname(resolved, `/content${resolved.pathname}`).href
     return `<a href="${href}" ${commonAttrs}>${text}</a>`
   } else if (p === Cup.EXTERNAL) {
-    return `<a href="${withoutProtocol}" target="_blank" ${commonAttrs}>${text}</a>`
+    return `<a href="${withoutProtocol}" target="_blank" rel="noopener" ${commonAttrs}>${text}</a>`
   } else if (p === Cup.RELATIVE) {
     return `<router-link to="${withoutProtocol}" ${commonAttrs}>${text}</router-link>`
   } else {

@@ -1,6 +1,6 @@
 {
   "name": "pfiers.net",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "Pieter Fiers's portfolio",
   "main": "src/index.ts",
   "scripts": {
