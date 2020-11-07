@@ -41,7 +41,6 @@ const app = createApp(Main, { contentRef, router })
 app.use(router)
 addPredefinedToApp(app)
 const shouldHydrate = isProd
-console.log("Hydrating")
 app.mount('#app', shouldHydrate)
 
 // const main = new main()

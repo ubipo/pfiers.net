@@ -23,7 +23,7 @@ export default defineComponent({
     }
   },
   setup(props, ctx) {
-    const onReady = () => console.log("Ready")
+    const onReady = () => {}
     return { p: props, onReady }
   },
   components: { MarkdownFromDef, CardColumn }

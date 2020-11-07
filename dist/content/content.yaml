@@ -22,10 +22,32 @@ projects:
   - Python
   - SQL
   gitUrl: https://github.com/ubipo/andin-api
+  siteUrl: https://andin.pfiers.net
   description: An indoor map for android.
   long:
     url: "c:andin.md"
-  imgUrl: "c:andin.jpg"
+  imgUrl: "c:andin-new.png"
+
+- name: OSMfocus Reborn
+  technologies:
+  - Android
+  - Kotlin
+  gitUrl: https://github.com/ubipo/osmfocus
+  description: Open source tool for examining OpenStreetMap elements on a map.
+  long:
+    text: |
+      ![Banner](c:osmfocus.png)
+
+      This app is a complete re-write of the now (07-11-2020) defunct
+      OSMfocus by Network42 / MichaelVL. [GitHub](https://github.com/MichaelVL/osm-focus) or
+       [Google Play](https://play.google.com/store/apps/details?id=dk.network42.osmfocus)
+
+      This new version uses [Kotlin](https://kotlinlang.org) and [Android Jetpack](https://developer.android.com/jetpack).
+
+      1                             |  2                             |  3
+      :---------------------------------------:|:-----------------------------------------:|:----------------:
+      ![Screenshot 1](c:osmfocus-screen1.jpg)  |  ![Screenshot 2](c:osmfocus-screen2.jpg)  |  ![Screenshot 3](c:osmfocus-screen3.jpg)
+  imgUrl: "c:osmfocus.png"
 
 - name: Vrijwilligersparaat
   technologies:
@@ -36,7 +58,7 @@ projects:
   long:
     url: "c:vrijwilligersparaat.md"
   imgUrl: "c:vrijwilligersparaat.png"
-  siteUrl: https://vrijwilligersparaat.be/
+
 
 - abrv: KMT
   name: Kinect Mouse Tracker
@@ -170,7 +192,7 @@ projects:
       Click it to open a [live editor](/edit) of the site's content.
 
       ### But why?
-      Simple: I wanted the [fast page transitions](e:https://lighthouse-dot-webdotdevsite.appspot.com//lh/html?url=https%3A%2F%2Fpfiers.net) that come with client-side
+      Simple: I wanted the fast page transitions that come with client-side
       rendering.
 
       ### Doesn't that make the initial page load slow?
@@ -182,7 +204,7 @@ projects:
       ### But wait, prerendering kinda defeats the purpose of a SPA then, right?
       Well yes and no.  
       No because the page transitions are still measurably faster.
-      And yes because I have to run the prerender every time I update the content.
+      But yes because I have to run the prerender every time I update the content.
       Luckily I have [GitHub actions](e:https://github.com/ubipo/pfiers.net/actions) for that.
 
   urlSafeName: this-site

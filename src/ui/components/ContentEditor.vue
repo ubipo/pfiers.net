@@ -1,7 +1,6 @@
 <template>
-  <div class="card-column">
-    <article class="card">
-      <div class="card__content">
+  <CardColumn>
+    <template v-slot:first-item>
         <h1 class="page-title">Content editor</h1>
         <MarkdownFromDef :definition="description"></MarkdownFromDef>
         <div ref="cmInputContRef"></div>
@@ -14,9 +13,8 @@
           <p class="error__msg">{{ error.name }}: </p>
           <p class="error__msg">{{ error.message }}</p>
         </div>
-      </div>
-    </article>
-  </div>
+    </template>
+  </CardColumn>
 </template>
 
 <script lang="ts">
@@ -31,6 +29,7 @@ import { Content } from "@/content/types";
 import { cloneDeep } from "lodash";
 import YAML from 'yaml'
 import { CHANGE_CONTENT_EVENT } from './Main.vue';
+import CardColumn from './layout/CardColumn.vue';
 
 
 export default defineComponent({
@@ -90,7 +89,7 @@ export default defineComponent({
 
     return { cmInputContRef, cmOutputContRef, error: errorRef, description: editorDescription }
   },
-  components: { MarkdownFromDef }
+  components: { MarkdownFromDef, CardColumn }
 })
 </script>
 

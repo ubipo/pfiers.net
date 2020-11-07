@@ -66,8 +66,6 @@ export default defineComponent({
     if (props.contentTask.last === undefined) {
       const content = getFromDomCache()
       if (content !== null) {
-        console.info("Got content from dom cache")
-        console.info(JSON.stringify(content.home))
         ctx.emit(CHANGE_CONTENT_EVENT, content)
       } else {
         performContentTask()

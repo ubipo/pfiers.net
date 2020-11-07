@@ -56,7 +56,6 @@ export default defineComponent({
         if (callback !== undefined) callback(contentTask.last)
         return
       }
-      console.info("Performing content task")
       const taskInstance = contentTask.perform()
       if (callback !== undefined) {
         callback(taskInstance)

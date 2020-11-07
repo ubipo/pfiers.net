@@ -20,7 +20,7 @@ export const strictMode = checkForOverride(OVERRIDES.strictMode, devMode)
 const prerenderOrig = window.__isPrerender !== undefined
 export const isPrerender = checkForOverride(OVERRIDES.prerender, prerenderOrig)
 export const isLocal = isLocalDocument()
-export const isProd = !(isPrerender || devMode)
+export const isProd = !isPrerender && !devMode
 export const originName = (() => {
   if (isPrerender) return 'prerender'
   if (devMode) return 'dev'
