@@ -78,6 +78,31 @@ projects:
     url: "c:kmt.md"
   imgUrl: "c:kmt.jpg"
 
+- name: Cyclofix
+  technologies:
+  - Web
+  - TypeScript
+  - SQL
+  gitUrl: https://github.com/pietervdvn/MapComplete
+  siteUrl: https://cyclofix.osm.be/
+  description: An Open Summer of Code team project to map, present and integrate cycling infrastructure in the Brussels Capital Region.
+  short:
+    text: |
+      An [Open Summer of Code team project](https://osoc.be/editions/2020/cyclofix) 
+      to map, present 
+      and integrate cycling infrastructure in the [Brussels Capital Region](https://mobilite-mobiliteit.brussels/).
+  long:
+    text: |
+      [Open Summer of Code](https://osoc.be/) is a 4-week summer programme focused
+      on building open source projects of public utility.
+      
+      Commissioned by [Brussels Mobility](https://mobilite-mobiliteit.brussels), my
+      team and I built [Cyclofix](https://cyclofix.osm.be/map/): A solution to map, present 
+      and integrate cycling infrastructure in Brussels.
+
+      ![Screenshot](c:cyclofix.png)
+  imgUrl: "c:cyclofix.png"
+
 - abrv: DSpay
   name: DSpay - Digital School Pay
   technologies:
