@@ -33,16 +33,34 @@ projects:
   - Android
   - Kotlin
   gitUrl: https://github.com/ubipo/osmfocus
+  siteUrl: https://play.google.com/store/apps/details?id=net.pfiers.osmfocus
   description: Open source tool for examining OpenStreetMap elements on a map.
+  short:
+    text: |
+      Open source tool for examining
+      [OpenStreetMap](https://www.openstreetmap.org/about) elements on a map.
   long:
     text: |
       ![Banner](c:osmfocus.png)
 
-      This app is a complete re-write of the now (07-11-2020) defunct
-      OSMfocus by Network42 / MichaelVL. [GitHub](https://github.com/MichaelVL/osm-focus) or
-       [Google Play](https://play.google.com/store/apps/details?id=dk.network42.osmfocus)
+      OSMfocus was an incredibly useful tool to investigate and debug
+      OpenStreetMap data. Accent on the *was* unfortunately, as the app
+      broke with the deprecation of the non-TLS version of the 
+      [OpenStreetMap API](https://wiki.openstreetmap.org/wiki/API_v0.6).
 
-      This new version uses [Kotlin](https://kotlinlang.org) and [Android Jetpack](https://developer.android.com/jetpack).
+      While technically becoming
+      [open source](https://github.com/MichaelVL/osm-focus) (after breaking),
+      the project was unmaintained and didn't accept pull requests to fix it.
+
+      Because I wanted to add some extra features besides fixing the broken
+      API client, and because the codebase was showing its age, I decided to
+      create a new version from scratch.
+
+      This new version uses [Kotlin](https://kotlinlang.org) and 
+      [Android Jetpack](https://developer.android.com/jetpack).
+
+      You can download it on
+      [Google Play](https://play.google.com/store/apps/details?id=net.pfiers.osmfocus).
 
       1                             |  2                             |  3
       :---------------------------------------:|:-----------------------------------------:|:----------------:
