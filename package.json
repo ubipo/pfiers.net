@@ -4,10 +4,12 @@
   "description": "Pieter Fiers's portfolio",
   "main": "src/index.ts",
   "scripts": {
-    "build": "webpack --config webpack.prod.js",
+    "build-local": "webpack --config webpack.prod.js",
+    "build": "npm run build-local && npm run prerender",
     "dev": "webpack-dev-server --config webpack.dev.js",
     "serve": "lws",
-    "prerender": "presite dist/",
+    "prerender-local": "presite dist/",
+    "prerender": "npm run prerender-local && ./set-prerender-origin.sh",
     "check-types": "tsc"
   },
   "repository": {
