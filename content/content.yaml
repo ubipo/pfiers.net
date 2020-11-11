@@ -54,9 +54,9 @@ projects:
 
       Because I wanted to add some extra features besides fixing the broken
       API client, and because the codebase was showing its age, I decided to
-      create a new version from scratch.
+      create a new version, dubbed *OSMfocus Reborn*, from scratch.
 
-      This new version uses [Kotlin](https://kotlinlang.org) and 
+      OSMfocus Reborn uses [Kotlin](https://kotlinlang.org) and 
       [Android Jetpack](https://developer.android.com/jetpack).
 
       You can download it on
