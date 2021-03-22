@@ -2,11 +2,14 @@ import { RouteLocationNormalized, RouteRecordNormalized, RouteRecordRaw } from "
 import { SiteRouteMeta, SiteRouteMetaData } from "."
 
 export function getParentChain(route: RouteLocationNormalized) {
-  let routeToWalk = route.matched[route.matched.length - 1]
-  const parentChain: RouteRecordNormalized[] = []
+  let routeToWalk = route.matched[route.matched.length - 1] as RouteRecordRaw
+  const parentChain: RouteRecordRaw[] = []
   while (routeToWalk != undefined) {
     parentChain.push(routeToWalk)
-    routeToWalk = routeToWalk.meta["base"]
+    const meta = routeToWalk.meta
+    if (meta === undefined)
+      throw Error(`Meta undefined for routeRecord: ${routeToWalk.path}`)
+    routeToWalk = meta["base"] as RouteRecordRaw
   }
   return parentChain
 }

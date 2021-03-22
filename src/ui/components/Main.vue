@@ -106,7 +106,7 @@ h3 {
   display: flex;
   justify-content: center;
   background-image: url('/content/bg.svg');
-  background-color: hsl(0, 0, 95%);
+  background-color: hsl(0, 0%, 95%);
   background-size: 100vw;
   flex-grow: 1;
 }

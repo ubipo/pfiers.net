@@ -3,7 +3,7 @@ const common = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
-module.exports = merge(common('development'), {
+const config = merge(common('development'), {
   output: {
     publicPath: '/'
   },
@@ -12,7 +12,7 @@ module.exports = merge(common('development'), {
     rules: [
       {
         test: /\.vue$/,
-        use: ['vue-loader']
+        loader: 'vue-loader'
       },
       {
         test: /\.(tsx?|js)$/,
@@ -34,7 +34,7 @@ module.exports = merge(common('development'), {
     })
   ],
   devServer: {
-    contentBase: __dirname,
+    // contentBase: __dirname,
     compress: true,
     historyApiFallback: {
       index: 'index.html',
@@ -43,6 +43,8 @@ module.exports = merge(common('development'), {
       ]
     },    
     overlay: true,
-    publicPath: "/"
+    // publicPath: "/"
   }
 });
+
+module.exports = config

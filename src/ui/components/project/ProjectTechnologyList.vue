@@ -13,8 +13,7 @@
 </template>
 
 <script lang="ts">
-import TechnologyBadge from '../technology/TechnologyBadge'
-import { Project } from '@/content/types'
+import TechnologyBadge from '../technology/TechnologyBadge.vue'
 import { computed, defineComponent } from 'vue'
 
 
@@ -49,7 +48,7 @@ export default defineComponent({
 .icons__item {
   height: 50px;
   width: 50px;
-  background-color: hsl(120, 80, 35);
+  background-color: hsl(120, 80%, 35%);
   margin-right: 5px;
   margin-bottom: 5px;
 }

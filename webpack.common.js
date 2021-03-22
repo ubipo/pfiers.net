@@ -1,5 +1,5 @@
 const path = require('path');
-const { VueLoaderPlugin } = require('vue-loader');
+const { VueLoaderPlugin } = require('vue-loader')
 const version = require('./package.json').version;
 const name = require('./package.json').name;
 const webpack = require('webpack')
@@ -19,7 +19,7 @@ module.exports = (mode) => ({
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
+          'vue-style-loader',
           'css-loader',
           'sass-loader'
         ]
@@ -27,13 +27,13 @@ module.exports = (mode) => ({
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          'vue-style-loader',
           'css-loader'
         ]
       },
       // Babel loader in dev/prod
       {
-        test: /\.(md|txt|jschema|html)$/,
+        test: /(?<!\.vue)\.(md|txt|jschema|html)$/,
         use: 'raw-loader'
       },
       {
