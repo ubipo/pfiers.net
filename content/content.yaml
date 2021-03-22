@@ -1,16 +1,27 @@
 ---
 
+home:
+  long:
+    url: "c:home.md"
+
 editor:
   description:
     text: |
       **Give it a try!**
 
-      You can edit <sub><sup>almost</sup></sub> all of the content on this site!  
+      You can edit <sub><sup>almost</sup></sub> any of the content on this site!  
       Yep, even this text *right here*. Meta (°ｏ°)
 
-home:
+donate:
   long:
-    url: "c:home.md"
+    text: |
+      Like something I made?
+      
+      You can "[buy me a coffee](https://www.buymeacoffee.com/pfiers)" for my work 
+      on [OSMfocus](r:/projects/osmfocus-reborn) or [Andin](projects/andin)!
+      
+
+      <small>Disclaimer: I may use your donation to buy tea instead of coffee</small>
 
 projects:
 - name: Andin

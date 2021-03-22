@@ -1,7 +1,8 @@
 import { isObject } from "@/util";
 import { cloneDeep } from "lodash";
-import { BareProject, BaseProject, Content, Editor, Home, Project, Technology } from "../types";
+import { BareProject, BaseProject, Content, Donate, Editor, Home, Project, Technology } from "../types";
 import DeserializationException from "./deserializationException";
+import { deserializeDonate, serializeDonate } from "./donate";
 import { deserializeEditor, serializeEditor } from "./editor";
 import { deserializeHome, serializeHome } from "./home";
 import { deserializeProject, serializeProject } from "./project";
@@ -24,7 +25,7 @@ export function deserializeContent(
 
   const {
     projects: sProjects, technologies: sTechnologies,
-    home: sHome, editor: sEditor
+    home: sHome, editor: sEditor, donate: sDonate
   } = sContent as any
 
   let home: Home;
@@ -39,6 +40,13 @@ export function deserializeContent(
     editor = deserializeEditor(sEditor, populateCache)
   } catch (error) {
     throw new DeserializationException(`deserializing property "editor": ${error.message}`)
+  }
+
+  let donate: Donate;
+  try {
+    donate = deserializeDonate(sDonate, populateCache)
+  } catch (error) {
+    throw new DeserializationException(`deserializing property "donate": ${error.message}`)
   }
 
   if (!Array.isArray(sProjects)) {
@@ -99,17 +107,19 @@ export function deserializeContent(
     projects,
     technologies,
     home,
-    editor
+    editor,
+    donate
   }
 }
 
 export function serializeContent(content: Content, populateCache: boolean = false) {
   const {
-    editor, home, projects, technologies
+    home, editor, donate, projects, technologies
   } = content
-  const sEditor = serializeEditor(editor, populateCache)
   const sHome = serializeHome(home, populateCache)
+  const sEditor = serializeEditor(editor, populateCache)
+  const sDonate = serializeDonate(donate, populateCache)
   const sProjects = projects.map(sP => serializeProject(sP, populateCache))
   const sTechnologies = technologies.map(sT => serializeTechnology(sT, populateCache))
-  return { editor: sEditor, home: sHome, projects: sProjects, technologies: sTechnologies }
+  return { editor: sEditor, donate: sDonate, home: sHome, projects: sProjects, technologies: sTechnologies }
 }

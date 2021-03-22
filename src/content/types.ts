@@ -49,9 +49,14 @@ export interface Editor {
   readonly description: MarkdownDefinition
 }
 
+export interface Donate {
+  readonly long: MarkdownDefinition
+}
+
 export interface Content {
   readonly projects: Project[]
   readonly technologies: Technology[]
   readonly home: Home
   readonly editor: Editor
+  readonly donate: Donate
 }

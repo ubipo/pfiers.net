@@ -204,6 +204,22 @@ function createRoutes(): RouteRecordRaw[] {
             )
           }
         },
+        {
+          path: '/donate',
+          component: SYNC_COMP.contentRequired.component,
+          props: _ => (<ContentRequiredProps> {
+            componentName: ASYNC_COMP.donate.name,
+            propsFn: content => ({ donate: content.donate }),
+            metadataUpdateFn: _ => {}
+          }),
+          meta: <SiteRouteMeta> {
+            data: _ => new SiteRouteMetaData(
+              'Donate',
+              "\"Buy me a coffee\" for my work on OSMfocus or Andin!",
+              new URL(`${baseUrl}/donate`)
+            )
+          }
+        },
         ...projectRoutes,
         ...technologyRoutes
       ]

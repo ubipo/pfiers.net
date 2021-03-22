@@ -1,8 +1,8 @@
 <template>
   <CardColumn>
     <template v-slot:first-item>
-      <h1 class="page-title">Pieter Fiers</h1>
-      <MarkdownFromDef :definition="p.home.long" v-on:ready="onReady"></MarkdownFromDef>
+      <h1 class="page-title">Donate</h1>
+      <MarkdownFromDef :definition="p.donate.long" v-on:ready="onReady"></MarkdownFromDef>
     </template>
   </CardColumn>
 </template>
@@ -15,7 +15,7 @@ import CardColumn from './layout/CardColumn.vue';
 
 export default defineComponent({
   props: {
-    home: {
+    donate: {
       type: Object,
       required: true
     }
@@ -27,9 +27,3 @@ export default defineComponent({
   components: { MarkdownFromDef, CardColumn }
 })
 </script>
-
-<style lang="scss">
-.banner {
-  width: 100%;
-}
-</style>

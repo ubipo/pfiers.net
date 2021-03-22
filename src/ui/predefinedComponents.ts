@@ -20,29 +20,33 @@ export const SYNC_COMP = {
 }
 
 export const ASYNC_COMP = {
-  projectDetail: {
-    name: 'project-detail',
-    component: () => import(/* webpackChunkName: "vue-project-detail" */ '@/ui/components/project/ProjectDetail.vue'),
-  },
-  technologyDetail: {
-    name: 'technology-detail',
-    component: () => import(/* webpackChunkName: "vue-technology-detail" */ '@/ui/components/technology/TechnologyDetail.vue'),
-  },
   home: {
     name: 'home',
     component: () => import(/* webpackChunkName: "vue-home" */ '@/ui/components/Home.vue'),
+  },
+  contentEditor: {
+    name: 'contentEditor',
+    component: () => import(/* webpackChunkName: "vue-content-editor" */ '@/ui/components/ContentEditor.vue'),
+  },
+  donate: {
+    name: 'donate',
+    component: () => import(/* webpackChunkName: "vue-donate" */ '@/ui/components/Donate.vue'),
   },
   projects: {
     name: 'projects',
     component: () => import(/* webpackChunkName: "vue-projects" */ '@/ui/components/project/Projects.vue'),
   },
+  projectDetail: {
+    name: 'project-detail',
+    component: () => import(/* webpackChunkName: "vue-project-detail" */ '@/ui/components/project/ProjectDetail.vue'),
+  },
   technologies: {
     name: 'technologies',
     component: () => import(/* webpackChunkName: "vue-technologies" */ '@/ui/components/technology/Technologies.vue'),
   },
-  contentEditor: {
-    name: 'contentEditor',
-    component: () => import(/* webpackChunkName: "vue-content-editor" */ '@/ui/components/ContentEditor.vue'),
+  technologyDetail: {
+    name: 'technology-detail',
+    component: () => import(/* webpackChunkName: "vue-technology-detail" */ '@/ui/components/technology/TechnologyDetail.vue'),
   }
 }
 
