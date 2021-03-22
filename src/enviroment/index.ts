@@ -14,11 +14,11 @@ declare global {
 
 export const name = BUILD_INFO.name
 export const version = BUILD_INFO.version
-const devModeOrig = BUILD_INFO.mode === 'development'
-export const devMode = checkForOverride(OVERRIDES.devMode, devModeOrig)
+const devModeBuild = BUILD_INFO.mode === 'development'
+export const devMode = checkForOverride(OVERRIDES.devMode, devModeBuild)
 export const strictMode = checkForOverride(OVERRIDES.strictMode, devMode)
-const prerenderOrig = window.__isPrerender !== undefined
-export const isPrerender = checkForOverride(OVERRIDES.prerender, prerenderOrig)
+const hasPrerenderWindow = window.__isPrerender !== undefined
+export const isPrerender = checkForOverride(OVERRIDES.prerender, hasPrerenderWindow)
 export const isLocal = isLocalDocument()
 export const isProd = !isPrerender && !devMode
 export const originName = (() => {
@@ -26,3 +26,9 @@ export const originName = (() => {
   if (devMode) return 'dev'
   return isLocal ? 'localProd': 'prod'
 })()
+export function infoString() {
+  let info = `${name}@${version}`
+  info += ` ${originName}`
+  if (strictMode) info += ' strict'
+  return info
+}

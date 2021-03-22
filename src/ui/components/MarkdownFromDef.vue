@@ -32,7 +32,6 @@ export default defineComponent({
       ctx.emit('ready')
       return markdown
     })
-    // console.log(markdownTask)
     watch(() => props.definition, () => {
       markdownTask.perform()
     })

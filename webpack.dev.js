@@ -28,20 +28,26 @@ const config = merge(common('development'), {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.ejs',
+      template: 'index.ejs',
       filename: 'index.html',
       chunks: ['main']
     })
   ],
   devServer: {
     // contentBase: __dirname,
-    compress: true,
+    port: 8080,
     historyApiFallback: {
       index: 'index.html',
       rewrites: [
         { from: /\/*/, to: '/index.html' }
       ]
-    },    
+    },
+    proxy: {
+      '/assets': {
+          target: 'http://127.0.0.1:8080',
+          pathRewrite: {'^/assets' : '/src/assets'}
+       }
+    },
     overlay: true,
     // publicPath: "/"
   }

@@ -6,11 +6,10 @@
 
 <script lang="ts">
 import { fetchCup } from "@/fetch";
-import { Technology } from "@/content/types";
 import { Exception } from "@/util/exception";
 import Cup from "@/url/Cup";
 import { toUrl } from "@/url";
-import { withoutQueryOrHash } from "@/url/transform"
+import { withoutQueryOrFragment } from "@/url/transform"
 import { computed, defineComponent } from "vue";
 
 
@@ -25,7 +24,7 @@ interface Icon {
   spriteUrl: URL
 }
 
-const iconsReq = require.context("@/ui/icons", true, /\.svg$/);
+const iconsReq = require.context("@/assets/img/icons", true, /\.svg$/);
 const icons: Array<Icon> = iconsReq.keys().map((key: any) => {
   const { viewBox, url: rUrl } = iconsReq(key).default
   if (typeof rUrl !== 'string') {
@@ -42,7 +41,7 @@ const icons: Array<Icon> = iconsReq.keys().map((key: any) => {
   }
 
   const name = id.slice(ID_PREFIX.length)
-  const spriteUrl = withoutQueryOrHash(url)
+  const spriteUrl = withoutQueryOrFragment(url)
   return { name, id, viewBox, spriteUrl }
 })
 

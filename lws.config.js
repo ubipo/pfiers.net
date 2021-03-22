@@ -1,6 +1,6 @@
 module.exports = {
   stack: [ 'lws-cors', 'lws-static' ],
-  directory: '.presite',
+  directory: 'dist',
   port: 8000,
   staticExtensions: 'html',
   corsOrigin: '*'

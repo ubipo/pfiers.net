@@ -6,13 +6,13 @@ const webpack = require('webpack')
 const SvgSpritePlugin = require('svg-sprite-loader/plugin');
 
 
-const spriteIconsPath = path.resolve(__dirname, 'src/ui/icons')
+const spriteIconsPath = path.resolve(__dirname, 'src/assets/img/icons')
 
 module.exports = (mode) => ({
   mode,
+  context: path.resolve(__dirname, 'src'),
   entry: {
-    main: './src/index.ts',
-    // inject: './src/inject/index.ts'
+    main: './index.ts',
   },
   module: {
     rules: [
@@ -33,29 +33,8 @@ module.exports = (mode) => ({
       },
       // Babel loader in dev/prod
       {
-        test: /(?<!\.vue)\.(md|txt|jschema|html)$/,
+        test: /\.(md|txt)$/,
         use: 'raw-loader'
-      },
-      {
-        test: /\.(png|jp(e*)g)$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 8000,
-            name: 'images/[hash]-[name].[ext]'
-          }
-        }]
-      },
-      {
-        test: /\.svg$/,
-        exclude: [spriteIconsPath],
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 8000,
-            name: 'images/[hash]-[name].[ext]'
-          }
-        }]
       },
       {
         test: /\.svg$/,

@@ -1,19 +1,22 @@
 <template>
   <div class="page-wrapper">
     <Nav :router="props.router" />
-    <div class="main">
-      <main class="main__content">
-        <!-- Pass down content task for content-dependent pages -->
-        <router-view
-          :contentTask="contentTask" :content="content"
-          v-on:perform-content-task="performContentTask" v-on:change-content="changeContent" />
-        <router-link
-          class="edit-button"
-          title="Edit me!"
-          :to="`/edit`" v-if="!subIsActive('/edit', true)">
-          <SvgSprite name="edit" />
-        </router-link>
-      </main>
+    <div class="main-bg-wrapper">
+      <img class="bg" :src="resolveCupUrl('d:/assets/img/bg.svg')">
+      <div class="main-wrapper">
+        <main>
+          <!-- Pass down content task for content-dependent pages -->
+          <router-view
+            :contentTask="contentTask" :content="content"
+            v-on:perform-content-task="performContentTask" v-on:change-content="changeContent" />
+          <router-link
+            class="edit-button"
+            title="Edit me!"
+            :to="`/edit`" v-if="!subIsActive('/edit', true)">
+            <SvgSprite name="edit" />
+          </router-link>
+        </main>
+      </div>
     </div>
   </div>
 </template>
@@ -26,9 +29,10 @@ import { useAsyncTask } from "vue-concurrency"
 import Nav from './Nav.vue'
 import { TaskInstance } from "vue-concurrency/dist/vue3/src/TaskInstance"
 import SvgSprite from "./util/SvgSprite.vue"
-import { setToDomCache } from "@/content/domCache"
 import { subIsActive } from "@/ui/routeUtil";
 import { Router } from "vue-router"
+import { tryCatch } from "@/util"
+import { resolveCupUrl } from "@/url/resolve"
 
 
 export const PERFORM_CONTENT_TASK_EVENT = 'perform-content-task'
@@ -47,7 +51,10 @@ export default defineComponent({
   },
   setup(props, ctx) {
     const contentTask = useAsyncTask(async () => {
-      const content = await fetchContentFromYAML();
+      const content = await tryCatch(
+        fetchContentFromYAML,
+        console.error
+      );
       (props.contentRef as Ref<Content>).value = reactive(content)
       return content
     })
@@ -69,7 +76,7 @@ export default defineComponent({
     }
     const content = computed(() => props.contentRef.value)
     return {
-      contentTask, performContentTask, changeContent, props, content,
+      contentTask, performContentTask, changeContent, props, content, resolveCupUrl,
       subIsActive: (route: string, exact: boolean = false) => subIsActive(props.router as Router, route, exact)
     }
   },
@@ -102,23 +109,37 @@ h3 {
   flex-flow: column;
 }
 
-.main {
+.main-bg-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.bg {
+  position: absolute;
+  z-index: 1;
+  background-color: hsl(0, 0%, 95%);
+  width: 100%;
+}
+
+.main-wrapper {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
-  background-image: url('/content/bg.svg');
-  background-color: hsl(0, 0%, 95%);
-  background-size: 100vw;
   flex-grow: 1;
 }
 
-.main__content {
+main {
   z-index: 100; // For nav shadow
   margin: 0.25rem;
   width: 100%;
 }
 
 @media only screen and (min-width: 650px) {
-  .main__content {
+  main {
     margin-top: 4rem;
     margin-bottom: 4rem;
   }

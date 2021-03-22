@@ -37,3 +37,12 @@ export function asTask<T>(promise: Promise<T>) {
 export function elvis<T, S>(value: T | null, fn: (value: T) => S) {
   return value === null ? null : fn(value)
 }
+
+export async function tryCatch<T>(tryBlock: () => Promise<T>, handleError: (error: any) => void) {
+  try {
+    return await tryBlock()
+  } catch (error) {
+    handleError(error)
+    throw error
+  }
+}

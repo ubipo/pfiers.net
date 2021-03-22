@@ -12,7 +12,6 @@
 </template>
 
 <script lang="ts">
-import { Project } from "@/content/types";
 import { defineComponent, onMounted, ref } from "vue";
 import { initCardGrid } from "@/ui/CardGrid";
 

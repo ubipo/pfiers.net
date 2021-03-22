@@ -2,7 +2,7 @@ import { toUrl } from ".";
 
 export interface UrlParts {
   protocol?: string, username?: string, password?: string,
-  host?: string, pathname?: string, search?: string, hash?: string
+  host?: string, pathname?: string, search?: string, hash?: string // Should be "query" and "fragment", blame IE
 }
 
 export function partsOrFallback(parts: UrlParts, fallback: UrlParts) {
@@ -92,7 +92,7 @@ export function withHostname(url: URL, hostname: string) {
   return res
 }
 
-export function withoutQueryOrHash(url: URL) {
+export function withoutQueryOrFragment(url: URL) {
   const parts = urlToParts(url)
   parts.search = undefined
   parts.hash = undefined

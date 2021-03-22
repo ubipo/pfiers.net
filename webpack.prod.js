@@ -1,9 +1,7 @@
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
-const generatePaths = require('./scripts/generate-paths');
-const path = require('path')
 
-const BabelMultiTargetPlugin = require('webpack-babel-multi-target-plugin').BabelMultiTargetPlugin;
+// const BabelMultiTargetPlugin = require('webpack-babel-multi-target-plugin').BabelMultiTargetPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 // const PrerenderSPAPlugin = require('prerender-spa-plugin');
@@ -14,17 +12,21 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = merge(common('production'), {
   output: {
-    publicPath: 'http://dist.local:8000/'
+    // publicPath: '/'
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
-        loader: BabelMultiTargetPlugin.loader('vue-loader')
+        loader: 'vue-loader'
       },
       {
-        test: /\.(tsx?|js)$/,
-        loader: BabelMultiTargetPlugin.loader()
+        test: /\.(ts|js)$/,
+        loader: 'babel-loader',
+        exclude: file => (
+          /node_modules/.test(file) &&
+          !/\.vue\.js/.test(file)
+        )
       }
     ]
   },
@@ -60,22 +62,22 @@ module.exports = merge(common('production'), {
     //     return context
     //   },
     // }),
-    new BabelMultiTargetPlugin({
-      babel: {
-        presetOptions: {
-          'corejs': 3,
-          'useBuiltIns': 'entry'
-        }
-      }
-    }),
+    // new BabelMultiTargetPlugin({
+    //   babel: {
+    //     presetOptions: {
+    //       'corejs': 3,
+    //       'useBuiltIns': 'entry'
+    //     }
+    //   }
+    // }),
     new HtmlWebpackPlugin({
-      template: 'src/index.ejs',
+      template: 'index.ejs',
       filename: 'index.html',
       // chunks: ['inject'],
       excludeChunks: ['main.modern'],
       inlineSource: '.(js|css)$'
     }),
-    new HtmlWebpackInlineSourcePlugin(HtmlWebpackPlugin),
+    // new HtmlWebpackInlineSourcePlugin(),
     new CleanWebpackPlugin(),
     // {
     //   apply(compiler) {
@@ -91,9 +93,9 @@ module.exports = merge(common('production'), {
     // },
     new CopyPlugin({
       patterns: [
-        { from: 'content', to: 'content' },
-        { from: 'static', to: 'static' },
-        { from: 'CNAME' },
+        { from: '../content', to: 'content' },
+        { from: 'assets', to: 'assets' },
+        { from: 'dev.html', to: 'dev/index.html' },
       ]
     })
   ]

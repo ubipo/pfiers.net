@@ -1,5 +1,5 @@
 import { withHostname } from '@/url/transform'
-import { originName, version, name, strictMode } from '.'
+import { originName } from '.'
 import { OriginDefinition } from './util'
 
 
@@ -8,27 +8,7 @@ const contentOrigins: OriginDefinition = {
   dev: document.location.origin,
   localProd: contentLocalOrigin,
   prod: 'https://pfiers.net',
-  prerender: contentLocalOrigin, // To be replaced with prod origin in postprocess
+  prerender: document.location.origin, // To be replaced with prod origin in postprocess (using URL_ORIGIN_REMAP_QUERY_KEY)
 }
 
 export const contentOrigin = contentOrigins[originName]
-
-// export function toContentUrl(url: URL | string) {
-//   if (typeof url === 'string') url = toUrl(url)
-//   if (!isRelative(url)) return tagUrl(url)
-//   url = withOrigin(url, contentOrigin)
-//   // Check for @ path indicating an asset (instead of relative link)
-//   if (url.pathname.startsWith('@:', 1))
-//     url.pathname = `/content/${url.pathname.slice(3)}`
-//   else if (url.pathname.startsWith('@', 1))
-//     // pathname starts with '/' (old version)
-//     url.pathname = `/content${url.pathname.slice(2)}`
-//   return tagUrl(url, false, true)
-// }
-
-export function infoString() {
-  let info = `${name}@${version}`
-  info += ` ${originName}`
-  if (strictMode) info += ' strict'
-  return info
-}
