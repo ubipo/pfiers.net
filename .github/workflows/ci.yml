@@ -18,6 +18,8 @@ jobs:
       with:
         node-version: 16
     - run: npm install
+    - name: Patch presite
+      run: node scripts/patch-presite.js
     - name: Build
       run: npm run build
     - name: Prerender

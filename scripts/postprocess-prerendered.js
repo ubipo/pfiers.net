@@ -13,13 +13,6 @@ recursive("prerendered", async (err, files) => {
     const prodDistOriginSet = jsEnabledClassReplaced.replaceAll(prodDistOriginRe, 'https://pfiers.net')
     await fs.writeFile(htmlFile, prodDistOriginSet)
     return contentStr.length !== prodDistOriginSet.length
-    // const 
-    // console.log(contentStr.length, replaced.length)
-    // fs.writeFileSync(path.format({
-    //   dir: parsed.dir,
-    //   name: parsed.name + '-schema',
-    //   ext: '.d.ts'
-    // }), ts)
   }))
   const nbroHtmlFilesChanged = htmlFileWasChangedList.filter(changed => changed).length
   console.info(`Processed ${htmlFiles.length} html files (changed ${nbroHtmlFilesChanged})`)
