@@ -1,4 +1,5 @@
-import { normalizePath, toUrl } from "."
+import { trimStart } from "lodash"
+import { joinPaths, toUrl } from "."
 import Cup from "./Cup"
 
 export interface UrlParts {
@@ -63,7 +64,7 @@ export function urlFromParts(parts: UrlParts) {
     url += p.host
   }
   if (p.pathname) url += p.pathname
-  if (p.search) url += '?' + p.search
+  if (p.search) url += '?' + trimStart(p.search, '?')
   if (p.hash) url += '#' + p.hash
   return toUrl(url)
 }
@@ -85,7 +86,7 @@ export function withBase(url: URL, base: URL, ignoreProtocol: Boolean = false) {
   const parts = urlToParts(url)
   const baseParts = urlToParts(base)
   if (ignoreProtocol) parts.protocol = undefined
-  parts.pathname = normalizePath(baseParts.pathname ?? '', parts.pathname ?? '')
+  parts.pathname = joinPaths(baseParts.pathname ?? '', parts.pathname ?? '')
   return urlFromParts(partsOrFallback(
     parts,
     baseParts
@@ -119,4 +120,13 @@ export function withoutQueryOrFragment(url: URL) {
 
 export function hrefWithoutProtocol(url: URL) {
   return url.href.split(':').slice(1).join(':')
+}
+
+export function withExtension(url: URL, extension: string) {
+  const iExtensionDot = url.pathname.lastIndexOf('.')
+  const pathname = url.pathname.slice(0, iExtensionDot) + '.' + extension
+  return urlFromParts(partsOrFallback(
+    { pathname },
+    urlToParts(url)
+  ))
 }

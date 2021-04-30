@@ -1,5 +1,5 @@
 import Cup from "./Cup"
-import { trim } from "lodash"
+import { trim, trimStart } from "lodash"
 
 export function toUrl(
   urlStr: string, cupProtocol: Cup = Cup.RELATIVE
@@ -12,6 +12,6 @@ export function clone(url: URL | string) {
   return toUrl(href)
 }
 
-export function normalizePath(...parts: string[]) {
+export function joinPaths(...parts: string[]) {
   return '/' + parts.map(p => trim(p, '/')).filter(p => p !== '').join('/')
 }

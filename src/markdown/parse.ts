@@ -2,11 +2,11 @@ import { contentBaseUrl } from '@/enviroment/baseUrls'
 import { toUrl } from '@/url'
 import Cup from '@/url/Cup'
 import { resolveCupUrl } from '@/url/resolve'
-import { hrefWithoutProtocol, withPathname } from '@/url/transform'
+import { hrefWithoutProtocol, withExtension, withPathname } from '@/url/transform'
 import marked from 'marked'
 
 
-function linkToAnchorElem(href: string | null, title: string | null, text: string) {
+function linkToHtmlAnchor(href: string | null, title: string | null, text: string) {
   const titleAttr = title === null ? '' : `title="${title}"`
   const commonAttrs = `${titleAttr} class="link"`
 
@@ -28,13 +28,27 @@ function linkToAnchorElem(href: string | null, title: string | null, text: strin
   }
 }
 
+const mimeTypes: Record<string, string> = {
+  webp: 'image/webp'
+}
+
+function imgToHtmlImg(href: string, title: string, alt: string) {
+  const url = toUrl(href)
+  const alternativeFormats = url.searchParams.getAll("altFormat")
+  const sourceTags = alternativeFormats.map(format => {
+    const altUrl = withExtension(url, format)
+    const mimeType = mimeTypes[format]
+    return `<source type="${mimeType}" srcset="${resolveCupUrl(altUrl)}">`
+  })
+  const srcAttribute = href === null ? '' : `src="${resolveCupUrl(url)}"`
+  const imgTag = `<img ${srcAttribute} title="${title}" alt="${alt}">`
+  return `<picture>${sourceTags.join()}${imgTag}</picture>`
+}
+
 function markdownRendererFactory() {
   const renderer = new marked.Renderer()
-  renderer.link = linkToAnchorElem
-  renderer.image = (href, title, text) => {
-    const src = href === null ? '' : `src="${resolveCupUrl(toUrl(href))}"`
-    return `<img ${src} title="${title}" alt="${text}">`
-  }
+  renderer.link = linkToHtmlAnchor
+  renderer.image = imgToHtmlImg
   return renderer
 }
 
