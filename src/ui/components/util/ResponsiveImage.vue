@@ -1,12 +1,15 @@
 <template>
   <div>
     <figure>
-      <source
-        v-for="source in imgData.sources"
-        :key="source.srcSet"
-        :type="source.mimeType"
-        :srcset="source.srcSet">
-      <img :src="imgData.src" :title="title" :alt="alt" />
+      <picture>
+        <source
+          v-for="source in imgData.sources"
+          :key="source.srcSet"
+          :type="source.mimeType"
+          :srcset="source.srcSet">
+        <img :src="imgData.src" :title="title" :alt="alt" />
+      </picture>
+      <!-- TODO: Add support for captions -->
     </figure>
   </div>
 </template>
