@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Quicksand:400&display=swap');
 $primary-color: hsl(134, 45%, 40%); //hsl(134, 45%, 42%); #95c623
+$primary-color-dark: hsl(134, 45%, 35%);
 $secondary-color: hsl(190, 80%, 25%); //hsl(190, 80%, 30%); #166769
 $text-color: hsl(0, 0%, 20%);
 
@@ -20,7 +21,7 @@ $text-font-stack: 'Open Sans', sans-serif;
 @mixin button {
   @include text;
   display: inline-block;
-  background-color: $primary-color;
+  background-color: $primary-color-dark;
   border-radius: 28px;
   cursor: pointer;
   margin-bottom: 1em;
