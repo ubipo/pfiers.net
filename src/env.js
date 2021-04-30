@@ -24,5 +24,5 @@ const distBaseUrl = ({
 })[originName]
 window.__pfiers_dist_base_url = distBaseUrl
 window.__pfiers_origin_name = originName
-console.log("Setting webpack public path to: " + distBaseUrl)
+console.info(`Env init distBaseUrl="${distBaseUrl}"`)
 window.__webpack_public_path__ = distBaseUrl

@@ -5,13 +5,11 @@ import 'regenerator-runtime/runtime'
 import { createApp, ref, watch } from 'vue'
 
 import Main from './ui/components/Main.vue'
-import { setWebpackPublicPath } from './enviroment/webpack'
 import createAppRouter from './router';
 import { Content } from './content/types'
 import { addToApp as addPredefinedToApp } from './ui/predefinedComponents'
-import { toUrl } from './url'
 import { setToDomCache } from './content/domCache'
-import { infoString, isProd } from './enviroment'
+import { infoString } from './enviroment'
 import { Exception } from './util/exception';
 
 // eslint-disable-next-line no-console

@@ -55,6 +55,8 @@ module.exports = merge(common('production'), {
       patterns: [
         { from: path.resolve(__dirname, 'public/content'), to: 'content' },
         { from: 'assets', to: 'assets' },
+        { from: 'site.webmanifest' },
+        { from: 'browserconfig.xml' },
         { from: 'dev.html', to: 'dev/index.html' },
       ]
     }),
