@@ -1,6 +1,8 @@
-node_modules
-scratch
+/node_modules
+/scratch
 .directory
-stats.json
-.aws
-.vscode
+/stats.json
+/.aws
+/.vscode
+/dist
+/prerendered

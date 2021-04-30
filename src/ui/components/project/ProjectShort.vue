@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="project__header">
-      <ProjectTechnologyList class="tech-list tech-list--float" :block="true" :project="p.project" v-on:ready="onTechListReady" />
+      <ProjectTechnologyList class="tech-list tech-list--float" :block="true" :project="p.project" />
       <router-link
         class="head-link"
         :to="`/projects/${p.project.urlSafeName.value}`">
@@ -9,7 +9,7 @@
       </router-link>
       <ProjectTechnologyList class="tech-list tech-list--under" :project="p.project" />
       <p v-if="p.project.short === null">{{ p.project.description }}</p>
-      <MarkdownFromDef v-else :definition="p.project.short" v-on:ready="onMdReady"></MarkdownFromDef>
+      <MarkdownFromDef v-else :definition="p.project.short"></MarkdownFromDef>
     </div>
     
     <router-link

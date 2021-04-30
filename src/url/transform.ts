@@ -1,4 +1,5 @@
-import { toUrl } from ".";
+import { normalizePath, toUrl } from "."
+import Cup from "./Cup"
 
 export interface UrlParts {
   protocol?: string, username?: string, password?: string,
@@ -14,9 +15,9 @@ export function partsOrFallback(parts: UrlParts, fallback: UrlParts) {
     const partsVal = (parts as any)[key]
     const fallbackVal = (fallback as any)[key]
     let val;
-    if (partsVal !== undefined) {
+    if (partsVal !== undefined && partsVal !== '') {
       val = partsVal
-    } else if (fallbackVal !== undefined) {
+    } else if (fallbackVal !== undefined && fallbackVal !== '') {
       val = fallbackVal
     }
     (res as any)[key] = val
@@ -36,7 +37,7 @@ export function urlToParts(url: URL): UrlParts {
   }
 }
 
-// Origin = protocol + ':' + authority
+// Origin = scheme + ':' + authority
 export function originToParts(origin: string): UrlParts {
   const spl = origin.split(':')
   return {
@@ -50,8 +51,8 @@ export function urlFromParts(parts: UrlParts) {
   const p = parts
   if (p.protocol) {
     url += parts.protocol
+    if (!url.endsWith(':')) url += ':'
   }
-  if (!url.endsWith(':')) url += ':'
   if (p.username || p.password || p.host) {
     url += "//"
     if (p.username || p.password) {
@@ -71,6 +72,23 @@ export function withOrigin(url: URL, origin: string) {
   return urlFromParts(partsOrFallback(
     originToParts(origin),
     urlToParts(url)
+  ))
+}
+
+export function withProtocol(url: URL, cup: Cup) {
+  const parts = urlToParts(url)
+  parts.protocol = cup.toString()
+  return urlFromParts(parts)
+}
+
+export function withBase(url: URL, base: URL, ignoreProtocol: Boolean = false) {
+  const parts = urlToParts(url)
+  const baseParts = urlToParts(base)
+  if (ignoreProtocol) parts.protocol = undefined
+  parts.pathname = normalizePath(baseParts.pathname ?? '', parts.pathname ?? '')
+  return urlFromParts(partsOrFallback(
+    parts,
+    baseParts
   ))
 }
 

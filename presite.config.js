@@ -1,9 +1,9 @@
 module.exports = {
-  port: 8000,
-  wait: 4000,
+  wait: 5000,
   // manually: true,
   routes: ['/', '/donate'],
   async onBrowserPage(page) {
     await page.exposeFunction('__isPrerender', () => true)
   },
+  outDir: 'prerendered'
 }

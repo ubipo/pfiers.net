@@ -1,9 +1,11 @@
-const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { merge } = require('webpack-merge')
+const common = require('./webpack.common.js')
+const path = require('path')
 
-
-const config = merge(common('development'), {
+module.exports = merge(common('development'), {
+  entry: {
+    main: './index.ts',
+  },
   output: {
     publicPath: '/'
   },
@@ -26,15 +28,8 @@ const config = merge(common('development'), {
       }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'index.ejs',
-      filename: 'index.html',
-      chunks: ['main']
-    })
-  ],
+  plugins: [],
   devServer: {
-    // contentBase: __dirname,
     port: 8080,
     historyApiFallback: {
       index: 'index.html',
@@ -44,13 +39,10 @@ const config = merge(common('development'), {
     },
     proxy: {
       '/assets': {
-          target: 'http://127.0.0.1:8080',
-          pathRewrite: {'^/assets' : '/src/assets'}
-       }
+        target: 'http://127.0.0.1:8080',
+        pathRewrite: {'^/assets' : '/src/assets'}
+      }
     },
-    overlay: true,
-    // publicPath: "/"
+    static: path.resolve(__dirname, 'public')
   }
-});
-
-module.exports = config
+})

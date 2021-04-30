@@ -23,7 +23,7 @@ import { computed, defineComponent, ref, Ref, watch } from 'vue'
 import { Task } from 'vue-concurrency/dist/vue3/src/Task'
 import { TaskInstance } from 'vue-concurrency/dist/vue3/src/TaskInstance'
 import { getFromDomCache } from '@/content/domCache'
-import { PERFORM_CONTENT_TASK_EVENT, CHANGE_CONTENT_EVENT } from '../Main.vue'
+import { PERFORM_CONTENT_TASK_EVENT, CHANGE_CONTENT_EVENT } from '@/ui/components/events'
 import CardColumn from '../layout/CardColumn.vue'
 
 

@@ -19,17 +19,15 @@
 
 <script lang="ts">
 import MarkdownFromDef from './MarkdownFromDef.vue'
-import { computed, defineComponent, onMounted, Ref, ref } from "vue"
-import CodeMirror from "codemirror";
-import "codemirror/lib/codemirror.css";
-import "codemirror/mode/yaml/yaml";
-import "codemirror/mode/javascript/javascript";
-import { contentToYAML, YAMLToConent, serializeContent } from "@/content/deserialize";
-import { Content } from "@/content/types";
-import { cloneDeep } from "lodash";
-import YAML from 'yaml'
-import { CHANGE_CONTENT_EVENT } from './Main.vue';
-import CardColumn from './layout/CardColumn.vue';
+import { computed, defineComponent, onMounted, ref } from "vue"
+import CodeMirror from "codemirror"
+import "codemirror/lib/codemirror.css"
+import "codemirror/mode/yaml/yaml"
+import "codemirror/mode/javascript/javascript"
+import { contentToYAML, YAMLToConent, serializeContent } from "@/content/deserialize"
+import { Content } from "@/content/types"
+import { CHANGE_CONTENT_EVENT } from './events'
+import CardColumn from './layout/CardColumn.vue'
 
 
 export default defineComponent({

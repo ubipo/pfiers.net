@@ -27,7 +27,8 @@ import Wikipedia from '../Wikipedia.vue'
 import { Technology } from '@/content/types'
 import { computed, ComputedRef, defineComponent } from 'vue'
 import MarkdownFromDef from '../MarkdownFromDef.vue'
-import CardColumn, { ColumnItem } from '../layout/CardColumn.vue'
+import CardColumn from '../layout/CardColumn.vue'
+import { ColumnItem } from "../layout/ColumnItem"
 
 
 export default defineComponent({

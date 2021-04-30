@@ -4,7 +4,7 @@ const version = require('./package.json').version;
 const name = require('./package.json').name;
 const webpack = require('webpack')
 const SvgSpritePlugin = require('svg-sprite-loader/plugin');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const spriteIconsPath = path.resolve(__dirname, 'src/assets/img/icons')
 
@@ -12,7 +12,9 @@ module.exports = (mode) => ({
   mode,
   context: path.resolve(__dirname, 'src'),
   entry: {
-    main: './index.ts',
+    env: './env.js',
+    'warn-es6': './warn-es6.js',
+    main: './index.ts' // Main should come after env
   },
   module: {
     rules: [
@@ -51,6 +53,11 @@ module.exports = (mode) => ({
           // symbolId: 'svg-sprite-[name]'
         }
       },
+      {
+        test: /\.svg$/,
+        exclude: [spriteIconsPath],
+        type: 'asset/resource'
+      },
     ]
   },
   resolve: {
@@ -68,7 +75,11 @@ module.exports = (mode) => ({
   },
   plugins: [
     new VueLoaderPlugin(),
+    new SvgSpritePlugin({
+      plainSprite: true
+    }),
     new webpack.DefinePlugin({
+      TEST: JSON.stringify('value goes here'),
       BUILD_INFO: {
         name: JSON.stringify(name),
         version: JSON.stringify(version),
@@ -77,8 +88,35 @@ module.exports = (mode) => ({
       __VUE_PROD_DEVTOOLS__: false,
       __VUE_OPTIONS_API__: false
     }),
-    new SvgSpritePlugin({
-      plainSprite: true
-    })
+    new HtmlWebpackPlugin({
+      template: 'index.ejs',
+      filename: 'index.html',
+      inject: 'body',
+      scriptLoading: 'blocking'
+    }),
+    {
+      apply (compiler) {
+        compiler.hooks.compilation.tap('HtmlWebpackESM', (compilation) => {    
+          const hooks = HtmlWebpackPlugin.getHooks(compilation)
+          hooks.alterAssetTags.tapAsync(
+            'HtmlWebpackESM',
+            (data, cb) => {
+              for (const script of data.assetTags.scripts) {
+                const src = script.attributes['src']
+                if (src.includes('warn-es6')) {
+                  script.attributes['nomodule'] = ''
+                } else {
+                  script.attributes['type'] = 'module'
+                  if ((src.includes('main'))) {
+                    script.attributes['defer'] = 'defer'
+                  }
+                }
+              }
+              cb(null, data)
+            }
+          )
+        })
+      }
+    }
   ]
 });

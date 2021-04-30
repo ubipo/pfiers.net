@@ -1,4 +1,4 @@
-import { contentOrigin } from '@/enviroment/content'
+import { contentBaseUrl } from '@/enviroment/baseUrls'
 import { toUrl } from '@/url'
 import Cup from '@/url/Cup'
 import { resolveCupUrl } from '@/url/resolve'
@@ -16,7 +16,7 @@ function linkToAnchorElem(href: string | null, title: string | null, text: strin
   const p = url.protocol
   const withoutProtocol = hrefWithoutProtocol(url)
   if (p === Cup.CONTENT) {
-    const resolved = new URL(withoutProtocol, contentOrigin)
+    const resolved = new URL(withoutProtocol, contentBaseUrl)
     const href = withPathname(resolved, `/content${resolved.pathname}`).href
     return `<a href="${href}" ${commonAttrs}>${text}</a>`
   } else if (p === Cup.EXTERNAL) {

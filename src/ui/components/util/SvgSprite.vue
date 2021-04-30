@@ -7,8 +7,7 @@
 <script lang="ts">
 import { fetchCup } from "@/fetch";
 import { Exception } from "@/util/exception";
-import Cup from "@/url/Cup";
-import { toUrl } from "@/url";
+import { distBaseUrl } from "@/enviroment/baseUrls";
 import { withoutQueryOrFragment } from "@/url/transform"
 import { computed, defineComponent } from "vue";
 
@@ -34,7 +33,7 @@ const icons: Array<Icon> = iconsReq.keys().map((key: any) => {
     throw new Exception(`SVG icon viewBox must be a string`)
   }
 
-  const url = toUrl(rUrl, Cup.DIST)
+  const url = new URL(rUrl, distBaseUrl)
   const id = url.hash.slice(1)
   if (!id.startsWith(ID_PREFIX)) {
     throw new Exception(`SVG icon id must start with ${ID_PREFIX}`)

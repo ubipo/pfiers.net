@@ -1,4 +1,4 @@
-import { isLocalDocument } from './util'
+import { EnvName } from './envName'
 import { checkForOverride, OVERRIDES } from './runtime'
 
 
@@ -9,7 +9,12 @@ export declare const BUILD_INFO: {
 }
 
 declare global {
-  interface Window { __prerenderSnapshot?: () => void; __isPrerender?: () => boolean }
+  interface Window {
+    __prerenderSnapshot?: () => void
+    __isPrerender?: () => boolean
+    __pfiers_origin_name: string,
+    __pfiers_dist_base_url: string
+  }
 }
 
 export const name = BUILD_INFO.name
@@ -19,13 +24,8 @@ export const devMode = checkForOverride(OVERRIDES.devMode, devModeBuild)
 export const strictMode = checkForOverride(OVERRIDES.strictMode, devMode)
 const hasPrerenderWindow = window.__isPrerender !== undefined
 export const isPrerender = checkForOverride(OVERRIDES.prerender, hasPrerenderWindow)
-export const isLocal = isLocalDocument()
 export const isProd = !isPrerender && !devMode
-export const originName = (() => {
-  if (isPrerender) return 'prerender'
-  if (devMode) return 'dev'
-  return isLocal ? 'localProd': 'prod'
-})()
+export const originName = window.__pfiers_origin_name as EnvName
 export function infoString() {
   let info = `${name}@${version}`
   info += ` ${originName}`

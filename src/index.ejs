@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-proddistorigin="">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,28 +23,26 @@
     * {
       box-sizing: border-box;
     }
-    [hide="true"] {
-      display: none
+    .script-warning {
+      margin: 0.5em;
+      color: darkorange;
     }
-    #injection-error-title, #noscript-error {
-      color: darkred;
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
   <noscript>
-    <p>
+    <p class="script-warning">
       Script execution is disabled. 
       You should still see a static version of the site. If not, please contact me <a href="mailto:pieter@pfiers.net">pieter@pfiers.net</a>.
     </p>
   </noscript>
-  <div id="injection-error-container" hide="true">
-    <h1 id="injection-error-title">
-      An unknown error occured while trying to load the page content. 
-      Please try reloading and letting me know when the problem persists (<a href="mailto:pieter@pfiers.net">pieter@pfiers.net</a>).
-      If all else fails, try disabling javascript.
-    </h1>
-    <p></p>
-  </div>
+  <p id="es6-warning" class="script-warning hidden">
+    Your browser does not support a recent enough JavaScript version to run this site.
+    You should still see a static version of the site. If not, please contact me <a href="mailto:pieter@pfiers.net">pieter@pfiers.net</a>.
+  </p>
   <div id="app"></div>
-</body></html>
+</body>
+</html>

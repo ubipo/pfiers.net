@@ -24,6 +24,11 @@ declare module '*.html' {
 }
 
 declare module '*.svg' {
+  const value: string
+  export default value
+}
+
+declare module 'assets/img/icons/tech/*.svg' {
   const value: {
     id: string,
     viewBox: string,

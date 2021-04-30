@@ -23,11 +23,6 @@ import { Project } from "@/content/types";
 import { computed, defineComponent } from "vue";
 
 
-export interface ColumnItem {
-  key: string,
-  data: any
-}
-
 export default defineComponent({
   props: {
     items: {
