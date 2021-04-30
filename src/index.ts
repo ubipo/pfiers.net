@@ -34,5 +34,6 @@ app.use(router)
 addPredefinedToApp(app)
 const appElem = document.getElementById('app')
 if (appElem === null) throw new Exception("App mount point not found")
-const shouldHydrate = appElem.innerHTML === ''
+const shouldHydrate = appElem.innerHTML !== ''
+if (shouldHydrate) console.info('Hydrating...')
 app.mount(appElem, shouldHydrate)
