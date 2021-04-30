@@ -44,7 +44,7 @@ export default defineComponent({
       required: true
     }
   },
-  setup(props, ctx) {
+  setup(props) {
     const contentTask = useAsyncTask(async () => {
       const content = await tryCatch(
         fetchContentFromYAML,

@@ -19,9 +19,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, Ref, watch } from 'vue'
-import { Task } from 'vue-concurrency/dist/vue3/src/Task'
-import { TaskInstance } from 'vue-concurrency/dist/vue3/src/TaskInstance'
+import { computed, defineComponent, watch } from 'vue'
 import { getFromDomCache } from '@/content/domCache'
 import { PERFORM_CONTENT_TASK_EVENT, CHANGE_CONTENT_EVENT } from '@/ui/components/events'
 import CardColumn from '../layout/CardColumn.vue'
