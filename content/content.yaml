@@ -1,0 +1,312 @@
+---
+
+home:
+  long:
+    url: "c:home.md"
+
+editor:
+  description:
+    text: |
+      **Give it a try!**
+
+      You can edit <sub><sup>almost</sup></sub> any of the content on this site!  
+      Yep, even this text *right here*. Meta (°ｏ°)
+
+donate:
+  long:
+    text: |
+      Like something I made?
+      
+      You can "[buy me a coffee](https://www.buymeacoffee.com/pfiers)" for my work 
+      on [OSMfocus](r:/projects/osmfocus-reborn) or [Andin](projects/andin)!
+      
+
+      <small>Disclaimer: I may use your donation to buy tea instead of coffee</small>
+
+projects:
+- name: Andin
+  technologies:
+  - Android
+  - Kotlin
+  - GraphQL
+  - Go
+  - Python
+  - SQL
+  gitUrl: https://github.com/ubipo/andin-api
+  siteUrl: https://andin.pfiers.net
+  description: An indoor map for android.
+  long:
+    url: "c:andin.md"
+  imgUrl: "c:andin-new.png"
+
+- name: OSMfocus Reborn
+  technologies:
+  - Android
+  - Kotlin
+  gitUrl: https://github.com/ubipo/osmfocus
+  siteUrl: https://play.google.com/store/apps/details?id=net.pfiers.osmfocus
+  description: Open source tool for examining OpenStreetMap elements on a map.
+  short:
+    text: |
+      Open source tool for examining
+      [OpenStreetMap](https://www.openstreetmap.org/about) elements on a map.
+  long:
+    text: |
+      ![Banner](c:osmfocus.png)
+
+      OSMfocus was an incredibly useful tool to investigate and debug
+      OpenStreetMap data. Accent on the *was* unfortunately, as the app
+      broke with the deprecation of the non-TLS version of the 
+      [OpenStreetMap API](https://wiki.openstreetmap.org/wiki/API_v0.6).
+
+      While technically becoming
+      [open source](https://github.com/MichaelVL/osm-focus) (after breaking),
+      the project was unmaintained and didn't accept pull requests to fix it.
+
+      Because I wanted to add some extra features besides fixing the broken
+      API client, and because the codebase was showing its age, I decided to
+      create a new version, dubbed *OSMfocus Reborn*, from scratch.
+
+      OSMfocus Reborn uses [Kotlin](https://kotlinlang.org) and 
+      [Android Jetpack](https://developer.android.com/jetpack).
+
+      You can download it on
+      [Google Play](https://play.google.com/store/apps/details?id=net.pfiers.osmfocus).
+
+      1                             |  2                             |  3
+      :---------------------------------------:|:-----------------------------------------:|:----------------:
+      ![Screenshot 1](c:osmfocus-screen1.jpg)  |  ![Screenshot 2](c:osmfocus-screen2.jpg)  |  ![Screenshot 3](c:osmfocus-screen3.jpg)
+  imgUrl: "c:osmfocus.png"
+
+- name: Vrijwilligersparaat
+  technologies:
+  - Python
+  - SQL
+  - Web
+  description: Temporary site to coordinate volunteer efforts during the COVID-19 crisis in Belgium.
+  long:
+    url: "c:vrijwilligersparaat.md"
+  imgUrl: "c:vrijwilligersparaat.png"
+
+
+- abrv: KMT
+  name: Kinect Mouse Tracker
+  technologies:
+  - C++
+  - Hardware interfacing
+  - OpenCV
+  gitUrl: https://github.com/ubipo/kmt
+  description: Processes live Microsoft kinect data to deduce a mouse's position inside an enclosed pen. Made during my internship at NERF.
+  short:
+    text: |
+      Processes live 
+      [Microsoft kinect](https://developer.microsoft.com/en-us/windows/kinect/) data 
+      to deduce a mouse's position inside an enclosed pen.
+      Made during my internship at [NERF](https://www.nerf.be).
+  long:
+    url: "c:kmt.md"
+  imgUrl: "c:kmt.jpg"
+
+- name: Cyclofix
+  technologies:
+  - Web
+  - TypeScript
+  - SQL
+  gitUrl: https://github.com/pietervdvn/MapComplete
+  siteUrl: https://cyclofix.osm.be/
+  description: An Open Summer of Code team project to map, present and integrate cycling infrastructure in the Brussels Capital Region.
+  short:
+    text: |
+      An [Open Summer of Code team project](https://osoc.be/editions/2020/cyclofix) 
+      to map, present 
+      and integrate cycling infrastructure in the [Brussels Capital Region](https://mobilite-mobiliteit.brussels/).
+  long:
+    text: |
+      [Open Summer of Code](https://osoc.be/) is a 4-week summer programme focused
+      on building open source projects of public utility.
+      
+      Commissioned by [Brussels Mobility](https://mobilite-mobiliteit.brussels), my
+      team and I built [Cyclofix](https://cyclofix.osm.be/map/): A solution to map, present 
+      and integrate cycling infrastructure in Brussels.
+
+      ![Screenshot](c:cyclofix.png)
+  imgUrl: "c:cyclofix.png"
+
+- abrv: DSpay
+  name: DSpay - Digital School Pay
+  technologies:
+  - Web
+  - JavaScript
+  - Microcontrollers
+  - Node.js
+  - SQL
+  description: My high-school thesis which researches the viability and implements a prototype of a digital payment system at school.
+  long:
+    url: "c:dspay.md"
+  imgUrl: "c:dspay.png"
+
+- abrv: OCIC
+  name: Osm Contact Info Corrector
+  technologies:
+  - TypeScript
+  - Web
+  - Webpack
+  gitUrl: https://github.com/ubipo/opf
+  description: Webapp to add and correct contact info on openstreetmap.
+  imgUrl: "c:ocic.jpg"
+  siteUrl: https://opf.osm.be
+
+- name: Trend-Friends
+  technologies:
+  - Web
+  gitUrl: https://github.com/ubipo/trend-friends
+  description: School assignment to make a static, accessible site.
+  imgUrl: "c:trend-friends.jpg"
+
+- abrv: EWM
+  name: Esp Water Meter
+  imgUrl: c:ewam.jpg
+  technologies:
+  - C++
+  - Microcontrollers
+  - Hardware interfacing
+  - OpenCV
+  - Python
+  description: OCR water usage monitoring.
+  short:
+    text: |
+      OCR water usage monitoring. Consisting of an
+      [ESP8266](https://www.espressif.com/en/products/socs/esp8266) + 
+      [Arducam](https://www.arducam.com/) and a 
+      [Python Flask server](https://flask.palletsprojects.com)
+      with a [PyTorch](https://pytorch.org/) neural net running on 
+      a Raspberry Pi.
+  long:
+    text: |
+      This was my first foray into PCB design (I used
+      [EasyEDA](https://easyeda.com/), by recommendation
+      of [GreatScott](https://www.youtube.com/channel/UC6mIxFTvXkWQVEHPsEdflzQ)).
+      It was also my first time creating something with machine vision.
+      I used [Python Flask](https://flask.palletsprojects.com) for the server
+      and a homegrown [PyTorch](https://pytorch.org/) 
+      [neural net](https://en.wikipedia.org/wiki/Artificial_neural_network).
+
+      ![Picture processed by my digit-recognition net](c:ewam-processed.jpg "Processed")
+
+      ![Picture of the PCB](c:ewam.jpg "PCB")
+
+- abrv: DCNT
+  name: Dorm Controller 9000
+  technologies:
+  - C++
+  - Microcontrollers
+  - Hardware interfacing
+  - Web
+  gitUrl: https://github.com/ubipo/dcnt
+  description: Hobby domotics project with a custom HTTP server running on an ESP-12E microcontroller.
+  long:
+    text: |
+      Your run-of-the-mill DIY domotics project really: a Raspberry Pi running 
+      [Mosquitto MQTT](https://mosquitto.org/) and 
+      [Home Assistant](https://www.home-assistant.io/), a bunch of
+      [ESP8266](https://www.espressif.com/en/products/socs/esp8266)/32/12E's,
+      and a whole lot of automation. For that last part I like to use
+      [Node-RED](https://nodered.org/).
+
+# - name: Sel
+#   technologies:
+#   - C++
+#   - Python
+#   gitUrl: https://github.com/ubipo/sel
+#   description: Super simple logging solution for DCNT.
+
+# - name: Ubokeh
+#   technologies:
+#   - C++
+#   gitUrl: https://github.com/ubipo/ubokeh
+#   description: The Unnecessary Badly-Documented and Overly Complicated Esp Http-Server, at the heart of DCNT.
+
+- name: This site ;)
+  technologies:
+  - TypeScript
+  - Web
+  - Webpack
+  - Vue.js
+  gitUrl: https://github.com/ubipo/pieterfiers.net
+  description: Dynamic in more than one way, using Vue 3 and Fetch for its content.
+  short:
+    text: |
+      Dynamic in more than one way, using [Vue 3](https://v3.vuejs.org/) and
+      [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for 
+      its content. Did you know you can [edit it](r:/edit)?
+  long:
+    text: |
+      ### And I can prove it!  
+      See that little pencil button in the bottom right of the page?
+      Click it to open a [live editor](/edit) of the site's content.
+
+      ### But why?
+      Simple: I wanted the fast page transitions that come with client-side
+      rendering.
+
+      ### Doesn't that make the initial page load slow?
+      Nope! :)  
+      All pages are [pre-rendered](e:https://github.com/chrisvfritz/prerender-spa-plugin)
+      when I publish [a new version](e:https://github.com/ubipo/pfiers.net/releases).
+      And I usually publish a new version anytime I updated the site content.
+
+      ### But wait, prerendering kinda defeats the purpose of a SPA then, right?
+      Well yes and no.  
+      No because the page transitions are still measurably faster.
+      But yes because I have to run the prerender every time I update the content.
+      Luckily I have [GitHub actions](e:https://github.com/ubipo/pfiers.net/actions) for that.
+
+  urlSafeName: this-site
+
+technologies:
+- name: OpenCV
+  siteUrl: https://opencv.org
+- name: Android
+  wikiArticleName: Android_(operating_system)
+  siteUrl: https://www.android.com
+- name: Kotlin
+  wikiArticleName: Kotlin_(programming_language)
+  siteUrl: https://kotlinlang.org
+- name: GraphQL
+  siteUrl: https://graphql.org
+- name: Go
+  wikiArticleName: Go_(programming_language)
+  siteUrl: https://golang.org
+- name: C++
+  urlSafeName: cpp
+- name: Hardware interfacing
+  iconName: hwint
+  wikiArticleName: null
+  short:
+    text: |
+      This is a bit of vague category. And not really a technology.
+      I did want to include it here because interfacing with the
+      real world is one of my favorite parts of computing.
+- name: TypeScript
+  iconName: ts
+  siteUrl: https://www.typescriptlang.org/
+- name: JavaScript
+  iconName: js
+- name: Webpack
+  siteUrl: https://webpack.js.org/
+- name: Web
+  wikiArticleName: World_Wide_Web
+- name: Microcontrollers
+  iconName: microcontroller
+- name: Node.js
+  urlSafeName: nodejs
+  siteUrl: https://nodejs.org/en/
+- name: SQL
+  short:
+    text: Everyone has a favorite rdbms, right? Mine's [PostgreSQL](e:https://www.postgresql.org/).
+- name: Python
+  wikiArticleName: Python_(programming_language)
+  siteUrl: https://www.python.org/
+- name: Vue.js
+  urlSafeName: vuejs
+  siteUrl: https://vuejs.org/
