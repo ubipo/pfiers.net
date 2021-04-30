@@ -15,7 +15,7 @@ import { Exception } from './util/exception';
 // eslint-disable-next-line no-console
 console.info(infoString())
 
-window.onunload = () => {} // cache fix
+// window.onunload = () => {} // cache fix
 
 const contentRef = ref<Content | null>(null)
 watch(contentRef, content => {

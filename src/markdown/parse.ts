@@ -1,4 +1,5 @@
 import { contentBaseUrl } from '@/enviroment/baseUrls'
+import { responsiveImageData } from '@/responsiveImages'
 import { toUrl } from '@/url'
 import Cup from '@/url/Cup'
 import { resolveCupUrl } from '@/url/resolve'
@@ -28,21 +29,8 @@ function linkToHtmlAnchor(href: string | null, title: string | null, text: strin
   }
 }
 
-const mimeTypes: Record<string, string> = {
-  webp: 'image/webp'
-}
-
 function imgToHtmlImg(href: string, title: string, alt: string) {
-  const url = toUrl(href)
-  const alternativeFormats = url.searchParams.getAll("altFormat")
-  const sourceTags = alternativeFormats.map(format => {
-    const altUrl = withExtension(url, format)
-    const mimeType = mimeTypes[format]
-    return `<source type="${mimeType}" srcset="${resolveCupUrl(altUrl)}">`
-  })
-  const srcAttribute = href === null ? '' : `src="${resolveCupUrl(url)}"`
-  const imgTag = `<img ${srcAttribute} title="${title}" alt="${alt}">`
-  return `<picture>${sourceTags.join()}${imgTag}</picture>`
+  return `<ResponsiveImage url="${href}" title="${title}" alt="${alt}" />`
 }
 
 function markdownRendererFactory() {

@@ -20,18 +20,16 @@
     </router-link>
     <a v-if="p.project.siteUrl" :href="p.project.siteUrl" class="button">Project site</a>
     <a v-if="p.project.gitUrl" :href="p.project.gitUrl" class="button">Git repository</a>
-    <figure v-if="p.project.imgUrl !== null">
-      <img :src="resolveCupUrl(p.project.imgUrl)" />
-    </figure>
+    <ResponsiveImage v-if="p.project.imgUrl !== null" :url="p.project.imgUrl" />
   </div>
 </template>
 
 <script lang="ts">
 import MarkdownFromDef from '../MarkdownFromDef.vue'
-import { Project } from "@/content/types";
 import { resolveCupUrl } from "@/url/resolve";
 import ProjectTechnologyList from './ProjectTechnologyList.vue'
 import { defineComponent } from "vue";
+import ResponsiveImage from '../util/ResponsiveImage.vue';
 
 
 export default defineComponent({
@@ -44,7 +42,7 @@ export default defineComponent({
   setup(props, ctx) {
     return { p: props, resolveCupUrl }
   },
-  components: { ProjectTechnologyList, MarkdownFromDef }
+  components: { ProjectTechnologyList, MarkdownFromDef, ResponsiveImage }
 })
 </script>
 

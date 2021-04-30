@@ -2,6 +2,7 @@ import { App, defineAsyncComponent } from 'vue'
 import NotFound from '@/ui/components/NotFound.vue'
 import DynamicVc from '@/ui/components/util/DynamicVc.vue'
 import ContentRequired from '@/ui/components/util/ContentRequired.vue'
+import ResponsiveImage from '@/ui/components/util/ResponsiveImage.vue'
 
 
 export const SYNC_COMP = {
@@ -12,6 +13,10 @@ export const SYNC_COMP = {
   dynamicVc: {
     name: 'dynamic-vc',
     component: DynamicVc
+  },
+  responsiveImage: {
+    name: 'ResponsiveImage',
+    component: ResponsiveImage
   },
   contentRequired: {
     name: 'content-required',

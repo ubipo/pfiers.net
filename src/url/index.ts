@@ -2,8 +2,9 @@ import Cup from "./Cup"
 import { trim, trimStart } from "lodash"
 
 export function toUrl(
-  urlStr: string, cupProtocol: Cup = Cup.RELATIVE
+  urlStr: string | URL, cupProtocol: Cup = Cup.RELATIVE
 ) {
+  if (typeof urlStr !== 'string') return urlStr
   return new URL(urlStr, `${cupProtocol}/`)
 }
 

@@ -9,8 +9,7 @@
 <script lang="ts">
 import ProjectShort from "./ProjectShort.vue"
 import { Project } from "@/content/types";
-import { computed, ComputedRef, defineComponent, onMounted, Ref, ref, watch } from "vue";
-import { initCardGrid } from "@/ui/CardGrid";
+import { computed, ComputedRef, defineComponent } from "vue";
 /** @ts-ignore */
 import MasonryGrid, { MasonryItem } from "../layout/MasonryGrid";
 

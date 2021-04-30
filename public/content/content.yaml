@@ -37,7 +37,7 @@ projects:
   description: An indoor map for android.
   long:
     url: "c:andin.md"
-  imgUrl: "c:andin-new.png"
+  imgUrl: "c:andin-new.png?altFormat=webp"
 
 - name: OSMfocus Reborn
   technologies:
@@ -73,10 +73,8 @@ projects:
       You can download it on
       [Google Play](https://play.google.com/store/apps/details?id=net.pfiers.osmfocus).
 
-      1                             |  2                             |  3
-      :---------------------------------------:|:-----------------------------------------:|:----------------:
       ![Screenshot 1](c:osmfocus-screen1.jpg)  |  ![Screenshot 2](c:osmfocus-screen2.jpg)  |  ![Screenshot 3](c:osmfocus-screen3.jpg)
-  imgUrl: "c:osmfocus.png"
+  imgUrl: "c:osmfocus.png?altFormat=webp"
 
 - name: Vrijwilligersparaat
   technologies:
@@ -130,7 +128,7 @@ projects:
       and integrate cycling infrastructure in Brussels.
 
       ![Screenshot](c:cyclofix.png)
-  imgUrl: "c:cyclofix.png"
+  imgUrl: "c:cyclofix.png?altFormat=webp"
 
 - abrv: DSpay
   name: DSpay - Digital School Pay
@@ -165,7 +163,7 @@ projects:
 
 - abrv: EWM
   name: Esp Water Meter
-  imgUrl: c:ewam.jpg
+  imgUrl: c:ewam.jpg?altFormat=webp
   technologies:
   - C++
   - Microcontrollers
