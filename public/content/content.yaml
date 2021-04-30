@@ -37,7 +37,9 @@ projects:
   description: An indoor map for android.
   long:
     url: "c:andin.md"
-  imgUrl: "c:andin-new.png?altFormat=webp"
+  img:
+    url: c:andin-new.png?altFormat=webp
+    alt: Two screenshots of the Andin android application, showing a building and a room.
 
 - name: OSMfocus Reborn
   technologies:
@@ -74,7 +76,9 @@ projects:
       [Google Play](https://play.google.com/store/apps/details?id=net.pfiers.osmfocus).
 
       ![Screenshot 1](c:osmfocus-screen1.jpg)  |  ![Screenshot 2](c:osmfocus-screen2.jpg)  |  ![Screenshot 3](c:osmfocus-screen3.jpg)
-  imgUrl: "c:osmfocus.png?altFormat=webp"
+  img:
+    url: "c:osmfocus.png?altFormat=webp"
+    alt: OSMfocus Reborn logo on OpenStreetMap map background.
 
 - name: Vrijwilligersparaat
   technologies:
@@ -84,8 +88,9 @@ projects:
   description: Temporary site to coordinate volunteer efforts during the COVID-19 crisis in Belgium.
   long:
     url: "c:vrijwilligersparaat.md"
-  imgUrl: "c:vrijwilligersparaat.png"
-
+  img:
+    url: "c:vrijwilligersparaat.png"
+    alt: Screenshot of the Vrijwilligersparaat website.
 
 - abrv: KMT
   name: Kinect Mouse Tracker
@@ -103,7 +108,9 @@ projects:
       Made during my internship at [NERF](https://www.nerf.be).
   long:
     url: "c:kmt.md"
-  imgUrl: "c:kmt.jpg"
+  img:
+    url: "c:kmt.jpg"
+    alt: Screen capture of Kinect Mouse Tracker with mouse outlined.
 
 - name: Cyclofix
   technologies:
@@ -128,7 +135,9 @@ projects:
       and integrate cycling infrastructure in Brussels.
 
       ![Screenshot](c:cyclofix.png)
-  imgUrl: "c:cyclofix.png?altFormat=webp"
+  img:
+    url: "c:cyclofix.png?altFormat=webp"
+    alt: Screenshot of the Cyclofix website.
 
 - abrv: DSpay
   name: DSpay - Digital School Pay
@@ -141,7 +150,9 @@ projects:
   description: My high-school thesis which researches the viability and implements a prototype of a digital payment system at school.
   long:
     url: "c:dspay.md"
-  imgUrl: "c:dspay.png"
+  img:
+    url: c:dspay.png
+    alt: Screenshot of the DSpay "transactions" screen.
 
 - abrv: OCIC
   name: Osm Contact Info Corrector
@@ -149,21 +160,24 @@ projects:
   - TypeScript
   - Web
   - Webpack
-  gitUrl: https://github.com/ubipo/opf
   description: Webapp to add and correct contact info on openstreetmap.
-  imgUrl: "c:ocic.jpg"
+  gitUrl: https://github.com/ubipo/opf
   siteUrl: https://opf.osm.be
+  img:
+    url: "c:ocic.jpg"
+    alt: Screenshot of the Osm Contact Info Corrector website.
 
 - name: Trend-Friends
   technologies:
   - Web
   gitUrl: https://github.com/ubipo/trend-friends
   description: School assignment to make a static, accessible site.
-  imgUrl: "c:trend-friends.jpg"
+  img:
+    url: c:trend-friends.jpg
+    alt: Screenshot of the Trend-Friends website.
 
 - abrv: EWM
   name: Esp Water Meter
-  imgUrl: c:ewam.jpg?altFormat=webp
   technologies:
   - C++
   - Microcontrollers
@@ -192,6 +206,9 @@ projects:
       ![Picture processed by my digit-recognition net](c:ewam-processed.jpg "Processed")
 
       ![Picture of the PCB](c:ewam.jpg "PCB")
+  img:
+    url: c:ewam.jpg?altFormat=webp
+    alt: Picture of the Esp Water Meter PCB.
 
 - abrv: DCNT
   name: Dorm Controller 9000
@@ -258,7 +275,6 @@ projects:
       No because the page transitions are still measurably faster.
       But yes because I have to run the prerender every time I update the content.
       Luckily I have [GitHub actions](e:https://github.com/ubipo/pfiers.net/actions) for that.
-
   urlSafeName: this-site
 
 technologies:

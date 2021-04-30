@@ -9,6 +9,11 @@ export interface MarkdownDefinition {
   cachedText: string | null
 }
 
+export interface ImageDefinition {
+  readonly url: URL
+  readonly alt: string | null
+}
+
 export interface BaseProject {
   readonly abrv: string | null
   readonly name: string
@@ -18,7 +23,7 @@ export interface BaseProject {
   readonly long: MarkdownDefinition | null
   readonly siteUrl: URL | null
   readonly gitUrl: URL | null
-  readonly imgUrl: URL | null
+  readonly img: ImageDefinition | null
 }
 
 export interface BareProject extends BaseProject {

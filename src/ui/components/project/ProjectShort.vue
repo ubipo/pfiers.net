@@ -20,7 +20,7 @@
     </router-link>
     <a v-if="p.project.siteUrl" :href="p.project.siteUrl" class="button">Project site</a>
     <a v-if="p.project.gitUrl" :href="p.project.gitUrl" class="button">Git repository</a>
-    <ResponsiveImage v-if="p.project.imgUrl !== null" :url="p.project.imgUrl" />
+    <ResponsiveImage v-if="p.project.img !== null" :url="p.project.img.url" :alt="p.project.img.alt" />
   </div>
 </template>
 

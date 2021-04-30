@@ -24,7 +24,6 @@
 <script lang="ts">
 import MarkdownFromDef from '../MarkdownFromDef.vue'
 import ProjectTechnologyList from './ProjectTechnologyList.vue'
-import { Project } from '@/content/types'
 import { defineComponent } from 'vue'
 
 
