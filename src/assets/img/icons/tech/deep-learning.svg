@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <script id="__gaOptOutExtension"/>
+ <marker id="a" overflow="visible" orient="auto">
+  <path transform="matrix(-1.1,0,0,-1.1,-1.1,0)" d="m8.7186 4.0337-10.926-4.0177 10.926-4.0177c-1.7455 2.3721-1.7354 5.6175 0 8.0354z" stroke="#000" stroke-linejoin="round"/>
+ </marker>
+ <g transform="translate(-88.5 -32.421)" stroke-width="2">
+  <g transform="matrix(1.2108 0 0 1.2108 -32.15 -20.328)">
+   <g fill="#fff" stroke="#fff">
+    <g stroke-width="2.6489">
+     <circle cx="152.5" cy="129.97" r="7.0988"/>
+     <circle cx="152.5" cy="108.12" r="7.0988"/>
+     <circle cx="152.5" cy="84.717" r="7.0988"/>
+     <circle cx="152.5" cy="62.872" r="7.0988"/>
+     <circle cx="116.33" cy="83.744" r="7.0988"/>
+     <circle cx="116.33" cy="109.1" r="7.0988"/>
+     <circle cx="188.67" cy="96.421" r="7.0988"/>
+    </g>
+    <g stroke-width="2.8906">
+     <path d="m122.96 83.744 22.908-20.872"/>
+     <path d="m122.96 109.1 22.908-46.225"/>
+     <path d="m122.96 83.744 22.908 0.97265"/>
+     <path d="m122.96 109.1 22.908-24.38"/>
+     <path d="m122.96 83.744 22.908 24.38"/>
+     <path d="m122.96 109.1 22.908-0.97265"/>
+     <path d="m122.96 83.744 22.908 46.225"/>
+     <path d="m122.96 109.1 22.908 20.872"/>
+     <path d="m159.13 62.872 22.908 33.549"/>
+     <path d="m159.13 84.717 22.908 11.704"/>
+     <path d="m159.13 108.12 22.908-11.704"/>
+     <path d="m159.13 129.97 22.908-33.549"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

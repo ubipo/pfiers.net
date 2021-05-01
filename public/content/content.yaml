@@ -24,6 +24,19 @@ donate:
       <small>Disclaimer: I may use your donation to buy tea instead of coffee</small>
 
 projects:
+- name: Autonomous Rover
+  technologies:
+  - Python
+  - OpenCV
+  - Hardware interfacing
+  - Deep learning
+  gitUrl: https://github.com/ubipo/paddy/
+  siteUrl: https://paddy.pfiers.net/README.html
+  description: Applied Informatics bachelor’s thesis. A rover that is capable of autonomously following forest paths.
+  img:
+    url: c:autonomous-rover-collage.jpg?altFormat=webp
+    alt: A collage of the Autonomous Rover's vision system and hardware.
+
 - name: Andin
   technologies:
   - Android
@@ -183,6 +196,7 @@ projects:
   - Microcontrollers
   - Hardware interfacing
   - OpenCV
+  - Deep learning
   - Python
   description: OCR water usage monitoring.
   short:
@@ -278,6 +292,7 @@ projects:
   urlSafeName: this-site
 
 technologies:
+- name: Deep learning
 - name: OpenCV
   siteUrl: https://opencv.org
 - name: Android
