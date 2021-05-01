@@ -34,7 +34,7 @@ const main = async () => {
 
   const appElem = document.getElementById('app')
   if (appElem === null) throw new Exception("App mount point not found")
-  const shouldHydrate = appElem.innerHTML !== ''
+  const shouldHydrate = appElem.innerHTML !== '' && false
   if (shouldHydrate) console.info('Hydrating...')
   const mainProps = { contentRef, router }
   const app = shouldHydrate
