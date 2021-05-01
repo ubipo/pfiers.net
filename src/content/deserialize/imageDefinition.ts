@@ -4,8 +4,7 @@ import { ImageDefinition } from "../types"
 import DeserializationException from "./deserializationException"
 import { addIffNotNull, makeNullOrFun, mustBeExGen, mustBeStringOrNotDefinedExGen, stringOrThrow } from "./util"
 
-
-export function deserializeImageDefinition(sImageDefinition: any, populateCache: boolean = false): ImageDefinition {
+export function deserializeImageDefinition(sImageDefinition: any): ImageDefinition {
   const mustBeEx = mustBeExGen('ImageDefinition')
   const mustBeStringOrNotDefinedEx = mustBeStringOrNotDefinedExGen('ImageDefinition')
 
@@ -28,8 +27,8 @@ export function deserializeImageDefinition(sImageDefinition: any, populateCache:
   }
 }
 
-export function serializeImageDefinition(markdownDefinition: ImageDefinition) {
-  const { url, alt } = markdownDefinition
+export function serializeImageDefinition(imageDefinition: ImageDefinition) {
+  const { url, alt } = imageDefinition
   const s = {}
   addIffNotNull("url", url, s)
   addIffNotNull("alt", alt, s)

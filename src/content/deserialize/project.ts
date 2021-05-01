@@ -96,7 +96,7 @@ export function serializeProject(project: Project, populateCache: boolean = fals
   addIffNotNull("urlSafeName", urlSafeName.orig, s)
   addIffNotNull("abrv", abrv, s)
   addIffNotNull("gitUrl", gitUrl, s)
-  addIffNotNull("imgUrl", img, s, d => serializeImageDefinition(d))
+  addIffNotNull("img", img, s, d => serializeImageDefinition(d))
   addIffNotNull("siteUrl", siteUrl, s)
   addIffNotNull("long", long, s, v => serializeMarkdownDefinition(v, populateCache))
   addIffNotNull("short", short, s, v => serializeMarkdownDefinition(v, populateCache))
