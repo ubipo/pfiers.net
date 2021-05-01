@@ -2,7 +2,6 @@ const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlInlineScriptPlugin = require('html-inline-script-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path')
@@ -11,6 +10,7 @@ module.exports = merge(common('production'), {
   output: {
     publicPath: '/'
   },
+  // devtool: 'eval-source-map',
   module: {
     rules: [
       {

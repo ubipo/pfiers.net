@@ -10,19 +10,28 @@ export async function fetchMarkdownFromUrl(url: URL) {
   return await res.text()
 }
 
-export async function fetchMarkdown(markdownDefinition: MarkdownDefinition) {
+export function fetchMarkdown(markdownDefinition: MarkdownDefinition) {
   if (markdownDefinition.text !== null) {
-    return markdownDefinition.text
+    return { markdown: markdownDefinition.text }
   }
 
   if (markdownDefinition.cachedText !== null) {
-    return markdownDefinition.cachedText
+    return { markdown: markdownDefinition.cachedText }
   } else {
-    if (markdownDefinition.url === null) {
+    const url = markdownDefinition.url
+    if (url === null) {
+      /* This should never happen.
+      Yeah yeah, I know, unrepresentable state and stuff.
+      Once I can rewrite everything in something better than
+      TS/JS I'll make this actually unrepresentable.*/
       throw Error("MarkdownDefinition doesn't have url defined")
     }
-    const text = await fetchMarkdownFromUrl(markdownDefinition.url)
-    markdownDefinition.cachedText = text
-    return text
+    return {
+      fetch: async () => {
+        const text = await fetchMarkdownFromUrl(url)
+        markdownDefinition.cachedText = text
+        return text
+      }
+    }
   }
 }

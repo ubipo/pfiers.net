@@ -2,7 +2,7 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
-import { createApp, ref, watch } from 'vue'
+import { createApp, ref, watch, createSSRApp } from 'vue'
 
 import Main from './ui/components/Main.vue'
 import createAppRouter from './router';
@@ -31,13 +31,19 @@ const main = async () => {
     }
   })
   const router = createAppRouter(contentRef)
-  const app = createApp(Main, { contentRef, router })
-  app.use(router)
-  addPredefinedToApp(app)
+
   const appElem = document.getElementById('app')
   if (appElem === null) throw new Exception("App mount point not found")
   const shouldHydrate = appElem.innerHTML !== ''
   if (shouldHydrate) console.info('Hydrating...')
+  const mainProps = { contentRef, router }
+  const app = shouldHydrate
+    ? createSSRApp(Main, mainProps)
+    : createApp(Main, mainProps)
+
+  app.use(router)
+  addPredefinedToApp(app)
+  
   await router.isReady()
   app.mount(appElem, shouldHydrate)  
 }

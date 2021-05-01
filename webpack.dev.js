@@ -9,7 +9,7 @@ module.exports = merge(common('development'), {
   output: {
     publicPath: '/'
   },
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   module: {
     rules: [
       {
