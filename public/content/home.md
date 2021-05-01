@@ -5,4 +5,4 @@ Hi! I like maps, microcontrollers and making convoluted programs for simple prob
 Want to get in touch?  
 pieter@pfiers.net — [LinkedIn](e:https://www.linkedin.com/in/pfiers) — [GitHub](e:https://github.com/ubipo)
 
-[![Computer rendered top-down view of buildings and river](c:groot-begijnhof-blender-min.png?altFormat=webp "OSM and BlenderGIS going together like open data and OSS")](c:groot-begijnhof-blender.png)
+![Computer rendered top-down view of buildings and river](c:groot-begijnhof-blender-min.png?altFormat=webp "OSM and BlenderGIS going together like open data and OSS")
