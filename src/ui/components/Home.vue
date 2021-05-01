@@ -11,8 +11,6 @@
 import MarkdownFromDef from './MarkdownFromDef.vue'
 import { defineComponent } from "vue";
 import CardColumn from './layout/CardColumn.vue';
-import { cloneDeep } from 'lodash';
-
 
 export default defineComponent({
   props: {

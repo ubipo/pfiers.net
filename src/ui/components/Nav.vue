@@ -11,7 +11,7 @@
             </h1>
           </router-link>
         </li>
-        <li v-for="(page, index) in pages" :key="index" class="navlist__item" :class="{'navlist__item--active': subIsActive(`/${page.full}`)}">
+        <li v-for="page in pages" :key="page.full" class="navlist__item" :class="{'navlist__item--active': subIsActive(`/${page.full}`)}">
           <router-link class="navlist__link" :to="`/${page.full}`">
             <span class="navlist__txt navlist__txt--full">{{ capitalize(page.full) }}</span>
             <span class="navlist__txt navlist__txt--abrv">{{ capitalize(page.abrv) }}</span>
