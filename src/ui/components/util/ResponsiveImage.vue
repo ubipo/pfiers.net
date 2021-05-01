@@ -6,8 +6,12 @@
           v-for="source in imgData.sources"
           :key="source.srcSet"
           :type="source.mimeType"
-          :srcset="source.srcSet">
-        <img :src="imgData.src" :title="title" :alt="alt" />
+          :srcset="source.srcSet" />
+        <img
+          :src="imgData.src"
+          :title="title"
+          :alt="alt"
+          loading="lazy" />
       </picture>
       <!-- TODO: Add support for captions -->
     </figure>
