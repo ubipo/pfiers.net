@@ -27,7 +27,13 @@ export const SYNC_COMP = {
 export const ASYNC_COMP = {
   home: {
     name: 'home',
-    component: () => import(/* webpackChunkName: "vue-home" */ '@/ui/components/Home.vue'),
+    component: async () => {
+      const delay = 5000
+      console.log(`Delaying import of home chunk ${delay}...`)
+      await new Promise(resolve => window.setTimeout(resolve, delay))
+      console.log(`Loading home chunk...`)
+      return await import(/* webpackChunkName: "vue-home" */ '@/ui/components/Home.vue')
+    },
   },
   contentEditor: {
     name: 'contentEditor',

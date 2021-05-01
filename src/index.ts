@@ -8,7 +8,7 @@ import Main from './ui/components/Main.vue'
 import createAppRouter from './router';
 import { Content } from './content/types'
 import { addToApp as addPredefinedToApp } from './ui/predefinedComponents'
-import { setToDomCache } from './content/domCache'
+import { getFromDomCache, setToDomCache } from './content/domCache'
 import { infoString } from './enviroment'
 import { Exception } from './util/exception';
 
@@ -17,23 +17,29 @@ console.info(infoString())
 
 // window.onunload = () => {} // cache fix
 
-const contentRef = ref<Content | null>(null)
-watch(contentRef, content => {
-  if (content !== null) {
-    watch(content, _ => {
-      setToDomCache(content)
-    }, {
-      deep: true,
-      immediate: true
-    })
-  }
-})
-const router = createAppRouter(contentRef)
-const app = createApp(Main, { contentRef, router })
-app.use(router)
-addPredefinedToApp(app)
-const appElem = document.getElementById('app')
-if (appElem === null) throw new Exception("App mount point not found")
-const shouldHydrate = appElem.innerHTML !== ''
-if (shouldHydrate) console.info('Hydrating...')
-app.mount(appElem, shouldHydrate)
+const main = async () => {
+  const contentFromDomCache = getFromDomCache()
+  const contentRef = ref<Content | null>(contentFromDomCache)
+  watch(contentRef, content => {
+    if (content !== null) {
+      watch(content, _ => {
+        setToDomCache(content)
+      }, {
+        deep: true,
+        immediate: true
+      })
+    }
+  })
+  const router = createAppRouter(contentRef)
+  const app = createApp(Main, { contentRef, router })
+  app.use(router)
+  addPredefinedToApp(app)
+  const appElem = document.getElementById('app')
+  if (appElem === null) throw new Exception("App mount point not found")
+  const shouldHydrate = appElem.innerHTML !== ''
+  if (shouldHydrate) console.info('Hydrating...')
+  await router.isReady()
+  app.mount(appElem, shouldHydrate)  
+}
+
+main()

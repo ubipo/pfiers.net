@@ -15,13 +15,14 @@
       </div>
     </template>
   </CardColumn>
-  <component v-else :is="p.componentName" v-bind="componentProps"></component>
+  <template v-else>
+    <component :is="p.componentName" v-bind="componentProps"></component>
+  </template>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, watch } from 'vue'
-import { getFromDomCache } from '@/content/domCache'
-import { PERFORM_CONTENT_TASK_EVENT, CHANGE_CONTENT_EVENT } from '@/ui/components/events'
+import { PERFORM_CONTENT_TASK_EVENT } from '@/ui/components/events'
 import CardColumn from '../layout/CardColumn.vue'
 
 
@@ -62,12 +63,7 @@ export default defineComponent({
       ctx.emit(PERFORM_CONTENT_TASK_EVENT)
     }
     if (props.contentTask.last === undefined) {
-      const content = getFromDomCache()
-      if (content !== null) {
-        ctx.emit(CHANGE_CONTENT_EVENT, content)
-      } else {
-        performContentTask()
-      }
+      performContentTask()
     }
     const componentProps = computed(() => props.propsFn(props.content))
     return { p: props, componentProps, performContentTask }
