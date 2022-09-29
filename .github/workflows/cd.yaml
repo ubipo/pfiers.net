@@ -21,7 +21,7 @@ jobs:
     - name: Build
       run: npm run build
     - name: Add CNAME
-      run: echo 'pfiers.net' > build/CNAME'
+      run: echo 'pfiers.net' > build/CNAME
     - name: Add .nojekyll
       run: touch build/.nojekyll
     - name: Deploy
