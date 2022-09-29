@@ -21,7 +21,7 @@ jobs:
     - name: Build
       run: npm run build
     - name: Add CNAME
-      run: echo 'pfiers.net' > public/CNAME
+      run: echo 'pfiers.net' > build/CNAME
     - name: Deploy
       uses: s0/git-publish-subdir-action@v2.5.1
       env:
