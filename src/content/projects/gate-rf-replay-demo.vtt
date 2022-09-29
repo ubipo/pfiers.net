@@ -1,0 +1,17 @@
+WEBVTT
+
+00:00.000 --> 00:05.898
+Normal operation
+
+00:07.494 --> 00:28.197
+Capturing secret code using RTL2832 SDR and Universal Radio Hacker
+
+00:28.426 --> 00:55.355
+Demodulating the signal
+
+00:55.528 --> 01:08.381
+Converting to hexadecimal
+
+01:08.881 --> 01:27.284
+Replay using generic 433.939MHz radio
+

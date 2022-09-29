@@ -1,0 +1,7 @@
+@function smoothTransition($screenDim, $min, $max, $screenDimMin, $screenDimMax) {
+  $screenDimRatio: calc(($min - $max) / ($screenDimMin - $screenDimMax));
+  $corrRatio: calc(($max * $screenDimMin - $min * $screenDimMax) / ($min * $screenDimMin - $min * $screenDimMax));
+  $smooth: calc($screenDim * $screenDimRatio + $min * $corrRatio * 1rem);
+
+  @return clamp(calc($min * 1rem), $smooth, calc($max * 1rem));
+}

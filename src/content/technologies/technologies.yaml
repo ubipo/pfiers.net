@@ -1,0 +1,153 @@
+---
+technologies:
+
+  - name: Svelte
+    urlSafeName: svelte
+    url: https://svelte.dev/
+    group: Frameworks
+    shortDescription: |
+      My favorite (and most recently learned) frontend framework. Svelte has a
+      tiny runtime and great development ergonomics.
+  - name: React
+    url: https://react.org/
+    group: Frameworks
+    shortDescription: |
+      The most popular JavaScript frontend framework by most measures. Of the
+      big three (React, Vue.js, and Angular), it's a close first over
+      [Vue.js](/technologies/vuejs) for me.
+  - name: Vue.js
+    urlSafeName: vuejs
+    url: https://vuejs.org/
+    group: Frameworks
+    shortDescription: |
+      A forerunner in frontend framework technologies, with the first
+      single-file components and the excellent [Vite](https://vitejs.dev/)
+      bundler.
+  - name: GraphQL
+    url: https://graphql.org
+    group: Frameworks
+    shortDescription: |
+      I usually prefer a good old REST API myself, but for combining multiple
+      sources and for large interlinked datasets it's unmatched.
+  - name: Vite
+    url: https://vitejs.dev/
+    group: Frameworks
+    shortDescription: |
+      My go-to JavaScript/TypeScript bundler.
+  - name: Webpack
+    url: https://webpack.js.org/
+    group: Frameworks
+    shortDescription: |
+      While I've switched to [Vite](https://vitejs.dev/) and
+      [Rollup](https://rollupjs.org/guide/en/) since, Webpack was the most fully
+      featured JavaScript bundler for a long while.
+
+  - name: Perception
+    url: https://en.wikipedia.org/wiki/Machine_perception
+    group: Concepts
+    shortDescription: |
+      Making computers see, hear, feel or sense anything and everything.
+  - name: Robotics
+    url: https://en.wikipedia.org/wiki/Robotics
+    group: Concepts
+    shortDescription: |
+      It's computers with wings, on wheels, or even underwater. If it moves on
+      its own, I probably want to build it.
+  - name: Deep learning
+    url: https://en.wikipedia.org/wiki/Deep_learning
+    group: Concepts
+    shortDescription: |
+      Giving computers the incredible ability to make complex decisions from
+      unstructured data like pictures or sound.
+
+  - name: Kotlin
+    wikiArticleName: Kotlin_(programming_language)
+    url: https://kotlinlang.org
+    group: Languages
+    shortDescription: |
+      A modern, concise, and powerful programming language for the
+      [JVM](https://docs.oracle.com/javase/specs/jvms/se8/html/). Together with
+      [Rust](/technologies/rust) it's also probably my favorite language, even
+      outside of Android development.
+  - name: Python
+    wikiArticleName: Python_(programming_language)
+    url: https://www.python.org/
+    group: Languages
+    shortDescription: |
+      Above all, Python is my catch-all language for scripting and prototyping.
+      I also use it for all my data science and machine learning code (see also
+      [Deep Learning](/technologies/deep-learning)). On that note,
+      [Julia](https://julialang.org/) is on my radar as a possible replacement
+      for those use cases.
+  - name: Java
+    url: https://www.java.com/en/
+    group: Languages
+    shortDescription: |
+      While I nearly never use it anymore, Java is still one of the languages
+      I've written the most lines of code in — for university assignments,
+      at work, and while tutoring.
+  - name: TypeScript
+    url: https://www.typescriptlang.org/
+    group: Languages
+    shortDescription: |
+      My preferred language for the web and anything else usually done in
+      JavaScript. It just feels comfortable to known the type checker always has
+      my back.
+  - name: JavaScript
+    group: Languages
+    shortDescription: |
+      While I almost exclusively use [TypeScript](/technologies/typescript), I
+      do occasionally enjoy the ~~freedom~~ chaos of JavaScript.
+  - name: Node.js
+    urlSafeName: nodejs
+    url: https://nodejs.org/en/
+    group: Languages
+    shortDescription: |
+      If it runs on a server and it's not
+      [Django](https://www.djangoproject.com/) or
+      [Flask](https://flask.palletsprojects.com/en/2.2.x/), I'm probably using
+      the Node.js runtime.
+  - name: Rust
+    group: Languages
+    shortDescription: |
+      With its unbreakable memory safety and zero-cost abstractions, Rust
+      has become my go-to language for realtime and systems programming.
+  - name: Go
+    wikiArticleName: Go_(programming_language)
+    url: https://go.dev/
+    group: Languages
+    shortDescription: |
+      Elegant and powerful, Go is a great programming language for complicated
+      server software. Though my experience with it is limited, I do enjoy its
+      simplicity.
+  - name: C++
+    urlSafeName: cpp
+    group: Languages
+    shortDescription: |
+      You can't easily beat C++ for realtime or systems programming. Though I
+      have recently started to prefer [Rust](/technologies/rust) for that. And I
+      usually stick with good old C for embedded programming.
+
+  - name: Android
+    wikiArticleName: Android_(operating_system)
+    url: https://www.android.com
+    group: Platforms
+    shortDescription: |
+      Wether with Java and XML or with [Kotlin](https://kotlinlang.org/) and
+      [Jetpack Compose](https://developer.android.com/jetpack/compose), I've
+      delved pretty deep into Android app development.
+  - name: Micro­controllers # <- Soft Hyphen (U+00AD) after
+    url: https://en.wikipedia.org/wiki/Microcontroller
+    group: Platforms
+    shortDescription: |
+      Smartifying thermostats, switching lights on and off, or monitoring a
+      water meter, it's the most satisfying when you program it yourself.
+  - name: Web
+    url: https://en.wikipedia.org/wiki/World_Wide_Web
+    wikiArticleName: World_Wide_Web
+    group: Platforms
+    shortDescription: |
+      The web is available on pretty much any device, from smart-TVs to your
+      smartphone. It is the de facto information system for the world, and it's
+      arguably the best application platform, even if it didn't start out with
+      that goal.

@@ -1,0 +1,21 @@
+---
+# Because the markdown files for projects are retrieved using svelte-kit's fetch
+# [1], the files in this folder cannot be listed like a file system. As such,
+# this file exists to list all of them.
+# 
+# [1]: https://kit.svelte.dev/docs/load#input-methods-fetch)
+
+projects:
+  - lakehopper
+  - pathy
+  - kmt
+  - iot
+  - osmfocus
+  - andin
+  - vrijwilligersparaat
+  - tiny-sites
+  - dspay
+  - name: "__filler__"
+  - cyclofix
+  - name: "__filler__"
+  - this-site
