@@ -7,6 +7,10 @@
   $: ({ home, contentError } = data)
 </script>
 
+<svelte:head>
+  <title>Pieter Fiers</title>
+</svelte:head>
+
 <article>
   {#if home != undefined}
     <Markdown tokens={home.tokens} />

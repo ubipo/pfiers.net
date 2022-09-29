@@ -10,6 +10,14 @@
   $: ({ project, contentError } = data)
 </script>
 
+<svelte:head>
+  {#if project != undefined}
+    <title>{project.name} - pfiers</title>
+  {:else}
+    <title>Project - pfiers</title>
+  {/if}
+</svelte:head>
+
 <article>
   {#if project != undefined}
     <ProjectTechBadges technologies={project.technologies} />

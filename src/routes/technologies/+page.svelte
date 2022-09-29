@@ -8,6 +8,9 @@
   $: ({ technologies, contentError } = data)
 </script>
 
+<svelte:head>
+  <title>Technologies - pfiers</title>
+</svelte:head>
 
 {#if technologies != undefined}
   <TechnologyGrid {technologies} />

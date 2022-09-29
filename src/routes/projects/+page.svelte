@@ -8,6 +8,9 @@
   $: ({ projects, contentError } = data)
 </script>
 
+<svelte:head>
+  <title>Projects - pfiers</title>
+</svelte:head>
 
 {#if projects != undefined}
   <ProjectGrid {projects} />

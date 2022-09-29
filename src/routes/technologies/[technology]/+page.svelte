@@ -18,13 +18,16 @@
     return host
   }
 
-  // $: {
-  //   console.log(technology)
-  //   console.log(simplifyHost)
-  // }
-
   const badgeSize = "7rem"
 </script>
+
+<svelte:head>
+  {#if technology != undefined}
+    <title>{technology.name} - pfiers</title>
+  {:else}
+    <title>Technology - pfiers</title>
+  {/if}
+</svelte:head>
 
 <article>
   {#if technology != undefined}
