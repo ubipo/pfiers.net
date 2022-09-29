@@ -99,7 +99,7 @@ technologies:
       While I almost exclusively use [TypeScript](/technologies/typescript), I
       do occasionally enjoy the ~~freedom~~ chaos of JavaScript.
   - name: Node.js
-    urlSafeName: nodejs
+    urlSafeName: node-js
     url: https://nodejs.org/en/
     group: Languages
     shortDescription: |

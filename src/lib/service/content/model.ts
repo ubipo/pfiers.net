@@ -1,10 +1,8 @@
-import { ContentFetchException } from "./load";
 import { EMPTY_MARKDOWN_DEFINITION, parseMarkdown, type MarkdownDefinition, type TokenProcessors } from "$lib/service/markdown";
 import { ContentParseException, objectOrThrow, optionalStrArrOrThrow, optionalStringOrThrow, optionalUrlOrThrow, stringOrThrow, toUrlSafeName } from "./parseUtil";
 import { stringLooseEqual } from "$lib/service/stringUtil";
 import { urlFromString } from "$lib/service/url";
 import { getImageMeta, type ImageMeta } from "./imageMeta";
-import type { marked } from "marked"
 
 
 export interface Content<Cyclical = true> {
@@ -94,7 +92,7 @@ export async function dtoFromLongDescription(
 ) {
   if (inlineDto != null) return { dto: inlineDto, longDescription: undefined }
   if (longDescriptionSource == null) {
-    throw new ContentFetchException(`Markdown file not found. Required when not defined inline.`)
+    throw new ContentParseException(`Markdown file not found. Required when not defined inline.`)
   }
   const {
     frontMatter: frontMatterDto, definition: longDescription

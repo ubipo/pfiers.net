@@ -5,26 +5,18 @@
   export let name: string
   export let username: string
   export let dateTime: string
-
-
-  $: profileImageUrl = undefined as string | undefined
-  $: {
-    import(
-      `$lib/assets/img/twitter-profile-images/${username}.png`
-    ).then(module => { profileImageUrl = module.default })
-  }
 </script>
 
 <article>
   <div on:click={() => window.open(url, "_blank")}>
     <div class="top">
-      <a class="user" href="https://twitter.com/{username}">
-        <img src={profileImageUrl} alt={name} />
-        <div class="user-name">
-          <a href={url} target="_blank">{name}</a>
-          <span>@{username}</span>
-        </div>
-      </a>
+      <div class="user">
+        <img src="/twitter-profile-images/{username}.png" alt={name} />
+        <span class="names">
+          <a href="https://twitter.com/{username}" target="_blank" class="full-name">{name}</a>
+          <a href="https://twitter.com/{username}" target="_blank" class="username">@{username}</a>
+        </span>
+      </div>
       <a href={url}><SpriteIcon iconId="twitter" size="1.5rem" /></a>
     </div>
     <div on:click={e => e.stopImmediatePropagation()}><slot /></div>
@@ -64,14 +56,14 @@
     }
   }
 
-  .user-name {
+  .names {
     @include text();
     margin-left: 0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    & > a {
+    & > a.full-name {
       font-weight: bold;
       font-size: 1.2rem;
       @include themeSwitchProperties(color, rgb(15, 20, 25), rgb(243, 244, 245));
@@ -82,7 +74,7 @@
       }
     }
 
-    & > span {
+    & > a.username {
       font-weight: normal;
       font-size: 0.8rem;
       @include themeSwitchProperties(color,  rgb(83, 100, 113), rgb(217, 228, 236));
