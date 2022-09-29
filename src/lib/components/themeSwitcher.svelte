@@ -34,6 +34,8 @@
 </script>
 
 <button
+  aria-label="Toggle theme"
+  title="Toggle theme"
   on:click={toggleTheme}>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
     <path d={$themeStore.isDark ? sun : moon}>
