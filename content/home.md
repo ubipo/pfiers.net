@@ -1,8 +1,17 @@
-Hi! I like maps, microcontrollers and making convoluted programs for simple problems. Check out some of the [projects](/projects) I've made or [technologies](/technologies) I like using. *[About this site](/projects/this-site/)*
+# Pieter Fiers
 
-[Resume](c:resume.html)
+{dropword}`Hi!`I like maps, machine learning and
+microcontrollers. This site is a home to showcase my favorite
+[projects](/projects), and the [technologies](/technologies) used to build them.
+
+Read about [Pathy](/projects/pathy), a small rover that autonomously follows
+forest paths, or check out my [IoT](/projects/iot) projects (now with 100% more
+garage gate hacking), or just [browse them all](/projects).
 
 Want to get in touch?  
-pieter@pfiers.net — [LinkedIn](e:https://www.linkedin.com/in/pfiers) — [GitHub](e:https://github.com/ubipo)
+[pieter@pfiers.net](mailto:pieter@pfiers.net) — 
+[Resume](/resume.html) — 
+[LinkedIn](https://www.linkedin.com/in/pfiers) — 
+[GitHub](https://github.com/ubipo)
 
-![Computer rendered top-down view of buildings and river](c:groot-begijnhof-blender-min.png?altFormat=webp "OSM and BlenderGIS going together like open data and OSS")
+![Computer rendered top-down view of buildings and river](c:groot-begijnhof-blender-min.webp)
