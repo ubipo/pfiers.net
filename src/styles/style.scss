@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Quicksand&family=Noto+Color+Emoji&display=swap');
+
+@import "src/styles/util.scss";
+
+
+$primary-color: hsl(134, 45%, 40%); //hsl(134, 45%, 42%); #38944E
+$primary-color-muted: hsl(134, 45%, 35%); //hsl(134, 45%, 42%); #95c623
+$secondary-color: hsl(190, 80%, 25%); //hsl(190, 80%, 30%); #166769
+
+$text-color-light-theme: hsl(0, 0%, 20%);
+$text-color-dark-theme: hsl(0, 0%, 98%);
+$text-color-primary-light-theme: scale-color($color:  $primary-color, $lightness: -10%); // Normal text WCAG AA
+$text-color-primary-dark-theme: scale-color($color:  $primary-color, $lightness: +20%);
+$text-color-secondary-light-theme: $secondary-color;
+$text-color-secondary-dark-theme: scale-color($color:  $secondary-color, $lightness: +20%);
+$text-color-error-light-theme: hsl(352, 100%, 34%);
+$text-color-error-dark-theme: hsl(352, 65%, 72%);
+
+$aa: #1ABC9C;
+$text-selection-color-light-theme: $text-color-dark-theme;
+$text-selection-background-color-light-theme: scale-color($color:  $secondary-color, $lightness: +10%);
+$text-selection-color-dark-theme: $text-color-dark-theme;
+$text-selection-background-color-dark-theme: scale-color($color:  $secondary-color, $lightness: -10%);
+
+$layout-bg-color-light-theme: hsl(0, 0%, 98%);
+$layout-bg-color-dark-theme: hsl(0, 0%, 11%);
+$text-bg-color-light-theme: hsl(0, 0%, 100%);
+$text-bg-color-dark-theme: hsl(0, 0%, 0%);
+
+
+$title-font-stack: 'Quicksand', sans-serif;
+$text-font-stack: 'Noto Sans', 'Noto Color Emoji', sans-serif;
+$code-font-stack: monospace;
+
+
+@mixin themeSwitchProperties($properties, $value-light, $value-dark, $svelte: true) {
+  @each $property in $properties {
+    #{$property}: $value-light;
+    @media screen and (prefers-color-scheme: dark) {
+      #{$property}: $value-dark;
+      @if $svelte {
+        :global(div.page-wrap.light-theme-override) & {
+          #{$property}: $value-light;
+        }
+      } @else {
+        div.page-wrap.light-theme-override & {
+          #{$property}: $value-light;
+        }
+      }
+    }
+    @if $svelte {
+      :global(div.page-wrap.dark-theme-override) & {
+        #{$property}: $value-dark;
+      }
+    } @else {
+      div.page-wrap.dark-theme-override & {
+        #{$property}: $value-dark;
+      }
+    }
+    transition: #{$property} 1s;
+  }
+}
+
+@mixin themeSwitchBackgroundColor($color-light, $color-dark) {
+  background-color: $color-light;
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: $color-dark;
+    // svelte 
+    :global(div.page-wrap.light-theme-override) & {
+      background-color: $color-light;
+    }
+  }
+  :global(div.page-wrap.dark-theme-override) & {
+    background-color: $color-dark;
+  }
+  transition: background-color 1s;
+}
+
+@mixin textSelectionColor($svelte: true) {
+  &::selection {
+    @include themeSwitchProperties(color, $text-selection-color-light-theme, $text-selection-color-dark-theme);
+    @include themeSwitchProperties(background-color, $text-selection-background-color-light-theme, $text-selection-background-color-dark-theme);
+  }
+}
+
+@mixin textColor($svelte: true) {
+  @include themeSwitchProperties(color, $text-color-light-theme, $text-color-dark-theme, $svelte);
+  @include textSelectionColor($svelte);
+}
+
+@mixin textColorPrimary {
+  @include themeSwitchProperties(color, $text-color-primary-light-theme, $text-color-primary-dark-theme);
+}
+
+@mixin textColorSecondary {
+  @include themeSwitchProperties(color, $text-color-secondary-light-theme, $text-color-secondary-dark-theme);
+}
+
+@mixin text($svelte: true) {
+  @include textColor($svelte);
+  font-family: $text-font-stack;
+  font-size: 1.05rem;
+}
+
+@mixin titleText($svelte: true) {
+  @include textColor($svelte);
+  font-family: $title-font-stack;
+  font-weight: 400;
+}
+
+@mixin codeText {
+  @include textColor();
+  font-family: $code-font-stack;
+}
+
+@mixin errorText {
+  @include codeText();
+  @include themeSwitchProperties(color, $text-color-error-light-theme, $text-color-error-dark-theme);
+  @include textSelectionColor();
+}
+
+@mixin textBg {
+  @include themeSwitchProperties(background-color, $text-bg-color-light-theme, $text-bg-color-dark-theme);
+}
+
+@mixin layoutBg {
+  @include themeSwitchProperties(background-color, $layout-bg-color-light-theme, $layout-bg-color-dark-theme);
+}
+
+@mixin link {
+  @include text();
+  @include textColorPrimary();
+  @include textSelectionColor();
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+@mixin button {
+  @include text;
+  color: $text-color-dark-theme; // Background color doesn't change either
+  display: inline-block;
+  background-color: $primary-color-muted;
+  border-radius: 1.75em;
+  cursor: pointer;
+  margin-bottom: 1em;
+  box-shadow: 3px 1.5px 6px 0px rgba(0, 0, 0, 0.40);
+  padding: 0;
+  list-style-type: none;
+  display: inline-block;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.4em 0.7em;
+  margin-right: 0.4em;
+}
+
+@mixin h3-style {
+  font-size: 2rem;
+  margin-bottom: 0.5em;
+}
+
+$card-margin-rem: 0.7;
+$card-margin: #{$card-margin-rem}rem;
+
+$card-min-hmargin: 0.4 * $card-margin-rem;
+$card-max-hmargin: $card-margin-rem;
+$card-min-hmargin-screen-width: 30; // In rem
+$card-max-hmargin-screen-width: 74; // In rem
+
+$card-hmargin: smoothTransition(
+  100vw,
+  $card-min-hmargin,
+  $card-max-hmargin,
+  $card-min-hmargin-screen-width,
+  $card-max-hmargin-screen-width,
+);
+
+
+$card-min-vmargin: $card-margin-rem;
+$card-max-vmargin: 4;
+$card-min-vmargin-screen-width: 30; // In rem
+$card-max-vmargin-screen-width: 74; // In rem
+
+$card-vmargin: smoothTransition(
+  100vw,
+  $card-min-vmargin,
+  $card-max-vmargin,
+  $card-min-vmargin-screen-width,
+  $card-max-vmargin-screen-width,
+);
+
+@mixin card {
+  @include textBg();
+  box-shadow: 4px 6px 10px 0px rgba(0, 0, 0, 0.4);
+  padding: 1em;
+  border-radius: 0.5em;
+  max-width: 45em;
+}
