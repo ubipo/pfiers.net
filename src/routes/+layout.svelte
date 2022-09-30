@@ -21,7 +21,7 @@
   )
   const lightThemeOverride = derived(
     themeStore,
-    theme => theme instanceof OverrideTheme && theme.isDark
+    theme => theme instanceof OverrideTheme && !theme.isDark
   )
 </script>
 

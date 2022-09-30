@@ -24,14 +24,14 @@ OverrideTheme.constructor = () => { throw new Error("SystemTheme is a singleton"
 let themeStore: Writable<Theme> | undefined = undefined
 
 export function getSystemTheme() {
-  const matchMediaAvailable = typeof window !== "undefined" && window.matchMedia == null
+  const matchMediaAvailable = typeof window !== "undefined" && window.matchMedia != null
   const darkMatchMedia = matchMediaAvailable ? window.matchMedia('(prefers-color-scheme: dark)') : null
   return darkMatchMedia?.matches ? SYSTEM_DARK_THEME : SYSTEM_LIGHT_THEME
 }
 
 export function getThemeStore() {
   if (themeStore != null) return themeStore
-  const matchMediaAvailable = typeof window !== "undefined" && window.matchMedia == null
+  const matchMediaAvailable = typeof window !== "undefined" && window.matchMedia != null
   const darkMatchMedia = matchMediaAvailable ? window.matchMedia('(prefers-color-scheme: dark)') : null
   const initialTheme = darkMatchMedia?.matches ? SYSTEM_DARK_THEME : SYSTEM_LIGHT_THEME
   themeStore = writable<Theme>(initialTheme)
