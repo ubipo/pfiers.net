@@ -1,0 +1,3 @@
+---
+- name: groot-begijnhof-blender.png 
+  sizes: "(max-width: 500px) 400px, (max-width: 1920px) 704px, 1080px"

@@ -2,6 +2,8 @@ import parseYaml from './yaml'
 import { defaultOptions } from 'svelte-markdown/src/markdown-parser'
 import { Lexer, marked } from 'marked';
 import { isNonEmptyString } from './stringUtil';
+import { urlFromString } from './url';
+import { parseSrcsetSizesString, type SrcsetItemSize } from './srcSet';
 
 
 export interface MarkdownDefinition {
@@ -10,19 +12,62 @@ export interface MarkdownDefinition {
   tokens: marked.TokensList
 }
 
+export const EMPTY_TOKENS =  Object.assign([], { links: {} })
+
 export const EMPTY_MARKDOWN_DEFINITION: MarkdownDefinition = {
   sourceFull: "",
   sourceContent: "",
-  tokens: Object.assign([], { links: {} }),
+  tokens: EMPTY_TOKENS,
 }
 
-type TokenProcessor<T extends marked.Token> = (token: T) => Promise<void>
+type Tokens = marked.Token | SrcSetImageToken
+
+type TokenProcessor<T extends Tokens> = (token: T) => Promise<void>
+
+export interface SrcSetImageToken {
+  type: 'srcSetImage'
+  raw: string
+  href: string
+  title: string
+  sizes: SrcsetItemSize[]
+}
+
+type TokenProcessorOfType<
+  T extends Tokens["type"]
+> = TokenProcessor<Extract<Tokens, { type: T }>>
+
+export type AllTokenProcessors = {
+  [TokenType in Tokens["type"]]: TokenProcessorOfType<TokenType>
+}
+
+export type TokenProcessors = Partial<AllTokenProcessors>
 
 let combinedOptions: undefined | marked.MarkedOptions = undefined
 
-function createDirectiveTokenizerExtension(name: string) {
-  const reDirective = new RegExp(`^\`\`\`{${name}}(?<args>.*)\\n(?<content>(?:.|\\n)+?)\\n\`\`\``)
+/**
+ * Creates a marked tokenizer extension that parses Myst-like\[0] directives of
+ * the form:
+ * 
+ * \```{directiveName} directiveArg1 directiveArg2  
+ * :keywordArg1: keywordArgValue1  
+ * :keywordArg2: keywordArgValue2  
+ * Directive content  
+ * ```
+ * 
+ * \[0]: https://jupyterbook.org/en/stable/content/myst.html#directives
+ *
+ * @param name Name of the directive
+ * @param parseTokenArgs Function to parse the token's arguments and keywords
+ * into the properties of the token
+ * @returns Marked tokenizer extension
+ */
+function createDirectiveTokenizerExtension(
+  name: string,
+  parseTokenArgs: (args: string[], keywords: Record<string, string>) => Record<string, any>
+) {
+  const reDirective = new RegExp(`^\`\`\`{${name}}(?<argsStr>.*)\\n(?<keywordsStr>(?::[a-zA-Z0-9_-]+: .*\\n)*)?(?<content>(?:.|\\n)+\\n)?\`\`\``)
   const reArg = / (?:(?:"(?<argQuoted>(?:[^"\\]|\.)*?)")|(?<arg>[^'"][^ ]+))/g
+  const reKeyword = /:(?<key>\w+): (?<value>.*)\n/g
   const tokenizerExtension: marked.TokenizerExtension = {
     name: name,
     level: "block",
@@ -31,31 +76,31 @@ function createDirectiveTokenizerExtension(name: string) {
       if (match == -1) return undefined
       return match
     },
-    tokenizer(src, tokens) {
+    tokenizer(src, _tokens) {
       const match = reDirective.exec(src)
       if (match) {
-        const groups = match.groups
+        const groups = match.groups as Record<string, string | undefined> | undefined
         if (groups == null) throw new Error(`Failed to parse directive {${name}}`)
-        const { args: argsString, content } = groups
-        const args = Array.from(argsString.matchAll(reArg))
-          .map(argMatch => argMatch.groups?.argQuoted ?? argMatch.groups?.arg)
-        const [urlRaw, nameRaw, usernameRaw, dateTimeRaw] = args
-        const throwArgRequired = (argName: string, argNum: number) => {
-          throw new Error(`Directive {${name}} must specify a ${argName} (argument ${argNum+1}, format: {${name}} url name username date-time)`)
-        }
-        const url = !isNonEmptyString(urlRaw) ? throwArgRequired('url', 0) : urlRaw
-        const accountName = !isNonEmptyString(nameRaw) ? throwArgRequired('name', 1) : nameRaw
-        const accountUsername = !isNonEmptyString(usernameRaw) ? throwArgRequired('username', 2) : usernameRaw
-        const dateTime = !isNonEmptyString(dateTimeRaw) ? throwArgRequired('date-time', 3) : dateTimeRaw
-        const innerTokens = this.lexer.blockTokens(content, [])
+        const { argsStr, keywordsStr, content } = groups
+        const args = argsStr == null
+          ? []
+          : Array.from(argsStr.matchAll(reArg))
+            .map(m => m.groups?.argQuoted ?? m.groups?.arg ?? "")
+        const keywords = keywordsStr == null
+          ? {}
+          : Array.from(keywordsStr.matchAll(reKeyword))
+            .reduce((acc, m) => ({
+              ...acc, [m.groups?.key ?? ""]: m.groups?.value
+            }), {})
+        const tokenArgs = parseTokenArgs(args, keywords)
+        const innerTokens = content == null
+          ? EMPTY_TOKENS
+          : this.lexer.blockTokens(content, [])
         return {
           type: name,
           raw: match[0],
-          url,
-          name: accountName,
-          username: accountUsername,
-          dateTime,
-          tokens: innerTokens
+          tokens: innerTokens,
+          ...tokenArgs
         };
       }
     },
@@ -90,22 +135,47 @@ function createRoleTokenizerExtension(name: string) {
 export function getCustomOptions() {
   if (combinedOptions) return combinedOptions
 
+  const tweetExtensions = createDirectiveTokenizerExtension('tweet', (args) => {
+    const [urlRaw, nameRaw, usernameRaw, dateTimeRaw] = args
+    const throwArgRequired = (argName: string, argNum: number) => {
+      throw new Error(`Directive {tweet} must specify a ${argName} (argument ${argNum+1}, format: {tweet} url name username date-time)`)
+    }
+    const url = !isNonEmptyString(urlRaw) ? throwArgRequired('url', 0) : urlRaw
+    const accountName = !isNonEmptyString(nameRaw) ? throwArgRequired('name', 1) : nameRaw
+    const accountUsername = !isNonEmptyString(usernameRaw) ? throwArgRequired('username', 2) : usernameRaw
+    const dateTime = !isNonEmptyString(dateTimeRaw) ? throwArgRequired('date-time', 3) : dateTimeRaw
+    return {
+      url,
+      name: accountName,
+      username: accountUsername,
+      dateTime,
+    }
+  })
+
+  const srcSetImageExtension = createDirectiveTokenizerExtension('srcSetImage', (args, keywords) => {
+    const [urlStr] = args
+    const { alt, sizes: sizesStr } = keywords
+    if (!isNonEmptyString(urlStr)) {
+      throw new Error(`Directive {srcSetImage} must specify an image url (argument 1, format: {srcSetImage} url)`)
+    }
+    const url = urlFromString(urlStr)
+    if (!isNonEmptyString(alt)) {
+      throw new Error(`Directive {srcSetImage} must specify an alt keyword (format: {srcSetImage} url\\n:alt: alt-text)`)
+    }
+    if (!isNonEmptyString(sizesStr)) {
+      throw new Error(`Directive {srcSetImage} must specify sizes keyword (format: {srcSetImage} url\\n:sizes: sizes)`)
+    }
+    const sizes = parseSrcsetSizesString(sizesStr)
+    return { href: url, alt, sizes }
+  })
+
   marked.use({ extensions: [
     createRoleTokenizerExtension("dropword"),
-    createDirectiveTokenizerExtension("tweet")
+    tweetExtensions,
+    srcSetImageExtension
   ] })
   return marked.defaults
 }
-
-type TokenProcessorOfType<
-  T extends marked.Token["type"]
-> = TokenProcessor<Extract<marked.Token, { type: T }>>
-
-export type AllTokenProcessors = {
-  [TokenType in marked.Token["type"]]: TokenProcessorOfType<TokenType>
-}
-
-export type TokenProcessors = Partial<AllTokenProcessors>
 
 export async function tokenizeMarkdown(
   markdown: string,

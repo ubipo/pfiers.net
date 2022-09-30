@@ -1,10 +1,10 @@
 import { writable, type Readable, type Writable } from "svelte/store"
 import { Exception } from "$lib/service/exception"
 import type { FetchFn } from "$lib/service/fetchFn"
-import { getImageMeta, type ContentImageToken } from "./imageMeta"
-import { parseMarkdown, parseMarkdownFrontMatter, type MarkdownDefinition, type TokenProcessors } from "$lib/service/markdown"
+import { getImageUrlMeta, type ContentImageToken, type ContentSrcSetImageToken } from "./imageMeta"
+import { parseMarkdown, type MarkdownDefinition, type TokenProcessors } from "$lib/service/markdown"
 import { parseProject, type Content, type ContentItem, type ContentItemDto, parseTechnology } from "./model"
-import { arrayOrThrow, ContentParseException, isObject, objectOrThrow, toUrlSafeName } from "./parseUtil"
+import { arrayOrThrow, ContentParseException, objectOrThrow, toUrlSafeName } from "./parseUtil"
 import { urlFromString } from "$lib/service/url"
 import parseYaml from "$lib/service/yaml"
 import type { FetchContentFile } from "./contentFile"
@@ -50,15 +50,9 @@ export function getTokenProcessors(): TokenProcessors {
   return {
     image: async token => {
       const hrefUrl = urlFromString(token.href)
-      if (hrefUrl.protocol === 'c:') {
-        if (getContentFromBuildImports) {
-          const { meta, placeholder } = await getImageMeta(hrefUrl.pathname)
-          const contentImageToken = token as ContentImageToken
-          contentImageToken.meta = meta
-          contentImageToken.placeholder = placeholder
-        }
-        token.href = `/content/${hrefUrl.pathname}`
-      }
+      const metaAndUrl = await getImageUrlMeta(hrefUrl);
+      (token as ContentImageToken).meta = metaAndUrl?.meta
+      token.href = metaAndUrl?.url
     }
   }
 }

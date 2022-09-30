@@ -2,7 +2,7 @@ import { EMPTY_MARKDOWN_DEFINITION, parseMarkdown, type MarkdownDefinition, type
 import { ContentParseException, objectOrThrow, optionalStrArrOrThrow, optionalStringOrThrow, optionalUrlOrThrow, stringOrThrow, toUrlSafeName } from "./parseUtil";
 import { stringLooseEqual } from "$lib/service/stringUtil";
 import { urlFromString } from "$lib/service/url";
-import { getImageMeta, type ImageMeta } from "./imageMeta";
+import { getImageMeta, getImageUrlMeta, type ImageMeta } from "./imageMeta";
 
 
 export interface Content<Cyclical = true> {
@@ -20,8 +20,7 @@ export interface ImageDefinitionSerialized {
 export interface ImageDefinition extends ImageDefinitionSerialized { }
 
 export interface ContentImageDefinition extends ImageDefinition {
-  meta?: ImageMeta,
-  placeholder?: string,
+  meta: ImageMeta
 }
 
 export async function parseImageDefinition(
@@ -30,16 +29,7 @@ export async function parseImageDefinition(
   const s = objectOrThrow(serialized, 'Image definition')
   const alt = stringOrThrow(s.alt, 'Image alt text')
   const hrefUrl = urlFromString(stringOrThrow(s.url, 'Image URL'))
-  if (hrefUrl.protocol === 'c:') {
-    const { meta, placeholder } = await getImageMeta(hrefUrl.pathname)
-    const definition: ContentImageDefinition = {
-      url: `/content/${hrefUrl.pathname}`,
-      alt: stringOrThrow(s.alt, 'Image alt text'),
-      meta, placeholder
-    }
-    return definition
-  }
-  return { url: hrefUrl.toString(), alt }
+  return { ...await getImageUrlMeta(hrefUrl), alt }
 }
 
 export interface ContentItem {

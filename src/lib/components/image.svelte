@@ -1,6 +1,5 @@
 <script type="ts">
 	import type { ImageMeta } from "$lib/service/content/imageMeta";
-	import { decodeHTMLEntities } from "$lib/service/stringUtil";
 
 
   export let href: string
@@ -20,14 +19,35 @@
   const removePlaceholder = () => {
     placeholder = undefined
   }
+
+  const commonImgAttributes = {
+    title: title ?? text,
+    alt: text,
+    style: imgStyle,
+  }
+
+  const srcsetAttributes = meta?.srcset == undefined ? {} : {
+    srcset: meta.srcset.map(({ url, size }) => `${url} ${size}w`).join(", "),
+    sizes: meta.srcset.map(({ size, mediaQuery }) => {
+      return mediaQuery == undefined ? `${size}px` : `(${mediaQuery}) ${size}px`
+    }).join(", "),
+  }
+
+  const fullimgAttributes = {
+    ...commonImgAttributes,
+    ...srcsetAttributes,
+  }
+
+  const imagesrc = meta?.srcset?.length == 0 ? href : meta?.srcset?.[meta.srcset.length - 1].url
 </script>
 
 <figure>
+  <!-- svelte-ignore a11y-missing-attribute -->
   <div style={containerStyle}>
     {#if placeholder != undefined}
-      <img src={placeholder} title={title ?? text} alt={text} style={imgStyle}>
+      <img src={placeholder} {...commonImgAttributes}>
     {/if}
-    <img src={href} title={title ?? text} alt={text} style={imgStyle} on:load|once={removePlaceholder}>
+    <img src={imagesrc} {...fullimgAttributes} on:load={removePlaceholder}>
   </div>
   {#if title != undefined}
     <figcaption>{@html title}</figcaption>
