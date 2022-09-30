@@ -8,7 +8,11 @@
   export let size = DEFAULT_ICON_SIZE
 </script>
 
-<a href={`/technologies/${technology.urlSafeName}`} style:--icon-size={size}>
+<a
+  href={`/technologies/${technology.urlSafeName}`}
+  style:--icon-size={size}
+  aria-label="Read about {technology.name}"
+  title="Read about {technology.name}">
   <TechnologyIcon size={size} iconId={technology.icon} />
 </a>
 

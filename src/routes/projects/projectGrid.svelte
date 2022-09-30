@@ -28,7 +28,12 @@
 </script>
 
 <ColumnGrid items={columnGridItems} filter={item => !isFillerProject(item.props.project)}>
-  <button style:--icon-size={iconSize} class="icon" on:click={toggleNightStarry}>
+  <button
+    style:--icon-size={iconSize}
+    class="icon"
+    on:click={toggleNightStarry}
+    title="Starry night"
+    aria-label="Starry night">
     <TechnologyIcon iconId="stars" size={iconSize} />
   </button>
   <h1>Projects</h1>
