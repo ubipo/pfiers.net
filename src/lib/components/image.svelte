@@ -38,7 +38,9 @@
     ...srcsetAttributes,
   }
 
-  const imagesrc = meta?.srcset?.length == 0 ? href : meta?.srcset?.[meta.srcset.length - 1].url
+  const imagesrc = meta?.srcset != undefined && meta.srcset.length > 0
+    ? meta.srcset[meta.srcset.length - 1].url
+    : href
 </script>
 
 <figure>
