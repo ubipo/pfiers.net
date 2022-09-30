@@ -23,9 +23,9 @@
 
 
     .page-wrapper {
-      margin: 5rem auto;
+      margin: clamp(.5rem,7.5vw - 1.55rem, 5rem) auto;
       max-width: 40rem;
-      padding: 0.8rem;
+      padding: 1rem;
 
       color: #333;
       font-family: Georgia, 'Times New Roman', Times, serif;
@@ -71,20 +71,24 @@
 
     h2 {
       margin-top: 1.5em;
+      font-size: 1.5rem;
       color: hsl(190, 80%, 25%);
     }
 
     h3 {
       margin-top: 1.4em;
+      font-size: 1.2rem;
     }
 
     @media print {
       h2 {
         margin-top: 1em;
+        font-size: 1.4rem;
       }
 
       h3 {
         margin-top: 1.2em;
+        font-size: 1rem;
       }
     }
 
@@ -105,7 +109,6 @@
 
     .occupation-heading {
       margin-bottom: 0.2em;
-      font-size: 13pt;
     }
 
     .occupation-heading__extra {
