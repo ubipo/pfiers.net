@@ -13,7 +13,7 @@
   {#if includeIcons && project.technologies.length > 0}
     <ProjectTechBadges technologies={project.technologies} />
   {/if}
-  <h2>{project.name}</h2>
+  <a href="/projects/{project.urlSafeName}"><h2>{project.name}</h2></a>
   <Markdown tokens={project.shortDescription.tokens} />
   <!-- {#if project.longDescription != null}
     <p><a href={`/projects/${project.urlSafeName}`}>Read more</a></p>
@@ -29,6 +29,10 @@
 
   h2 {
     margin-top: 0.1em;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   /* a {
