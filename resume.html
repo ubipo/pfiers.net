@@ -28,33 +28,71 @@
       padding: 0.8rem;
 
       color: #333;
-      font-family: Bitstream Vera Serif, Roman, serif;
-      /* font-family: Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua, Georgia, serif; */
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      /* font-family: Palatino, Palatino Linotype, Palatino LT STD, Book
+      Antiqua, Georgia, serif; */
+    }
+
+    @media print {
+      .page-wrapper {
+        margin: 0 auto;
+        max-width: 44rem;
+      }
     }
 
     p {
       text-align: justify;
     }
 
+    a, p {
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+    }
+
+    @media print {
+      a, p {
+        font-size: 1rem;
+        line-height: 1.2rem;
+      }
+    }
+
     h1 {
       font-weight: 700;
-      font-size: 30pt;
+      font-size: 3.5rem;
       margin-bottom: 0.1em;
+    }
+
+    @media print {
+      h1 {
+        font-weight: 700;
+        font-size: 3.2rem;
+      }
     }
 
     h2 {
       margin-top: 1.5em;
+      color: hsl(190, 80%, 25%);
+    }
+
+    h3 {
+      margin-top: 1.4em;
+    }
+
+    @media print {
+      h2 {
+        margin-top: 1em;
+      }
+
+      h3 {
+        margin-top: 1.2em;
+      }
     }
 
     .subtitle {
       margin-top: 0;
-      font-size: 15pt;
+      font-size: 1.3rem;
       font-style: italic;
       text-align: left;
-    }
-
-    h2 {
-      color: hsl(190, 80%, 25%);
     }
 
     * {
@@ -179,6 +217,26 @@
         </section> -->
         <section>
           <h3 class="occupation-heading">
+            Professional Tutor 
+            <span class="occupation-heading__extra">
+              - <a
+              href="https://www.classgap.com/en/tutor/pieter-fiers">classgap.com</a>
+              and other platforms
+            </span>
+          </h3>
+          <p class="occupation-details">2019 - </p>
+          <p>
+            I first started tutoring in 2019 for my then University, UCLL. Since
+            then, I've taught over fifty students in computer science and
+            software engineering topics through various organizations. You can
+            read reviews by students on <a
+            href="https://www.classgap.com/en/tutor/pieter-fiers#opinions-tutor"
+            target="_blank">
+            classgap.com</a>.
+          </p>
+        </section>
+        <section>
+          <h3 class="occupation-heading">
             Open Summer of Code
             <span class="occupation-heading__extra">
               - Student Job - <a href="https://osoc.be/editions/2020/cyclofix">osoc.be</a>
@@ -200,10 +258,12 @@
           </h3>
           <p class="occupation-details">September 2019</p>
           <p>
-            Student job at i-Force, a fraud and digital forensics company. During my time
-            here I created tools to aid in data recovery and processing for servers affected
-            by a cyber attack. I also gained practical experience with 
-            <a href="https://www.paloalto-firewalls.com/">Palo Alto Firewalls</a> and
+            Student job at i-Force, a fraud and digital forensics company.
+            During my time here I created tools to aid in data recovery and
+            processing for servers affected by a cyber attack. I also gained
+            practical experience with 
+            <a href="https://www.paloalto-firewalls.com/">Palo Alto
+            Firewalls</a> and
             <a href="https://web.mit.edu/kerberos/">Kerberos</a>.
           </p>
         </section>
@@ -216,13 +276,13 @@
           </h3>
           <p class="occupation-details">September 2018</p>
           <p>
-            Internship at the NERF (Neuro-Electronics Research Flanders) neuroscience
-            lab of professor <a
+            Internship at the NERF (Neuro-Electronics Research Flanders)
+            neuroscience lab of professor <a
             href="https://www.nerf.be/people/karl-farrow">Karl Farrow</a>,
             during which I made
-            <a href="https://pfiers.net/projects/kinect-mouse-tracker/">“Kinect Mouse Tracker”</a>,
-            a computer vision application to track a mouse’s position in
-            real-time using depth information.
+            <a href="https://pfiers.net/projects/kinect-mouse-tracker/">“Kinect
+            Mouse Tracker”</a>, a computer vision application to track a mouse’s
+            position in real-time using depth information.
           </p>
         </section>
       </section>
@@ -255,12 +315,12 @@
             time using solar panels.
           </p>
           <p>
-            As my <a href="https://pfiers.net/dissertation.pdf">Master’s thesis</a>, I developed
-            Lakehopper’s high-level planning software. This system uses a
-            convolutional neural network to identify lakes and buildings from
-            aerial imagery. From this, it generates a navigation graph to
-            calculate the best multi-hop paths between lakes. These paths avoid
-            build-up areas and restricted airspace.
+            As my <a href="https://pfiers.net/dissertation.pdf">Master’s
+            thesis</a>, I developed Lakehopper’s high-level planning software.
+            This system uses a convolutional neural network to identify lakes
+            and buildings from aerial imagery. From this, it generates a
+            navigation graph to calculate the best multi-hop paths between
+            lakes. These paths avoid build-up areas and restricted airspace.
           </p>
           <p>
             In my free time I’m working on the hardware of the drone. The first
@@ -297,11 +357,10 @@
           data science and machine learning techniques.
         </p>
         <p>
-          Through my
-          undergraduate specialization in <a
-          href="http://onderwijsaanbod.leuven.ucll.be/opleidingen/n/SC_52335187.htm">systems
-          and networks</a> and professional experience, I also developed a deep
-          understanding of application and network security.
+          Through my undergraduate specialization in <a
+          href="http://onderwijsaanbod.leuven.ucll.be/opleidingen/n/SC_52335187.htm">
+          systems and networks</a> and professional experience, I also developed
+          a deep understanding of application and network security.
         </p>
       </section>
 
@@ -311,10 +370,11 @@
           When I’m not programming I’m usually either hiking, climbing,
           geocaching or sailing. I also enjoy teaching others what I’ve learned.
           I’m a certified sailing coach and I tutor others in technological
-          topics, both professionally and previously through my alma mater
-          UCLL. Many of my projects are also inspired by my love for cartography
-          and GIS. I’m a member of <a href="https://openstreetmap.be">OSM Belgium</a>
-          and the <a href="https://wiki.osmfoundation.org/wiki/Main_Page">OSM
+          topics, both professionally and previously through my alma mater UCLL.
+          Many of my projects are also inspired by my love for cartography and
+          GIS. I’m a member of <a href="https://openstreetmap.be">OSM
+          Belgium</a> and the <a
+          href="https://wiki.osmfoundation.org/wiki/Main_Page">OpenStreetMap
           Foundation</a>, and I’ve contributed several apps and websites.
         </p>
       </section>
