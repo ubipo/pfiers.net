@@ -9,7 +9,7 @@ forest paths, check out my [IoT](/projects/iot) projects, or just [browse them a
 
 Want to get in touch?  
 [pieter@pfiers.net](mailto:pieter@pfiers.net) — 
-[Resume](/resume.html) — 
+[Resume](/resume) — 
 [LinkedIn](https://www.linkedin.com/in/pfiers) — 
 [GitHub](https://github.com/ubipo)
 
