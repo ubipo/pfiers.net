@@ -10,5 +10,4 @@
 <Image
   href={definition.url}
   meta={contentImage.meta}
-  placeholder={contentImage.placeholder}
   text={contentImage.alt} />

@@ -21,7 +21,7 @@
   }
 
   const commonImgAttributes = {
-    title: title ?? text,
+    title: title,
     alt: text,
     style: imgStyle,
   }
