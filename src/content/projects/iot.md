@@ -1,7 +1,7 @@
 ---
-name: IOT
+name: IoT
 shortDescription: |
-  All my IOT projects: water usage monitoring, smartifying old space heaters or 
+  All my IoT projects: water usage monitoring, smartifying old space heaters or 
   garage gates, dimming lamps and more!
 technologies:
   - Perception
@@ -18,8 +18,8 @@ image:
     net.
 ---
 
-I've created my fair share of IOT projects, mostly to solve small inconveniences
-that don't *reaaaaly* need solving 😅. But hey, that's what IOT is for, and I
+I've created my fair share of IoT projects, mostly to solve small inconveniences
+that don't *reaaaaly* need solving 😅. But hey, that's what IoT is for, and I
 got the learn a ton along the way!
 
 
@@ -101,7 +101,7 @@ control](c:projects/gate-relay.jpg "Relay hooked up to the remote control")
 
 ## Dimming lamps and controlling LED strips
 
-Besides all of the above, I've also used IOT to dim lamps, control LED strips
+Besides all of the above, I've also used IoT to dim lamps, control LED strips
 and hook into light switches. All those mini projects are some combination of
 taking a cheap ESP module, connecting it to a relay or breakout board and
 hooking it up to HomeAssistant. Below for example is a video of me controlling a
