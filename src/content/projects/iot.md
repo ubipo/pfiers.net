@@ -72,10 +72,11 @@ radio](https://www.realtek.com/en/products/communications-network-ics/item/rtl28
 to sniff the communication between a remote control and its garage gate. After
 decoding the rolling code in the transmission using [Universal Radio
 Hacker](https://github.com/jopohl/urh), I was able to replay it using a [generic
-433MHz transmitter](https://www.adafruit.com/product/3071). If miniaturized,
-this system could be installed near the gate and collect rolling codes whenever
-an authorized user opens the garage gate. This way, the attacker can open the
-gate at any later time. [The presentation
+433MHz transmitter](https://www.adafruit.com/product/3071).
+
+If miniaturized, this system could be installed near the gate and collect
+rolling codes whenever an authorized user opens the garage gate. This way, the
+attacker can open the gate at any later time. [The presentation
 slides](/content/projects/gate-RF-replay.pdf) contain diagrams to explain the
 attack.
 
@@ -92,8 +93,8 @@ attack.
 Of course I had no personal need for this attack because I already had a remote
 for the gate. Being the lazy software developer I am however, it did get me
 thinking about how nice it would be to be able to open the gate from my phone.
-So of course I soldered a relay to the remote control and hooked it up to the
-HomeAssistant server in my dorm room.
+So I soldered a relay to the remote control and hooked it up to the
+HomeAssistant server in my dorm room. Infinite range achieved ♾️!
 
 ![Picture of a relay connected to the gate's remote
 control](c:projects/gate-relay.jpg "Relay hooked up to the remote control")
