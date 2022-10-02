@@ -1,7 +1,7 @@
 ---
 name: Lake­hopper
 shortDescription: |
-  Work-in-progress autonomous drone that can fly indefinitely by hopping from 
+  Work-in-progress autonomous drone that can fly long distances by hopping from 
   one lake to the next.
 technologies:
   - Perception
@@ -17,8 +17,8 @@ image:
 ---
 
 [Lakehopper](https://lakehopper.pfiers.net) is my vision for an autonomous drone
-that can fly indefinitely by hopping from one lake to the next, recharging its
-batteries each time using solar panels.
+that can fly long distances by hopping from one lake to the next, recharging
+its batteries each time using solar panels.
 
 
 As my [Master’s thesis](/content/dissertation.pdf), I developed Lakehopper’s
