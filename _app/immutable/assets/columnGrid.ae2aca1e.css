@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Quicksand&family=Noto+Color+Emoji&display=swap");
+.grid.svelte-1rguf0w{display:flex;flex-direction:row;justify-content:center;width:100%}
+.grid-column.svelte-1rguf0w{display:flex;flex-direction:column;width:100%;max-width:36rem}
+.grid-column.svelte-1rguf0w:not(:last-child){margin-right:0.7rem}
+article.svelte-1rguf0w{background-color:hsl(0, 0%, 100%);transition:background-color 1s;box-shadow:4px 6px 10px 0px rgba(0, 0, 0, 0.4);padding:1em;border-radius:0.5em;max-width:45em;max-width:100%;margin-bottom:0.7rem}
+@media screen and (prefers-color-scheme: dark){article.svelte-1rguf0w{background-color:hsl(0, 0%, 0%)}div.page-wrap.light-theme-override article.svelte-1rguf0w{background-color:hsl(0, 0%, 100%)}}
+div.page-wrap.dark-theme-override article.svelte-1rguf0w{background-color:hsl(0, 0%, 0%)}
+article.svelte-1rguf0w:last-child{margin-bottom:0}
+.single-column.svelte-1rguf0w{display:block}
+.grid.svelte-1rguf0w{display:none}
+@media(min-width: 47rem){.single-column.svelte-1rguf0w{display:none}.grid.svelte-1rguf0w{display:flex}}

@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Quicksand&family=Noto+Color+Emoji&display=swap");@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Quicksand&family=Noto+Color+Emoji&display=swap");
+p.error.svelte-hzm8oz{color:hsl(0, 0%, 20%);transition:color 1s;font-family:monospace;color:hsl(352, 100%, 34%);transition:color 1s}
+@media screen and (prefers-color-scheme: dark){p.error.svelte-hzm8oz{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override p.error.svelte-hzm8oz{color:hsl(0, 0%, 20%)}}
+div.page-wrap.dark-theme-override p.error.svelte-hzm8oz{color:hsl(0, 0%, 98%)}
+p.error.svelte-hzm8oz::selection{color:hsl(0, 0%, 98%);transition:color 1s;background-color:#117f95;transition:background-color 1s}
+@media screen and (prefers-color-scheme: dark){p.error.svelte-hzm8oz::selection{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override p.error.svelte-hzm8oz::selection{color:hsl(0, 0%, 98%)}}
+div.page-wrap.dark-theme-override p.error.svelte-hzm8oz::selection{color:hsl(0, 0%, 98%)}
+@media screen and (prefers-color-scheme: dark){p.error.svelte-hzm8oz::selection{background-color:#0b5867}div.page-wrap.light-theme-override p.error.svelte-hzm8oz::selection{background-color:#117f95}}
+div.page-wrap.dark-theme-override p.error.svelte-hzm8oz::selection{background-color:#0b5867}
+@media screen and (prefers-color-scheme: dark){p.error.svelte-hzm8oz{color:hsl(352, 65%, 72%)}div.page-wrap.light-theme-override p.error.svelte-hzm8oz{color:hsl(352, 100%, 34%)}}
+div.page-wrap.dark-theme-override p.error.svelte-hzm8oz{color:hsl(352, 65%, 72%)}
+p.error.svelte-hzm8oz::selection{color:hsl(0, 0%, 98%);transition:color 1s;background-color:#117f95;transition:background-color 1s}
+@media screen and (prefers-color-scheme: dark){p.error.svelte-hzm8oz::selection{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override p.error.svelte-hzm8oz::selection{color:hsl(0, 0%, 98%)}}
+div.page-wrap.dark-theme-override p.error.svelte-hzm8oz::selection{color:hsl(0, 0%, 98%)}
+@media screen and (prefers-color-scheme: dark){p.error.svelte-hzm8oz::selection{background-color:#0b5867}div.page-wrap.light-theme-override p.error.svelte-hzm8oz::selection{background-color:#117f95}}
+div.page-wrap.dark-theme-override p.error.svelte-hzm8oz::selection{background-color:#0b5867}
+svg.svelte-1iwhcf0{height:var(--icon-size);width:var(--icon-size)}

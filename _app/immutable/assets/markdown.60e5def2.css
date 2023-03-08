@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Quicksand&family=Noto+Color+Emoji&display=swap");@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Quicksand&family=Noto+Color+Emoji&display=swap");@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Quicksand&family=Noto+Color+Emoji&display=swap");@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Quicksand&family=Noto+Color+Emoji&display=swap");
+span.svelte-2kiyeq{color:hsl(0, 0%, 20%);transition:color 1s;font-family:"Quicksand", sans-serif;font-weight:400;font-size:24pt;margin-right:0.2em}
+@media screen and (prefers-color-scheme: dark){span.svelte-2kiyeq{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override span.svelte-2kiyeq{color:hsl(0, 0%, 20%)}}
+div.page-wrap.dark-theme-override span.svelte-2kiyeq{color:hsl(0, 0%, 98%)}
+span.svelte-2kiyeq::selection{color:hsl(0, 0%, 98%);transition:color 1s;background-color:#117f95;transition:background-color 1s}
+@media screen and (prefers-color-scheme: dark){span.svelte-2kiyeq::selection{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override span.svelte-2kiyeq::selection{color:hsl(0, 0%, 98%)}}
+div.page-wrap.dark-theme-override span.svelte-2kiyeq::selection{color:hsl(0, 0%, 98%)}
+@media screen and (prefers-color-scheme: dark){span.svelte-2kiyeq::selection{background-color:#0b5867}div.page-wrap.light-theme-override span.svelte-2kiyeq::selection{background-color:#117f95}}
+div.page-wrap.dark-theme-override span.svelte-2kiyeq::selection{background-color:#0b5867}
+a.svelte-mzekcq{color:hsl(0, 0%, 20%);transition:color 1s;font-family:"Noto Sans", "Noto Color Emoji", sans-serif;font-size:1.05rem;color:#328546;transition:color 1s;text-decoration:underline;text-decoration-style:dotted}
+@media screen and (prefers-color-scheme: dark){a.svelte-mzekcq{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override a.svelte-mzekcq{color:hsl(0, 0%, 20%)}}
+div.page-wrap.dark-theme-override a.svelte-mzekcq{color:hsl(0, 0%, 98%)}
+a.svelte-mzekcq::selection{color:hsl(0, 0%, 98%);transition:color 1s;background-color:#117f95;transition:background-color 1s}
+@media screen and (prefers-color-scheme: dark){a.svelte-mzekcq::selection{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override a.svelte-mzekcq::selection{color:hsl(0, 0%, 98%)}}
+div.page-wrap.dark-theme-override a.svelte-mzekcq::selection{color:hsl(0, 0%, 98%)}
+@media screen and (prefers-color-scheme: dark){a.svelte-mzekcq::selection{background-color:#0b5867}div.page-wrap.light-theme-override a.svelte-mzekcq::selection{background-color:#117f95}}
+div.page-wrap.dark-theme-override a.svelte-mzekcq::selection{background-color:#0b5867}
+@media screen and (prefers-color-scheme: dark){a.svelte-mzekcq{color:#4ebc67}div.page-wrap.light-theme-override a.svelte-mzekcq{color:#328546}}
+div.page-wrap.dark-theme-override a.svelte-mzekcq{color:#4ebc67}
+a.svelte-mzekcq::selection{color:hsl(0, 0%, 98%);transition:color 1s;background-color:#117f95;transition:background-color 1s}
+@media screen and (prefers-color-scheme: dark){a.svelte-mzekcq::selection{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override a.svelte-mzekcq::selection{color:hsl(0, 0%, 98%)}}
+div.page-wrap.dark-theme-override a.svelte-mzekcq::selection{color:hsl(0, 0%, 98%)}
+@media screen and (prefers-color-scheme: dark){a.svelte-mzekcq::selection{background-color:#0b5867}div.page-wrap.light-theme-override a.svelte-mzekcq::selection{background-color:#117f95}}
+div.page-wrap.dark-theme-override a.svelte-mzekcq::selection{background-color:#0b5867}
+figure.svelte-m9zqu1{margin:0}
+figcaption.svelte-m9zqu1{color:hsl(0, 0%, 20%);transition:color 1s;font-family:"Noto Sans", "Noto Color Emoji", sans-serif;font-size:1.05rem;text-align:center;margin-bottom:1.7rem;margin-top:0.3rem;font-style:italic}
+@media screen and (prefers-color-scheme: dark){figcaption.svelte-m9zqu1{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override figcaption.svelte-m9zqu1{color:hsl(0, 0%, 20%)}}
+div.page-wrap.dark-theme-override figcaption.svelte-m9zqu1{color:hsl(0, 0%, 98%)}
+figcaption.svelte-m9zqu1::selection{color:hsl(0, 0%, 98%);transition:color 1s;background-color:#117f95;transition:background-color 1s}
+@media screen and (prefers-color-scheme: dark){figcaption.svelte-m9zqu1::selection{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override figcaption.svelte-m9zqu1::selection{color:hsl(0, 0%, 98%)}}
+div.page-wrap.dark-theme-override figcaption.svelte-m9zqu1::selection{color:hsl(0, 0%, 98%)}
+@media screen and (prefers-color-scheme: dark){figcaption.svelte-m9zqu1::selection{background-color:#0b5867}div.page-wrap.light-theme-override figcaption.svelte-m9zqu1::selection{background-color:#117f95}}
+div.page-wrap.dark-theme-override figcaption.svelte-m9zqu1::selection{background-color:#0b5867}
+article.svelte-es3pvx.svelte-es3pvx{max-width:35rem;border-radius:0.75rem;border-color:rgb(207, 217, 222);border-width:1px;border-style:solid}
+article.svelte-es3pvx>div.svelte-es3pvx{display:block;padding:1rem;text-decoration:none}
+.top.svelte-es3pvx.svelte-es3pvx{display:flex;align-items:flex-start;justify-content:space-between}
+.user.svelte-es3pvx.svelte-es3pvx{display:flex;align-items:center;text-decoration:none}
+.user.svelte-es3pvx>img.svelte-es3pvx{width:3rem;height:3rem}
+.names.svelte-es3pvx.svelte-es3pvx{color:hsl(0, 0%, 20%);transition:color 1s;font-family:"Noto Sans", "Noto Color Emoji", sans-serif;font-size:1.05rem;margin-left:0.5rem;display:flex;flex-direction:column;justify-content:center}
+@media screen and (prefers-color-scheme: dark){.names.svelte-es3pvx.svelte-es3pvx{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override .names.svelte-es3pvx.svelte-es3pvx{color:hsl(0, 0%, 20%)}}
+div.page-wrap.dark-theme-override .names.svelte-es3pvx.svelte-es3pvx{color:hsl(0, 0%, 98%)}
+.names.svelte-es3pvx.svelte-es3pvx::selection{color:hsl(0, 0%, 98%);transition:color 1s;background-color:#117f95;transition:background-color 1s}
+@media screen and (prefers-color-scheme: dark){.names.svelte-es3pvx.svelte-es3pvx::selection{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override .names.svelte-es3pvx.svelte-es3pvx::selection{color:hsl(0, 0%, 98%)}}
+div.page-wrap.dark-theme-override .names.svelte-es3pvx.svelte-es3pvx::selection{color:hsl(0, 0%, 98%)}
+@media screen and (prefers-color-scheme: dark){.names.svelte-es3pvx.svelte-es3pvx::selection{background-color:#0b5867}div.page-wrap.light-theme-override .names.svelte-es3pvx.svelte-es3pvx::selection{background-color:#117f95}}
+div.page-wrap.dark-theme-override .names.svelte-es3pvx.svelte-es3pvx::selection{background-color:#0b5867}
+.names.svelte-es3pvx>a.full-name.svelte-es3pvx{font-weight:bold;font-size:1.2rem;color:rgb(15, 20, 25);transition:color 1s;text-decoration:none}
+@media screen and (prefers-color-scheme: dark){.names.svelte-es3pvx>a.full-name.svelte-es3pvx{color:rgb(243, 244, 245)}div.page-wrap.light-theme-override .names.svelte-es3pvx>a.full-name.svelte-es3pvx{color:rgb(15, 20, 25)}}
+div.page-wrap.dark-theme-override .names.svelte-es3pvx>a.full-name.svelte-es3pvx{color:rgb(243, 244, 245)}
+.names.svelte-es3pvx>a.full-name.svelte-es3pvx:hover{text-decoration:underline}
+.names.svelte-es3pvx>a.username.svelte-es3pvx{font-weight:normal;font-size:0.8rem;color:rgb(83, 100, 113);transition:color 1s;text-decoration:none}
+@media screen and (prefers-color-scheme: dark){.names.svelte-es3pvx>a.username.svelte-es3pvx{color:rgb(217, 228, 236)}div.page-wrap.light-theme-override .names.svelte-es3pvx>a.username.svelte-es3pvx{color:rgb(83, 100, 113)}}
+div.page-wrap.dark-theme-override .names.svelte-es3pvx>a.username.svelte-es3pvx{color:rgb(217, 228, 236)}
+.dateTime.svelte-es3pvx.svelte-es3pvx{color:hsl(0, 0%, 20%);transition:color 1s;font-family:"Noto Sans", "Noto Color Emoji", sans-serif;font-size:1.05rem;font-size:0.8rem;color:rgb(83, 100, 113);transition:color 1s;margin-top:0.5rem;text-decoration:none}
+@media screen and (prefers-color-scheme: dark){.dateTime.svelte-es3pvx.svelte-es3pvx{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override .dateTime.svelte-es3pvx.svelte-es3pvx{color:hsl(0, 0%, 20%)}}
+div.page-wrap.dark-theme-override .dateTime.svelte-es3pvx.svelte-es3pvx{color:hsl(0, 0%, 98%)}
+.dateTime.svelte-es3pvx.svelte-es3pvx::selection{color:hsl(0, 0%, 98%);transition:color 1s;background-color:#117f95;transition:background-color 1s}
+@media screen and (prefers-color-scheme: dark){.dateTime.svelte-es3pvx.svelte-es3pvx::selection{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override .dateTime.svelte-es3pvx.svelte-es3pvx::selection{color:hsl(0, 0%, 98%)}}
+div.page-wrap.dark-theme-override .dateTime.svelte-es3pvx.svelte-es3pvx::selection{color:hsl(0, 0%, 98%)}
+@media screen and (prefers-color-scheme: dark){.dateTime.svelte-es3pvx.svelte-es3pvx::selection{background-color:#0b5867}div.page-wrap.light-theme-override .dateTime.svelte-es3pvx.svelte-es3pvx::selection{background-color:#117f95}}
+div.page-wrap.dark-theme-override .dateTime.svelte-es3pvx.svelte-es3pvx::selection{background-color:#0b5867}
+@media screen and (prefers-color-scheme: dark){.dateTime.svelte-es3pvx.svelte-es3pvx{color:rgb(217, 228, 236)}div.page-wrap.light-theme-override .dateTime.svelte-es3pvx.svelte-es3pvx{color:rgb(83, 100, 113)}}
+div.page-wrap.dark-theme-override .dateTime.svelte-es3pvx.svelte-es3pvx{color:rgb(217, 228, 236)}
+.dateTime.svelte-es3pvx.svelte-es3pvx:hover{text-decoration:underline}

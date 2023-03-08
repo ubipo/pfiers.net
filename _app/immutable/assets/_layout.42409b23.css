@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Quicksand&family=Noto+Color+Emoji&display=swap");@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Quicksand&family=Noto+Color+Emoji&display=swap");@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Quicksand&family=Noto+Color+Emoji&display=swap");@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Quicksand&family=Noto+Color+Emoji&display=swap");
+button.svelte-n8vtm4{background:none;border:none;cursor:pointer;padding:0}
+svg.svelte-n8vtm4{width:2rem;height:2rem;fill:hsl(0, 0%, 20%);transition:fill 1s}
+@media screen and (prefers-color-scheme: dark){svg.svelte-n8vtm4{fill:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override svg.svelte-n8vtm4{fill:hsl(0, 0%, 20%)}}
+div.page-wrap.dark-theme-override svg.svelte-n8vtm4{fill:hsl(0, 0%, 98%)}
+.cont.svelte-x4yqvp.svelte-x4yqvp{display:flex;justify-content:center}
+nav.svelte-x4yqvp.svelte-x4yqvp{background-color:hsl(0, 0%, 100%);transition:background-color 1s;flex-grow:1;width:100%;max-width:70rem}
+@media screen and (prefers-color-scheme: dark){nav.svelte-x4yqvp.svelte-x4yqvp{background-color:hsl(0, 0%, 0%)}div.page-wrap.light-theme-override nav.svelte-x4yqvp.svelte-x4yqvp{background-color:hsl(0, 0%, 100%)}}
+div.page-wrap.dark-theme-override nav.svelte-x4yqvp.svelte-x4yqvp{background-color:hsl(0, 0%, 0%)}
+.buffer.svelte-x4yqvp.svelte-x4yqvp{background-color:hsl(0, 0%, 100%);transition:background-color 1s;flex-grow:1;z-index:10}
+@media screen and (prefers-color-scheme: dark){.buffer.svelte-x4yqvp.svelte-x4yqvp{background-color:hsl(0, 0%, 0%)}div.page-wrap.light-theme-override .buffer.svelte-x4yqvp.svelte-x4yqvp{background-color:hsl(0, 0%, 100%)}}
+div.page-wrap.dark-theme-override .buffer.svelte-x4yqvp.svelte-x4yqvp{background-color:hsl(0, 0%, 0%)}
+ul.svelte-x4yqvp.svelte-x4yqvp{margin:0;padding:0;display:flex;box-shadow:0px 5px 12px 0px rgba(0, 0, 0, 0.4);position:relative}
+a.svelte-x4yqvp.svelte-x4yqvp{color:hsl(0, 0%, 20%);transition:color 1s;font-family:"Quicksand", sans-serif;font-weight:400;display:block;font-family:"Quicksand", sans-serif;font-weight:500;font-size:2rem;text-decoration:none;width:100%;height:100%;outline:none;padding-bottom:calc(0.5rem + 3px);padding-top:1rem;border-bottom:3px solid hsl(134, 45%, 40%)}
+@media screen and (prefers-color-scheme: dark){a.svelte-x4yqvp.svelte-x4yqvp{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override a.svelte-x4yqvp.svelte-x4yqvp{color:hsl(0, 0%, 20%)}}
+div.page-wrap.dark-theme-override a.svelte-x4yqvp.svelte-x4yqvp{color:hsl(0, 0%, 98%)}
+a.svelte-x4yqvp.svelte-x4yqvp::selection{color:hsl(0, 0%, 98%);transition:color 1s;background-color:#117f95;transition:background-color 1s}
+@media screen and (prefers-color-scheme: dark){a.svelte-x4yqvp.svelte-x4yqvp::selection{color:hsl(0, 0%, 98%)}div.page-wrap.light-theme-override a.svelte-x4yqvp.svelte-x4yqvp::selection{color:hsl(0, 0%, 98%)}}
+div.page-wrap.dark-theme-override a.svelte-x4yqvp.svelte-x4yqvp::selection{color:hsl(0, 0%, 98%)}
+@media screen and (prefers-color-scheme: dark){a.svelte-x4yqvp.svelte-x4yqvp::selection{background-color:#0b5867}div.page-wrap.light-theme-override a.svelte-x4yqvp.svelte-x4yqvp::selection{background-color:#117f95}}
+div.page-wrap.dark-theme-override a.svelte-x4yqvp.svelte-x4yqvp::selection{background-color:#0b5867}
+a.svelte-x4yqvp.svelte-x4yqvp:focus-visible,a.svelte-x4yqvp.svelte-x4yqvp:hover{padding-bottom:0.5rem;padding-top:1rem;border-bottom:3px solid hsl(190, 80%, 25%)}
+a.svelte-x4yqvp.svelte-x4yqvp:focus-visible{outline:2px dashed hsl(190, 80%, 25%);-webkit-outline:2px dashed hsl(190, 80%, 25%);-moz-outline:2px dashed hsl(190, 80%, 25%);-ms-outline:2px dashed hsl(190, 80%, 25%);-o-outline:2px dashed hsl(190, 80%, 25%)}
+.heading.svelte-x4yqvp>a.svelte-x4yqvp{font-weight:700}
+li.svelte-x4yqvp.svelte-x4yqvp{flex-grow:1;text-align:center;list-style:none;position:relative}
+li.active.svelte-x4yqvp.svelte-x4yqvp{flex-grow:1.4}
+li.active.svelte-x4yqvp>a.svelte-x4yqvp{color:hsl(190, 80%, 25%);transition:color 1s;padding-bottom:0.5rem !important;border-bottom:5px solid hsl(190, 80%, 25%) !important}
+@media screen and (prefers-color-scheme: dark){li.active.svelte-x4yqvp>a.svelte-x4yqvp{color:#149cb8}div.page-wrap.light-theme-override li.active.svelte-x4yqvp>a.svelte-x4yqvp{color:hsl(190, 80%, 25%)}}
+div.page-wrap.dark-theme-override li.active.svelte-x4yqvp>a.svelte-x4yqvp{color:#149cb8}
+li.svelte-x4yqvp.svelte-x4yqvp::after{content:"";position:absolute;display:block;width:100%;height:10px;top:-10px;border-radius:50%;box-shadow:0px 3px 4px 0px rgba(0, 0, 0, 0);visibility:hidden;transition:box-shadow 0.3s}
+li.svelte-x4yqvp.svelte-x4yqvp:hover::after{box-shadow:0px 3px 4px 0px rgba(13, 98, 115, 0.3);visibility:visible}
+a.full.svelte-x4yqvp.svelte-x4yqvp{display:none}
+a.abrv.svelte-x4yqvp.svelte-x4yqvp{display:block}
+@media(min-width: 650px){a.full.svelte-x4yqvp.svelte-x4yqvp{display:block}a.abrv.svelte-x4yqvp.svelte-x4yqvp{display:none}}
+.buffer-right.svelte-x4yqvp.svelte-x4yqvp{display:flex;align-items:center;justify-content:end}
+.buffer-right.svelte-x4yqvp>div.svelte-x4yqvp:first-child{margin:0 1rem;display:flex;align-items:center;justify-content:center}
+.buffer-right.svelte-x4yqvp>div.svelte-x4yqvp:last-child{flex-grow:1;max-width:1rem}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+}
+* {
+  box-sizing: border-box;
+}
+h1, h2, h3, h4 {
+  color: hsl(0, 0%, 20%);
+  transition: color 1s;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 400;
+}
+@media screen and (prefers-color-scheme: dark) {
+  h1, h2, h3, h4 {
+    color: hsl(0, 0%, 98%);
+  }
+  div.page-wrap.light-theme-override h1, div.page-wrap.light-theme-override h2, div.page-wrap.light-theme-override h3, div.page-wrap.light-theme-override h4 {
+    color: hsl(0, 0%, 20%);
+  }
+}
+div.page-wrap.dark-theme-override h1, div.page-wrap.dark-theme-override h2, div.page-wrap.dark-theme-override h3, div.page-wrap.dark-theme-override h4 {
+  color: hsl(0, 0%, 98%);
+}
+h1::selection, h2::selection, h3::selection, h4::selection {
+  color: hsl(0, 0%, 98%);
+  transition: color 1s;
+  background-color: #117f95;
+  transition: background-color 1s;
+}
+@media screen and (prefers-color-scheme: dark) {
+  h1::selection, h2::selection, h3::selection, h4::selection {
+    color: hsl(0, 0%, 98%);
+  }
+  :global(div.page-wrap.light-theme-override) h1::selection, :global(div.page-wrap.light-theme-override) h2::selection, :global(div.page-wrap.light-theme-override) h3::selection, :global(div.page-wrap.light-theme-override) h4::selection {
+    color: hsl(0, 0%, 98%);
+  }
+}
+:global(div.page-wrap.dark-theme-override) h1::selection, :global(div.page-wrap.dark-theme-override) h2::selection, :global(div.page-wrap.dark-theme-override) h3::selection, :global(div.page-wrap.dark-theme-override) h4::selection {
+  color: hsl(0, 0%, 98%);
+}
+@media screen and (prefers-color-scheme: dark) {
+  h1::selection, h2::selection, h3::selection, h4::selection {
+    background-color: #0b5867;
+  }
+  :global(div.page-wrap.light-theme-override) h1::selection, :global(div.page-wrap.light-theme-override) h2::selection, :global(div.page-wrap.light-theme-override) h3::selection, :global(div.page-wrap.light-theme-override) h4::selection {
+    background-color: #117f95;
+  }
+}
+:global(div.page-wrap.dark-theme-override) h1::selection, :global(div.page-wrap.dark-theme-override) h2::selection, :global(div.page-wrap.dark-theme-override) h3::selection, :global(div.page-wrap.dark-theme-override) h4::selection {
+  background-color: #0b5867;
+}
+h1 {
+  margin-top: 0;
+  margin-bottom: 0.7rem;
+  text-decoration: none;
+  outline: none;
+  font-size: 3rem;
+}
+h1.subtitled {
+  margin-bottom: 0rem;
+}
+h1.subtitled + p {
+  margin-top: 0rem;
+}
+h2 {
+  margin-bottom: 0.5rem;
+  font-size: 2.2rem;
+}
+h3 {
+  font-size: 1.3rem;
+}
+p, li {
+  color: hsl(0, 0%, 20%);
+  transition: color 1s;
+  font-family: "Noto Sans", "Noto Color Emoji", sans-serif;
+  font-size: 1.05rem;
+}
+@media screen and (prefers-color-scheme: dark) {
+  p, li {
+    color: hsl(0, 0%, 98%);
+  }
+  div.page-wrap.light-theme-override p, div.page-wrap.light-theme-override li {
+    color: hsl(0, 0%, 20%);
+  }
+}
+div.page-wrap.dark-theme-override p, div.page-wrap.dark-theme-override li {
+  color: hsl(0, 0%, 98%);
+}
+p::selection, li::selection {
+  color: hsl(0, 0%, 98%);
+  transition: color 1s;
+  background-color: #117f95;
+  transition: background-color 1s;
+}
+@media screen and (prefers-color-scheme: dark) {
+  p::selection, li::selection {
+    color: hsl(0, 0%, 98%);
+  }
+  :global(div.page-wrap.light-theme-override) p::selection, :global(div.page-wrap.light-theme-override) li::selection {
+    color: hsl(0, 0%, 98%);
+  }
+}
+:global(div.page-wrap.dark-theme-override) p::selection, :global(div.page-wrap.dark-theme-override) li::selection {
+  color: hsl(0, 0%, 98%);
+}
+@media screen and (prefers-color-scheme: dark) {
+  p::selection, li::selection {
+    background-color: #0b5867;
+  }
+  :global(div.page-wrap.light-theme-override) p::selection, :global(div.page-wrap.light-theme-override) li::selection {
+    background-color: #117f95;
+  }
+}
+:global(div.page-wrap.dark-theme-override) p::selection, :global(div.page-wrap.dark-theme-override) li::selection {
+  background-color: #0b5867;
+}
+img {
+  max-width: 100%;
+}
+.page-wrap.svelte-1ir1pc7.svelte-1ir1pc7{min-height:100%;display:flex;flex-flow:column}
+.main-wrap.svelte-1ir1pc7.svelte-1ir1pc7{background-color:hsl(0, 0%, 98%);transition:background-color 1s;width:100%;height:100%;display:flex;justify-content:center;flex-grow:1;background-image:var(--bg);background-size:100vw}
+@media screen and (prefers-color-scheme: dark){.main-wrap.svelte-1ir1pc7.svelte-1ir1pc7{background-color:hsl(0, 0%, 11%)}div.page-wrap.light-theme-override .main-wrap.svelte-1ir1pc7.svelte-1ir1pc7{background-color:hsl(0, 0%, 98%)}}
+div.page-wrap.dark-theme-override .main-wrap.svelte-1ir1pc7.svelte-1ir1pc7{background-color:hsl(0, 0%, 11%)}
+.main-wrap.svelte-1ir1pc7 main.svelte-1ir1pc7{z-index:100;width:100%;display:flex;flex-direction:column;align-items:center;margin:clamp(0.7rem, 7.5vw - 1.55rem, 4rem) clamp(0.28rem, 0.9545454545vw - 0.0063636364rem, 0.7rem)}
