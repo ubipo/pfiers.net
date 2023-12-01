@@ -5,8 +5,9 @@
   export let href: string
   export let title: string | undefined = undefined
   export let text: string
-  export let meta: ImageMeta | undefined = undefined
   export let placeholder: string | undefined = undefined
+
+  const meta = undefined
 
   const [containerStyle, imgStyle] = (() => {
     if (meta == undefined) return ["", ""]
