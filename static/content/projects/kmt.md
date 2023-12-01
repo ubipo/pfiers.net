@@ -1,7 +1,7 @@
 ---
 name: Kinect Mouse Tracker
 shortDescription: |
-  NERF internship project to deduce a mouse's position from live Microsoft 
+  Internship project for a neuroscience lab, to deduce a mouse's position from live Microsoft 
   kinect depth data.
 technologies:
   - Perception

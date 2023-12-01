@@ -1,4 +1,4 @@
-<script type="ts">
+<script lang="ts">
 	import type { ImageMeta } from "$lib/service/content/imageMeta";
 
 
