@@ -1,6 +1,6 @@
 ---
 name: This Site ;)
-urlSafeName: this-site
+uriSafeName: this-site
 shortDescription: |
   Powered by [Svelte](https://svelte.dev/), accessible, and readable without JavaScript: the site you're
   on right now.

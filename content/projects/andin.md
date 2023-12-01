@@ -10,7 +10,7 @@ technologies:
 gitUrl: https://github.com/ubipo/andin-api
 siteUrl: https://andin.pfiers.net
 image:
-  url: c:projects/andin-new.webp
+  href: andin-new.webp
   alt: Two screenshots of the Andin android application, showing a map of rooms in a building
 ---
 
@@ -19,7 +19,7 @@ building's floors, a 3D view of its rooms, and interactive navigation
 directions. I'm no longer actively working on this app. For an Android app that
 I do actively maintain, see [OsmFocus](/projects/osmfocus).
 
-![Two screenshots of the Andin android application, showing a map of rooms in a building](c:projects/andin-new.png)
+![Two screenshots of the Andin android application, showing a map of rooms in a building](andin-new.png)
 
 Andin's core idea is something I had on my mind for a while; a good mobile app
 to view [the indoor mapping
@@ -29,7 +29,7 @@ is the navgraph generator/routing engine I created. This generator creates a
 navigation graph from the room and corridor polygons of the building in
 OpenStreetMap.
 
-![Graph (points connected by lines) showing possible paths through a corridor in a building.](c:projects/andin-navgraph.png "Navgraph for a simple building")
+![Graph (points connected by lines) showing possible paths through a corridor in a building.](andin-navgraph.png "Navgraph for a simple building")
 
 Beacause I created multiple parts of Andin as school assignments there are three
 parts with corresponding git repositories:

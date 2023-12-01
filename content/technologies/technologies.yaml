@@ -2,7 +2,7 @@
 technologies:
 
   - name: Svelte
-    urlSafeName: svelte
+    uriSafeName: svelte
     url: https://svelte.dev/
     group: Frameworks
     shortDescription: |
@@ -16,7 +16,7 @@ technologies:
       big three (React, Vue.js, and Angular), it's a close first over
       [Vue.js](/technologies/vuejs) for me.
   - name: Vue.js
-    urlSafeName: vuejs
+    uriSafeName: vuejs
     url: https://vuejs.org/
     group: Frameworks
     shortDescription: |
@@ -99,7 +99,7 @@ technologies:
       While I almost exclusively use [TypeScript](/technologies/typescript), I
       do occasionally enjoy the ~~freedom~~ chaos of JavaScript.
   - name: Node.js
-    urlSafeName: node-js
+    uriSafeName: node-js
     url: https://nodejs.org/en/
     group: Languages
     shortDescription: |
@@ -121,7 +121,7 @@ technologies:
       server software. Though my experience with it is limited, I do enjoy its
       simplicity.
   - name: C++
-    urlSafeName: cpp
+    uriSafeName: cpp
     group: Languages
     shortDescription: |
       You can't easily beat C++ for realtime or systems programming. Though I

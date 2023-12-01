@@ -12,7 +12,7 @@ technologies:
 siteUrl: https://lakehopper.pfiers.net
 gitUrl: https://github.com/ubipo/lakehopper
 image:
-  url: c:projects/lakehopper-ground.webp
+  href: lakehopper-ground.webp
   alt: First version of Lakehopper on a workbench
 ---
 
@@ -42,20 +42,20 @@ on its maiden flight. I’m currently working on the [second
 version](https://lakehopper.pfiers.net/design/2/README.html).
 
 ![Predictions made by Lakehopper's vision CNN for lake and building
-outlines](c:projects/lakehopper-inference.png "Segmentation model predictions
+outlines](lakehopper-inference.png "Segmentation model predictions
 (GT: Ground Truth, ENB3: EfficientNetB3, MNV2: MobileNetV2)")
 
 ![Screenshot of a map with a multi-hop path between lakes planned by
-Lakehopper's planning component](c:projects/lakehopper-planner-four-hops.png
+Lakehopper's planning component](lakehopper-planner-four-hops.png
 "Planner path with four hops between lakes")
 
-![Lakehopper 1 on a workbench](c:projects/lakehopper-ground.webp "Lakehopper 1
+![Lakehopper 1 on a workbench](lakehopper-ground.webp "Lakehopper 1
 on a workbench")
 
 ![Screenshot of Lakehopper 2's design in Fusion 360 CAD
-software](c:projects/lakehopper-2-preview.png "Preview of Lakehopper 2's design")
+software](lakehopper-2-preview.png "Preview of Lakehopper 2's design")
 
 ![Screenshot of the browser UI to control Lakehopper's planner
-software](c:projects/lakehopper-browser-ui.png "Browser UI to the planner
+software](lakehopper-browser-ui.png "Browser UI to the planner
 software")
 

@@ -1,0 +1,1 @@
+import{g as r}from"./load.c6c25ae3.js";import{T as n}from"./index.9b0db671.js";const l=async({fetch:t})=>{const{contentStore:o,contentError:e}=await r(t);return o==null?{contentError:e}:{technologies:n(o).technologies}},g=Object.freeze(Object.defineProperty({__proto__:null,load:l},Symbol.toStringTag,{value:"Module"}));export{g as _,l};

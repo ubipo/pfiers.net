@@ -8,7 +8,7 @@ technologies:
   - C++
 gitUrl: https://github.com/ubipo/kmt
 image:
-  url: c:projects/kmt.webp
+  href: kmt.webp
   alt: Two screenshots of the Andin android application, showing a building and a room.
 ---
 
@@ -30,8 +30,8 @@ vision](/technologies/perception) library to determine and record the mouse's
 postion with a delay of only ~50ms.
 
 ![Picture of the experimental setup, showing the enclosed pen with monitors on
-three sides.](c:projects/kmt-setup-cropped.jpg "Experimental setup, showing
+three sides.](kmt-setup-cropped.jpg "Experimental setup, showing
 monitors on three sides")
 
-![Screen capture of the application with a mouse outlined.](c:projects/kmt.jpg
+![Screen capture of the application with a mouse outlined.](kmt.jpg
 "Application preview output")

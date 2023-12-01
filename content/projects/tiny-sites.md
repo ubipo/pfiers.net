@@ -7,7 +7,7 @@ technologies:
   - Webpack
   - TypeScript
 image:
-  url: c:projects/tiny-sites.webp
+  href: tiny-sites.webp
   alt: |
     Collage of two screenshots, the top one showing a webapp to update contact 
     information on OpenStreetMap, the bottom showing an assignment to create a 
@@ -29,7 +29,7 @@ the successor to [Cyclofix](/projects/cyclofix).
 
 ![Screenshot of the OSM Contact Info Corrector webapp, showing businesses with a
   phone icon and an input form to correct the contact information of the
-  selected one.](c:projects/osm-contact-info-corrector.webp "OSM Contact Info
+  selected one.](osm-contact-info-corrector.webp "OSM Contact Info
   Corrector webapp")
 
 
@@ -41,7 +41,7 @@ longer online (it was hosted on the university's servers), you can still check
 out the code in its [git repository](https://github.com/ubipo/trend-friends).
 
 ![Screenshot of the Trend-Friends homepage, showing a navigation menu and
-introductory paragraph.](c:projects/trend-friends.webp "Trend-Friends homepage")
+introductory paragraph.](trend-friends.webp "Trend-Friends homepage")
 
 
 ## Karels Cryptonator 9000
@@ -54,4 +54,4 @@ this site is that it's probably one of my most used projects, receiving over
 2000 clicks and a million impressions per month on Google.
 
 ![Screenshot of the Karels Cryptonator
-  app.](c:projects/karels-cryptonator-9000.webp "Karels Cryptonator 9000")
+  app.](karels-cryptonator-9000.webp "Karels Cryptonator 9000")

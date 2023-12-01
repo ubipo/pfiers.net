@@ -8,11 +8,11 @@ technologies:
 gitUrl: https://github.com/ubipo/osmfocus
 siteUrl: https://play.google.com/store/apps/details?id=net.pfiers.osmfocus
 image:
-  url: c:projects/osmfocus.webp
+  href: osmfocus.webp
   alt: OSMfocus Reborn logo on OpenStreetMap map background
 ---
 
-![Banner](c:projects/osmfocus.webp)
+![Banner](osmfocus.webp)
 
 [Michael Vittrup Larsen's](https://github.com/MichaelVL) OSMfocus was an
 incredibly useful tool to investigate and debug OpenStreetMap data.
@@ -33,5 +33,5 @@ Play](https://play.google.com/store/apps/details?id=net.pfiers.osmfocus) or via
 [F-Droid](http://fdroid.org/en/packages/net.pfiers.osmfocus).
 
 ![Screenshot of OSMfocus, showing how OpenStreetMap data for lakes and buildings
-is revealed on a map](c:projects/osmfocus-screenshot.webp "Boxes showing the
+is revealed on a map](osmfocus-screenshot.webp "Boxes showing the
 'tags' (underlying data) for OpenStreetMap elements")

@@ -7,7 +7,7 @@ technologies:
   - Web
   - Python
 image:
-  url: "c:projects/vrijwilligersparaat.png"
+  href: "vrijwilligersparaat.png"
   alt: Screenshot of the Vrijwilligersparaat website.
 ---
 
@@ -37,8 +37,8 @@ op de website die Pieter maakte:
 ```
 
 ![Screen capture of vrijwilligersparaat.be home
-screen](c:projects/vrijwilligersparaat.png "Home screen")
+screen](vrijwilligersparaat.png "Home screen")
 
 ![Screen capture of a vacancy by a
-hospital](c:projects/vrijwilligersparaat-vacancy.png "Vacancy for a hospital
+hospital](vrijwilligersparaat-vacancy.png "Vacancy for a hospital
 assistant")

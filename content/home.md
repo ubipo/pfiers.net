@@ -13,4 +13,4 @@ Want to get in touch?
 [LinkedIn](https://www.linkedin.com/in/pfiers) — 
 [GitHub](https://github.com/ubipo)
 
-![Computer rendered top-down view of buildings and river](c:groot-begijnhof-blender.png)
+![Computer rendered top-down view of buildings and river](groot-begijnhof-blender.png)

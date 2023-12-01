@@ -9,7 +9,7 @@ technologies:
   - C++
   - JavaScript
 image:
-  url: c:projects/dspay-interface.webp
+  href: dspay-interface.webp
   alt: Screenshot of the DSpay "transactions" screen.
 ---
 
@@ -25,8 +25,8 @@ Though this system was never adopted, the thesis did received a grade of 90%.
 You can [download it here (in dutch)](/content/projects/Eindwerk-DSpay.pdf).
 
 ![Screenshot of a web browser showing DSpay's "transactions"
-page](c:projects/dspay-interface.webp "Transactions overview")
+page](dspay-interface.webp "Transactions overview")
 
 ![Picture of the hardware of the DSpay prototype on a table, showing a keypad,
-microcontroller, small matrix display and an NFC reader](c:projects/dspay-prototype.jpg
+microcontroller, small matrix display and an NFC reader](dspay-prototype.jpg
 "Prototype hardware with keypad, display and NFC reader")
