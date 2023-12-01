@@ -7,14 +7,14 @@ const config: UserConfig = {
 	plugins: [
 		sveltekit()
 	],
-	resolve: {
-		alias: {
-			$content: path.resolve(__dirname, './src/content'),
-		}
-	},
-	assetsInclude: [
-		'src/content/**/*',
-	]
+	// resolve: {
+	// 	alias: {
+	// 		$content: path.resolve(__dirname, './src/content'),
+	// 	}
+	// },
+	// assetsInclude: [
+	// 	'src/content/**/*',
+	// ]
 };
 
 export default config;

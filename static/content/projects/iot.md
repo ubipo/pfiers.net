@@ -11,7 +11,7 @@ technologies:
   - Python
   - Rust
 image:
-  url: c:projects/iot-collage.webp
+  href: iot-collage.webp
   alt: |
     Picture of the Esp Water Meter PCB, showing circuitry and a small camera.
     The bottom-right of image also shows digits being recognized by the neural 
@@ -25,21 +25,35 @@ got the learn a ton along the way!
 
 ## Water usage monitoring
 
-This first project is probably the most useful one. Using an
-[Arducam](https://www.arducam.com/) and
-[ESP8266](https://www.espressif.com/en/products/socs/esp8266) microcontroller, I
-created a small device to monitor our water meter at home.
+This project uses a small camera and WiFi microcontroller to read the digits on
+an analog water meter. Since I built this in 2018 (?) Belgium has started to 
+roll out smart water meters, but at the time we still had an analog one without
+even a reed switch port. This project was a great reason to try out a bunch of
+then new things for me: PCB design, training a neural net, and using a camera
+in an embedded electronics project.
 
-The pictures that the camera captures are uploaded to a Python
-[Flask](https://flask.palletsprojects.com) server which runs them through a
-self-trained (but pre-build) [PyTorch](https://pytorch.org/) neural net. This
-server runs on my [ODROID-H2](https://www.hardkernel.com/shop/odroid-h2/) home
-server. Creating the PCB in [EasyEDA](https://easyeda.com/) was also my first
-foray into PCB design.
+My custom PCB, designed and ordered through [EasyEDA](https://easyeda.com/), was
+mounted above the water meter using a piece of wood. It supports an
+[ESP8266](https://www.espressif.com/en/products/socs/esp8266) WiFi
+microcontroller, and an [ArduCam](https://www.arducam.com/) camera module.
+Periodically, the ESP8266 wakes up, lights a small LED, and takes a picture of
+the meter display. As the ESP already struggles just to take the picture, the
+processing happens off-board on a [Flask](https://flask.palletsprojects.com)
+server running on my home server (back then the
+[ODROID-H2](https://www.hardkernel.com/shop/odroid-h2/)).
+
+For each upload, the server first does a crude color-based bounds detection of
+the two digits groups (black-on-white for whole liters, white-on-red for
+fractions) using [OpenCV](https://opencv.org/). Then, these two groups are then
+each split into individual digits, using the black separation lines. Finally,
+each digit is fed into a [PyTorch](https://pytorch.org/) neural net. It is a
+simple convolutional network designed for digit recognition, and trained using
+my desktop's GPU on a dataset of just over 140 images I collected and manually
+labeled. This tiny dataset was fine because of how consistent the digits are.
 
 ![Picture of the Esp Water Meter PCB, showing circuitry and a small camera. The
 bottom-right of image also shows digits being recognized by the neural
-net.](c:projects/ewam-with-recognition.webp "PCB of the device and an example of
+net.](./ewam-with-recognition.webp "PCB of the device and an example of
 digits being recognized")
 
 
@@ -60,7 +74,7 @@ local maker space.
 </video> 
 
 ![Picture of the 3D-printed case for the ESP module mounted next to the
-heater](c:projects/space-heater-box.jpg "3D-printed case for the ESP module
+heater](space-heater-box.jpg "3D-printed case for the ESP module
 mounted next to the heater")
 
 
@@ -97,7 +111,7 @@ So I soldered a relay to the remote control and hooked it up to the
 HomeAssistant server in my dorm room. Infinite range achieved ♾️!
 
 ![Picture of a relay connected to the gate's remote
-control](c:projects/gate-relay.jpg "Relay hooked up to the remote control")
+control](gate-relay.jpg "Relay hooked up to the remote control")
 
 
 ## Dimming lamps and controlling LED strips

@@ -11,6 +11,6 @@ technologies:
 gitUrl: https://github.com/ubipo/pathy/
 siteUrl: https://pathy.pfiers.net/README.html
 image:
-  url: c:projects/pathy-collage.webp
+  href: pathy-collage.webp
   alt: A collage of pathy's vision system and hardware
 ---

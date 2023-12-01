@@ -10,7 +10,7 @@ technologies:
 gitUrl: https://github.com/pietervdvn/MapComplete
 siteUrl: https://cyclofix.osm.be/
 image:
-  url: c:projects/cyclofix.webp
+  href: cyclofix.webp
   alt: |
     Screenshot of the Cyclofix website, showing pins on a map indicating the
     locations of cycling infrastructure in Brussels
@@ -32,5 +32,5 @@ locations](https://mapcomplete.osm.be/aed.html) to [rainbow pedestrian
 crossings](https://mapcomplete.osm.be/rainbow_crossings.html). 
 
 ![Screenshot of the Cyclofix website, showing pins on a map indicating the
-    locations of cycling infrastructure in Brussels](c:projects/cyclofix.webp
+    locations of cycling infrastructure in Brussels](cyclofix.webp
     "The Cyclofix website showing cycling infrastructure in Brussels")
