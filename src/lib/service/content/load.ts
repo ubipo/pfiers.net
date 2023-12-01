@@ -1,20 +1,20 @@
 import { writable, type Readable, type Writable } from "svelte/store"
 import { Exception } from "$lib/service/exception"
 import type { FetchFn } from "$lib/service/fetchFn"
-import { getImageUrlMeta, type ContentImageToken, type ContentSrcSetImageToken } from "./imageMeta"
-import { parseMarkdown, type MarkdownDefinition, type TokenProcessors } from "$lib/service/markdown"
+import { parseMarkdown, type MarkdownDefinition } from "$lib/service/markdown/markdown"
 import { parseProject, type Content, type ContentItem, type ContentItemDto, parseTechnology } from "./model"
-import { arrayOrThrow, ContentParseException, objectOrThrow, toUrlSafeName } from "./parseUtil"
-import { urlFromString } from "$lib/service/url"
+import { arrayOrThrow, ContentParseException, objectOrThrow, toUriSafeName } from "./parseUtil"
 import parseYaml from "$lib/service/yaml"
 import type { FetchContentFile } from "./contentFile"
 import { fetchContentFromApiJson } from "./api"
+import { joinPath } from "../url"
+import { CONTENT_DIR_SITE_RELATIVE_URL } from "$lib/service/siteUrlConsts"
 
 
-let getContentFromBuildImports = true
+const getContentFromBuildImports = true
 let contentStore: null | Writable<Content> = null
 
-export async function getContentStoreSafe(fetchFn: FetchFn) {
+export async function getContentOrError(fetchFn: FetchFn) {
   try {
     return { contentStore: await getContentStore(fetchFn) }
   } catch (contentError) {
@@ -22,14 +22,15 @@ export async function getContentStoreSafe(fetchFn: FetchFn) {
     return { contentError }
   }
 }
-export type SafeContent<T> = Awaited<ReturnType<typeof getContentStoreSafe>>
 
-async function createFetchContentFile(fetchFn: FetchFn): Promise<FetchContentFile> {
-  const fetchContentFile: FetchContentFile = async contentPath => {
-    const res = await fetchFn(`content/${contentPath}`)
+export type SafeContent<T> = Awaited<ReturnType<typeof getContentOrError>>
+
+async function createFetchContentFileFn(fetchFn: FetchFn): Promise<FetchContentFile> {
+  const fetchContentFile: FetchContentFile = async path => {
+    const res = await fetchFn(path)
     if (!res.ok) {
       if (res.status === 404) return undefined
-      throw new ContentFetchException(`File ${contentPath}: ${res.status}`)
+      throw new ContentFetchException(`File ${path}: ${res.status}`)
     }
     return await res.text()
   }
@@ -39,32 +40,26 @@ async function createFetchContentFile(fetchFn: FetchFn): Promise<FetchContentFil
 
 export async function getContentStore(fetchFn: FetchFn): Promise<Readable<Content>> {
   if (contentStore != null) return contentStore
+  const fetchContentFileFn = await createFetchContentFileFn(fetchFn)
   const content = getContentFromBuildImports
     ? await fetchContentFromApiJson(fetchFn)
-    : await fetchContent(await createFetchContentFile(fetchFn))
+    : await fetchContent(fetchContentFileFn)
   contentStore = writable<Content>(content)
   return contentStore
 }
 
-export function getTokenProcessors(): TokenProcessors {
-  return {
-    image: async token => {
-      const hrefUrl = urlFromString(token.href)
-      const metaAndUrl = await getImageUrlMeta(hrefUrl);
-      (token as ContentImageToken).meta = metaAndUrl?.meta
-      token.href = metaAndUrl?.url
-    }
-  }
-}
-
 export async function fetchContent(fetchFn: FetchContentFile): Promise<Content> {
-  const tokenProcessors = getTokenProcessors()
   const [home, technologies] = await Promise.all([
-    fetchHome(fetchFn, tokenProcessors),
-    fetchContentItems(fetchFn, tokenProcessors, parseTechnology, 'technology', 'technologies'),
+    fetchHome(fetchFn),
+    fetchContentItems(
+      fetchFn,
+      (...args) => parseTechnology(joinPath(CONTENT_DIR_SITE_RELATIVE_URL, "technologies/"), ...args),
+      'technology', 'technologies'
+    ),
   ])
   const projects = await fetchContentItems(
-    fetchFn, tokenProcessors, (...args) => parseProject(technologies, ...args),
+    fetchFn,
+    (...args) => parseProject(joinPath(CONTENT_DIR_SITE_RELATIVE_URL, "projects"), technologies, ...args),
     'project', 'projects'
   )
   return { home, projects, technologies }
@@ -72,43 +67,43 @@ export async function fetchContent(fetchFn: FetchContentFile): Promise<Content> 
 
 export class ContentFetchException extends Exception { }
 
-export async function fetchHome(
-  fetchFn: FetchContentFile,
-  tokenProcessors: TokenProcessors
-): Promise<MarkdownDefinition> {
+export async function fetchHome(fetchFn: FetchContentFile): Promise<MarkdownDefinition> {
   const markdownSource = await fetchFn('home.md')
   if (markdownSource == null) throw new ContentFetchException('home.md not found')
-  const { definition: homeMarkdown } = await parseMarkdown(markdownSource, tokenProcessors);
+  const sourceDirRelativePath = CONTENT_DIR_SITE_RELATIVE_URL
+  const { definition: homeMarkdown } = await parseMarkdown(sourceDirRelativePath, markdownSource);
   if (homeMarkdown == null) throw new ContentParseException('home.md must have content')
   return homeMarkdown
 }
 
 type ParseDtoFn<D extends ContentItemDto, I extends ContentItem> = (
-  tokenProcessors: TokenProcessors, inlineDto?: D, longDescriptionSource?: string
+  inlineDto?: D,
+  longDescriptionSource?: string
 ) => Promise<I>
 
 async function fetchContentItem<D extends ContentItemDto, I extends ContentItem>(
   fetchFn: FetchContentFile,
-  tokenProcessors: TokenProcessors,
   nameOrDto: string | D,
   parseDto: ParseDtoFn<D, I>,
   nameSingular: string,
   namePlural: string,
 ): Promise<I> {
-  const [urlSafeName, inlineDto] = typeof nameOrDto === 'string'
-    ? [toUrlSafeName(nameOrDto), undefined]
-    : [toUrlSafeName(nameOrDto.name, nameOrDto.urlSafeName), nameOrDto]
+  const [uriSafeName, inlineDto] = typeof nameOrDto === 'string'
+    ? [toUriSafeName(nameOrDto), undefined]
+    : [toUriSafeName(nameOrDto.name, nameOrDto.uriSafeName), nameOrDto]
 
   try {
-    const markdownFile = `${namePlural}/${urlSafeName}.md`
+    const markdownFile = `${namePlural}/${uriSafeName}.md`
     const markdownSource = await fetchFn(markdownFile)
-    return await parseDto(tokenProcessors, inlineDto, markdownSource)
+    return await parseDto(inlineDto, markdownSource)
   } catch (e) {
-    const messagePrefix = `${nameSingular} ${urlSafeName}: `
+    const messagePrefix = `${nameSingular} ${uriSafeName}: `
     if (e instanceof ContentParseException) {
       e.message = messagePrefix + e.message
       throw e
     } else if (e instanceof Error) {
+      console.error(`Content parse error caused by: ${e.message}`)
+      console.error(e.stack)
       throw new ContentParseException(messagePrefix + e.message, e)
     }
     throw e
@@ -117,7 +112,6 @@ async function fetchContentItem<D extends ContentItemDto, I extends ContentItem>
 
 export async function fetchContentItems<D extends ContentItemDto, I extends ContentItem>(
   fetchFn: FetchContentFile,
-  tokenProcessors: TokenProcessors,
   parseDto: ParseDtoFn<D, I>,
   nameSingular: string,
   namePlural: string,
@@ -127,9 +121,9 @@ export async function fetchContentItems<D extends ContentItemDto, I extends Cont
   if (metadataYaml == null) {
     throw new ContentFetchException(`${namePlural} metadata file ${metadataPath} not found`)
   }
-  const metadata = objectOrThrow(parseYaml(metadataYaml), "Projects metadata")
+  const metadata = objectOrThrow(parseYaml(metadataYaml), `${namePlural} metadata`)
   const itemNames = arrayOrThrow(metadata[namePlural], `'${namePlural}' property in ${metadataPath}`)
   return await Promise.all(itemNames.map(projectName => {
-    return fetchContentItem(fetchFn, tokenProcessors, projectName, parseDto, nameSingular, namePlural)
+    return fetchContentItem(fetchFn, projectName, parseDto, nameSingular, namePlural)
   }))
 }

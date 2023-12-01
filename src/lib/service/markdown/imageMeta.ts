@@ -1,9 +1,11 @@
-import { browser } from "$app/environment"
 import type { marked } from "marked"
-import type { SrcSetImageToken } from "../markdown"
-import type { SrcsetItem, SrcsetItemSize } from "../srcSet"
+import type { SrcSetImageToken } from "./markdown"
+import type { SrcsetItem } from "../srcSet"
 import type { getImageMetaOnServer } from "./imageMetaOnServer"
-import { isObject } from "./parseUtil"
+import { isObject } from "../content/parseUtil"
+import { isUri, resolveHrefForSource } from "../url"
+import { browser } from "$app/environment"
+import { OUTSIDE_STATIC_DIR } from "./types"
 
 
 export interface ImageMeta {
@@ -33,26 +35,25 @@ export function isImageWithMetaToken(token: marked.Token): token is ContentImage
 
 let getImageMetaOnServerFn: typeof getImageMetaOnServer | undefined = undefined
 
-export async function getImageUrlMeta(
-  url: URL,
-  sizes: SrcsetItemSize[] = [],
-): Promise<{ meta: ImageMeta | undefined, url: string }> {
-  if (url.protocol === 'c:') {
-    const meta = await getImageMeta(url.pathname, sizes)
-    if (meta == null) throw new Error(`Could not fetch image metadata for ${url}`)
-    return { meta, url: `/content/${url.pathname}` }
+export async function getImageHrefMeta(
+  sourceDirRelativePath: string,
+  href: string,
+): Promise<{ meta: ImageMeta | undefined, href: string }> {
+  if (isUri(href)) {
+    return { meta: undefined, href }
   }
-  return { meta: undefined, url: url.toString() }
-}
-
-export async function getImageMeta(
-  contentPath: string,
-  sizes: SrcsetItemSize[] = [],
-) {
-  if (browser) return undefined
-
+  if (browser) {
+    return { meta: undefined, href }
+  }
+  href = resolveHrefForSource(sourceDirRelativePath, href)
   const fn = getImageMetaOnServerFn == undefined
     ? await import('./imageMetaOnServer').then(m => m.getImageMetaOnServer)
     : getImageMetaOnServerFn
-  return fn(contentPath)
+  getImageMetaOnServerFn = fn
+  const metaAndPath = await getImageMetaOnServerFn(href)
+  if (metaAndPath == OUTSIDE_STATIC_DIR) {
+    return { meta: undefined, href }
+  }
+  const { meta } = metaAndPath
+  return { meta, href }
 }

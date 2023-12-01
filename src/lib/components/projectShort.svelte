@@ -2,7 +2,6 @@
   import type { Project } from "$lib/service/content/model";
 	import ContentImage from "./contentImage.svelte";
 	import Markdown from "./markdown.svelte";
-	import ProjectHeader from "./projectHeader.svelte";
 	import SpriteIcon from "./spriteIcon.svelte";
 
   
@@ -13,15 +12,15 @@
 
 <div class="project">
 
-  <a href="/projects/{project.urlSafeName}"><h2>{project.name}</h2></a>
+  <a href="/projects/{project.uriSafeName}"><h2>{project.name}</h2></a>
   <Markdown tokens={project.shortDescription.tokens} />
-  <a href={`/projects/${project.urlSafeName}`} class="button">
+  <a href={`/projects/${project.uriSafeName}`} class="button">
     <span><SpriteIcon iconId="read-more" size={iconSize} /></span>
     Read more
   </a>
   <!-- <ProjectHeader {project} /> -->
   {#if project.image != null}
-    <a class="image" href="/projects/{project.urlSafeName}">
+    <a class="image" href="/projects/{project.uriSafeName}">
       <ContentImage definition={project.image} />
     </a>
   {/if}

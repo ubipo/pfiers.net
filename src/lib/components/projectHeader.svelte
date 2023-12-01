@@ -13,10 +13,10 @@
   {#if includeIcons && project.technologies.length > 0}
     <ProjectTechBadges technologies={project.technologies} />
   {/if}
-  <a href="/projects/{project.urlSafeName}"><h2>{project.name}</h2></a>
+  <a href="/projects/{project.uriSafeName}"><h2>{project.name}</h2></a>
   <Markdown tokens={project.shortDescription.tokens} />
   <!-- {#if project.longDescription != null}
-    <p><a href={`/projects/${project.urlSafeName}`}>Read more</a></p>
+    <p><a href={`/projects/${project.uriSafeName}`}>Read more</a></p>
   {/if} -->
   <ProjectButtons {project} includeReadMore={true} />
 </div>

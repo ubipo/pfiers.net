@@ -1,0 +1,3 @@
+export const OUTSIDE_STATIC_DIR = Symbol('OUTSIDE_STATIC_DIR')
+
+

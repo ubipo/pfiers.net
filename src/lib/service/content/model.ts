@@ -1,8 +1,7 @@
-import { EMPTY_MARKDOWN_DEFINITION, parseMarkdown, type MarkdownDefinition, type TokenProcessors } from "$lib/service/markdown";
-import { ContentParseException, objectOrThrow, optionalStrArrOrThrow, optionalStringOrThrow, optionalUrlOrThrow, stringOrThrow, toUrlSafeName } from "./parseUtil";
+import { EMPTY_MARKDOWN_DEFINITION, parseMarkdown, type MarkdownDefinition } from "$lib/service/markdown/markdown";
+import { ContentParseException, objectOrThrow, optionalStrArrOrThrow, optionalStringOrThrow, optionalHrefOrThrow, stringOrThrow, toUriSafeName } from "./parseUtil";
 import { stringLooseEqual } from "$lib/service/stringUtil";
-import { urlFromString } from "$lib/service/url";
-import { getImageMeta, getImageUrlMeta, type ImageMeta } from "./imageMeta";
+import { resolveHrefForSource } from "../url";
 
 
 export interface Content<Cyclical = true> {
@@ -13,39 +12,38 @@ export interface Content<Cyclical = true> {
 export type NonCyclicalContent = Content<false>
 
 export interface ImageDefinitionSerialized {
-  url: string,
+  href: string,
   alt: string,
 }
 
-export interface ImageDefinition extends ImageDefinitionSerialized { }
+export type ImageDefinition = ImageDefinitionSerialized
 
-export interface ContentImageDefinition extends ImageDefinition {
-  meta: ImageMeta
-}
 
-export async function parseImageDefinition(
-  serialized: ImageDefinitionSerialized
-): Promise<ImageDefinition> {
+export function parseImageDefinition(
+  sourceDirRelativePath: string,
+  serialized: ImageDefinitionSerialized,
+): ImageDefinition {
   const s = objectOrThrow(serialized, 'Image definition')
   const alt = stringOrThrow(s.alt, 'Image alt text')
-  const hrefUrl = urlFromString(stringOrThrow(s.url, 'Image URL'))
-  return { ...await getImageUrlMeta(hrefUrl), alt }
+  const unresolvedHref = stringOrThrow(s.href, 'Image href')
+  const href = resolveHrefForSource(sourceDirRelativePath, unresolvedHref)
+  return { href, alt }
 }
 
 export interface ContentItem {
   definedInline: boolean,
   name: string,
-  urlSafeName: string,
+  uriSafeName: string,
 }
 
 export interface ContentItemDto {
   name: string,
-  urlSafeName?: string,
+  uriSafeName?: string,
 }
 
 export interface ProjectDto extends ContentItemDto {
   name: string,
-  urlSafeName?: string,
+  uriSafeName?: string,
   shortDescription: string,
   gitUrl?: string,
   siteUrl?: string,
@@ -59,8 +57,8 @@ export interface ProjectDto extends ContentItemDto {
 
 export interface Project<Cyclical = true> extends ContentItem {
   shortDescription: MarkdownDefinition
-  gitUrl?: URL
-  siteUrl?: URL
+  gitUrl?: string
+  siteUrl?: string
   image?: ImageDefinition
   longDescription?: MarkdownDefinition
   technologies: (Cyclical extends true ? Technology<Cyclical> : number)[]
@@ -68,7 +66,7 @@ export interface Project<Cyclical = true> extends ContentItem {
 
 // TODO: Ugly hack
 export const FILLER_PROJECT = {
-  definedInline: true, name: "__filler__", urlSafeName: "__filler__",
+  definedInline: true, name: "__filler__", uriSafeName: "__filler__",
   shortDescription: EMPTY_MARKDOWN_DEFINITION, technologies: [],
 }
 export function isFillerProject(project: Project): project is typeof FILLER_PROJECT {
@@ -76,7 +74,7 @@ export function isFillerProject(project: Project): project is typeof FILLER_PROJ
 }
 
 export async function dtoFromLongDescription(
-  tokenProcessors: TokenProcessors,
+  sourceDirRelativePath: string,
   inlineDto?: ContentItemDto,
   longDescriptionSource?: string,
 ) {
@@ -86,7 +84,7 @@ export async function dtoFromLongDescription(
   }
   const {
     frontMatter: frontMatterDto, definition: longDescription
-  } = await parseMarkdown(longDescriptionSource, tokenProcessors)
+  } = await parseMarkdown(sourceDirRelativePath, longDescriptionSource)
   if (inlineDto != null && frontMatterDto != null) {
     throw new ContentParseException(`Cannot define project both inline and in front matter`)
   }
@@ -94,12 +92,14 @@ export async function dtoFromLongDescription(
 }
 
 export async function parseProject(
+  sourceDirRelativePath: string,
   technologies: Technology[],
-  tokenProcessors: TokenProcessors,
   inlineDto?: ContentItemDto,
   longDescriptionSource?: string,
 ): Promise<Project> {
-  const { dto, longDescription } = await dtoFromLongDescription(tokenProcessors, inlineDto, longDescriptionSource)
+  const { dto, longDescription } = await dtoFromLongDescription(
+    sourceDirRelativePath, inlineDto, longDescriptionSource
+  )
   const s = objectOrThrow(dto as ProjectDto, 'definition')
   const name = stringOrThrow(s.name, 'name')
   if (name === "__filler__") return FILLER_PROJECT
@@ -112,8 +112,8 @@ export async function parseProject(
     return technology
   })
   const { definition: shortDescription } = await parseMarkdown(
+    sourceDirRelativePath,
     stringOrThrow(s.shortDescription, 'shortDescription'),
-    tokenProcessors
   )
   if (shortDescription == undefined) {
     throw new ContentParseException(`shortDescription is required`)
@@ -121,11 +121,13 @@ export async function parseProject(
   const project: Project = {
     definedInline: inlineDto != null,
     name,
-    urlSafeName: toUrlSafeName(name, optionalStringOrThrow(s.urlSafeName, 'urlSafeName')),
+    uriSafeName: toUriSafeName(name, optionalStringOrThrow(s.uriSafeName, 'uriSafeName')),
     shortDescription,
-    gitUrl: optionalUrlOrThrow(s.gitUrl, 'gitUrl'),
-    siteUrl: optionalUrlOrThrow(s.siteUrl, 'siteUrl'),
-    image: s.image ? await parseImageDefinition(s.image as ImageDefinitionSerialized) : undefined,
+    gitUrl: optionalHrefOrThrow(s.gitUrl, 'gitUrl'),
+    siteUrl: optionalHrefOrThrow(s.siteUrl, 'siteUrl'),
+    image: s.image
+      ? parseImageDefinition(sourceDirRelativePath, s.image as ImageDefinitionSerialized)
+      : undefined,
     longDescription,
     technologies: projectTechnologies
   }
@@ -138,7 +140,7 @@ export async function parseProject(
 
 export interface TechnologyDto extends ContentItemDto {
   name: string,
-  urlSafeName?: string,
+  uriSafeName?: string,
   url?: string,
   icon?: string,
   group: string
@@ -147,8 +149,8 @@ export interface TechnologyDto extends ContentItemDto {
 export interface Technology<Cyclical = true> extends ContentItem {
   name: string,
   shortDescription: MarkdownDefinition
-  urlSafeName: string,
-  url?: URL,
+  uriSafeName: string,
+  url?: string,
   icon: string,
   longDescription?: MarkdownDefinition
   projects: (Cyclical extends true ? Project<Cyclical> : number)[]
@@ -156,20 +158,22 @@ export interface Technology<Cyclical = true> extends ContentItem {
 }
 
 export async function parseTechnology(
-  tokenProcessors: TokenProcessors,
-  inlineDto?: TechnologyDto,
+  sourceDirRelativePath: string,
+  inlineDto?: ContentItemDto,
   longDescriptionSource?: string,
 ): Promise<Technology> {
-  const { dto, longDescription } = await dtoFromLongDescription(tokenProcessors, inlineDto, longDescriptionSource)
+  const { dto, longDescription } = await dtoFromLongDescription(
+    sourceDirRelativePath, inlineDto, longDescriptionSource
+  )
   const s = objectOrThrow(dto, 'definition')
   const name = stringOrThrow(s.name, 'name')
   const { definition: shortDescription } = await parseMarkdown(
+    sourceDirRelativePath,
     stringOrThrow(s.shortDescription, 'shortDescription'),
-    tokenProcessors
   )
-  const urlSafeName = toUrlSafeName(
+  const uriSafeName = toUriSafeName(
     name,
-    optionalStringOrThrow(s.urlSafeName, 'urlSafeName')
+    optionalStringOrThrow(s.uriSafeName, 'uriSafeName')
   )
   if (shortDescription == undefined) {
     throw new ContentParseException(`shortDescription is required`)
@@ -178,9 +182,9 @@ export async function parseTechnology(
     definedInline: inlineDto != null,
     name,
     shortDescription,
-    urlSafeName,
-    url: optionalUrlOrThrow(s.url, 'url'),
-    icon: optionalStringOrThrow(s.icon, 'icon') ?? urlSafeName,
+    uriSafeName,
+    url: optionalHrefOrThrow(s.url, 'url'),
+    icon: optionalStringOrThrow(s.icon, 'icon') ?? uriSafeName,
     longDescription,
     projects: [],
     group: stringOrThrow(s.group, 'group')

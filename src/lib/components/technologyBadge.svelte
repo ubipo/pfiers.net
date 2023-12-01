@@ -9,7 +9,7 @@
 </script>
 
 <a
-  href={`/technologies/${technology.urlSafeName}`}
+  href={`/technologies/${technology.uriSafeName}`}
   style:--icon-size={size}
   aria-label="Read about {technology.name}"
   title="Read about {technology.name}">

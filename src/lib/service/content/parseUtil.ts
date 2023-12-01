@@ -1,14 +1,14 @@
 import { Exception } from "$lib/service/exception"
 import { stringLooseNormalize } from "$lib/service/stringUtil"
-import { urlFromString } from "$lib/service/url"
+import { checkHrefValid } from "$lib/service/url"
 
 
 export class ContentParseException extends Exception { }
 
-export function toUrlSafeName(name?: string, urlSafeName?: string) {
-  if (urlSafeName != null) return urlSafeName
-  if (name == null) throw new ContentParseException('One of name or urlSafeName is required')
-  return urlSafeName ??  stringLooseNormalize(name).replaceAll(' ', '-')
+export function toUriSafeName(name?: string, uriSafeName?: string) {
+  if (uriSafeName != null) return uriSafeName
+  if (name == null) throw new ContentParseException('One of name or uriSafeName is required')
+  return uriSafeName ??  stringLooseNormalize(name).replaceAll(' ', '-')
 }
 
 export function isObject(value: unknown): value is Record<string, unknown> {
@@ -32,10 +32,11 @@ export function stringOrThrow(value: unknown, name: string) {
   return value
 }
 
-export function optionalUrlOrThrow(value: unknown, name: string) {
-  const str = optionalStringOrThrow(value, name)
-  if (str == null) return undefined
-  return urlFromString(str)
+export function optionalHrefOrThrow(value: unknown, name: string) {
+  const href = optionalStringOrThrow(value, name)
+  if (href == null) return undefined
+  checkHrefValid(href)
+  return href
 }
 
 export function arrayOrThrow(value: unknown, name: string) {

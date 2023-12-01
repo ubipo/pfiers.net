@@ -19,3 +19,13 @@ export function decodeHTMLEntities(text: string) {
   textArea.innerHTML = text;
   return textArea.value;
 }
+
+export function removePrefix(str: string, prefix: string) {
+  if (!str.startsWith(prefix)) return str
+  return str.substring(prefix.length)
+}
+
+export function removeSuffix(str: string, suffix: string) {
+  if (!str.endsWith(suffix)) return str
+  return str.substring(0, str.length - suffix.length)
+}

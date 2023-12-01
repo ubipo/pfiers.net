@@ -1,9 +1,10 @@
-import parseYaml from './yaml'
+import parseYaml from '../yaml'
 import { defaultOptions } from 'svelte-markdown/src/markdown-parser'
 import { Lexer, marked } from 'marked';
-import { isNonEmptyString } from './stringUtil';
-import { urlFromString } from './url';
-import { parseSrcsetSizesString, type SrcsetItemSize } from './srcSet';
+import { isNonEmptyString } from '../stringUtil';
+import { resolveHrefForSource } from '../url';
+import { parseSrcsetSizesString, type SrcsetItemSize } from '../srcSet';
+import { getImageHrefMeta, type ContentImageToken } from "./imageMeta"
 
 
 export interface MarkdownDefinition {
@@ -42,7 +43,17 @@ export type AllTokenProcessors = {
 
 export type TokenProcessors = Partial<AllTokenProcessors>
 
-let combinedOptions: undefined | marked.MarkedOptions = undefined
+const combinedOptions: undefined | marked.MarkedOptions = undefined
+
+export function getTokenProcessors(sourceDirRelativePath: string): TokenProcessors {
+  return {
+    image: async token => {
+      const metaAndHref = await getImageHrefMeta(sourceDirRelativePath, token.href);
+      (token as ContentImageToken).meta = metaAndHref?.meta
+      token.href = metaAndHref?.href
+    }
+  }
+}
 
 /**
  * Creates a marked tokenizer extension that parses Myst-like\[0] directives of
@@ -76,7 +87,7 @@ function createDirectiveTokenizerExtension(
       if (match == -1) return undefined
       return match
     },
-    tokenizer(src, _tokens) {
+    tokenizer(src) {
       const match = reDirective.exec(src)
       if (match) {
         const groups = match.groups as Record<string, string | undefined> | undefined
@@ -117,7 +128,7 @@ function createRoleTokenizerExtension(name: string) {
       if (match == -1) return undefined
       return match
     },
-    tokenizer(src, tokens) {
+    tokenizer(src) {
       const rule = new RegExp(`^{${name}}\`(.+)\``)
       const match = rule.exec(src);
       if (match) {
@@ -132,7 +143,7 @@ function createRoleTokenizerExtension(name: string) {
   return tokenizerExtension
 }
 
-export function getCustomOptions() {
+export function getTokenizerOptions(sourceDirRelativePath: string) {
   if (combinedOptions) return combinedOptions
 
   const tweetExtensions = createDirectiveTokenizerExtension('tweet', (args) => {
@@ -153,12 +164,12 @@ export function getCustomOptions() {
   })
 
   const srcSetImageExtension = createDirectiveTokenizerExtension('srcSetImage', (args, keywords) => {
-    const [urlStr] = args
+    const [unresolvedHref] = args
     const { alt, sizes: sizesStr } = keywords
-    if (!isNonEmptyString(urlStr)) {
+    if (!isNonEmptyString(unresolvedHref)) {
       throw new Error(`Directive {srcSetImage} must specify an image url (argument 1, format: {srcSetImage} url)`)
     }
-    const url = urlFromString(urlStr)
+    const href = resolveHrefForSource(sourceDirRelativePath, unresolvedHref)
     if (!isNonEmptyString(alt)) {
       throw new Error(`Directive {srcSetImage} must specify an alt keyword (format: {srcSetImage} url\\n:alt: alt-text)`)
     }
@@ -166,7 +177,7 @@ export function getCustomOptions() {
       throw new Error(`Directive {srcSetImage} must specify sizes keyword (format: {srcSetImage} url\\n:sizes: sizes)`)
     }
     const sizes = parseSrcsetSizesString(sizesStr)
-    return { href: url, alt, sizes }
+    return { href, alt, sizes }
   })
 
   marked.use({ extensions: [
@@ -178,26 +189,28 @@ export function getCustomOptions() {
 }
 
 export async function tokenizeMarkdown(
+  sourceFileDirPath: string,
   markdown: string,
-  tokenProcessors: TokenProcessors,
 ) {
-  const combinedOptions = { ...defaultOptions, ...getCustomOptions() }
+  const combinedOptions = { ...defaultOptions, ...getTokenizerOptions(sourceFileDirPath) }
   const lexer = new Lexer(combinedOptions)
+  const tokenProcessors = getTokenProcessors(sourceFileDirPath)
   const tokens = lexer.lex(markdown);
   const walkResults = marked.walkTokens(tokens, async function (token) {
     const tokenType = token.type as marked.Token["type"]
     const tokenProcessor = tokenProcessors[tokenType]
     if (tokenProcessor == null) return
     await (tokenProcessor as TokenProcessorOfType<typeof tokenType>)(token)
-  }) as unknown as Promise<any>[]
+  }) as unknown as Promise<null>[]
   await Promise.all(walkResults)
   return tokens
 }
 
 export function parseMarkdownFrontMatter(markdown: string) {
   const frontMatterSplit = markdown.split(/^---$/m, 3)
-  if (frontMatterSplit[0] !== '') return { frontMatter: undefined, content: markdown }
-  const [_, frontMatterYaml, contentStr] = frontMatterSplit
+  const [preFrontMatter, ...postFrontMatterSplit] = frontMatterSplit
+  if (preFrontMatter !== '') return { frontMatter: undefined, content: markdown }
+  const [frontMatterYaml, contentStr] = postFrontMatterSplit
   const content = contentStr as string | undefined
   return {
     frontMatter: parseYaml(frontMatterYaml),
@@ -205,12 +218,10 @@ export function parseMarkdownFrontMatter(markdown: string) {
   }
 }
 
-export async function parseMarkdown(
-  markdown: string, processors: TokenProcessors
-) {
+export async function parseMarkdown(sourceDirRelativePath: string, markdown: string) {
   const { frontMatter, content } = parseMarkdownFrontMatter(markdown)
   if (!isNonEmptyString(content)) return { frontMatter, definition: undefined }
-  const tokens = await tokenizeMarkdown(content, processors)
+  const tokens = await tokenizeMarkdown(sourceDirRelativePath, content)
   const definition: MarkdownDefinition = {
     sourceFull: markdown,
     sourceContent: content,

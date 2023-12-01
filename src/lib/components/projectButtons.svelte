@@ -11,7 +11,7 @@
 
 
 {#if includeReadMore && project.longDescription != null}
-  <a href={`/projects/${project.urlSafeName}`} class="button">
+  <a href={`/projects/${project.uriSafeName}`} class="button">
     <span><SpriteIcon iconId="read-more" size={iconSize} /></span>
     Read more
   </a>
