@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ImageMeta } from "$lib/service/content/imageMeta";
+	import type { ImageMeta } from "$lib/service/markdown/imageMeta";
 
 
   export let href: string
@@ -7,12 +7,6 @@
   export let text: string
   export let meta: ImageMeta | undefined = undefined
   export let placeholder: string | undefined = undefined
-  
-  {
-    if (href && href.endsWith("ewam-with-recognition.webp")) {
-      console.log(`image.svelte: href = ${href}`)
-    }
-  }
 
   const [containerStyle, imgStyle] = (() => {
     if (meta == undefined) return ["", ""]
