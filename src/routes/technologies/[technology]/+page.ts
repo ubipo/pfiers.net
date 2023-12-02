@@ -6,8 +6,8 @@ import { populateTechnologyPageSpecificMetadata } from '$lib/service/content/pag
 
 
 export const load: PageLoad = async ({ params, fetch }) => {
-  const { contentStore, contentError: error } = await getContentOrError(fetch)
-  if (contentStore == null) return { error }
+  const { contentStore, contentError } = await getContentOrError(fetch)
+  if (contentStore == null) return { contentError }
   const technology = get(contentStore).technologies.find(
     technology => technology.uriSafeName === params.technology
   )

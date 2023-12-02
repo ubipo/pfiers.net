@@ -9,13 +9,17 @@
   export let data: PageData
   $: ({ technology, contentError } = data)
 
-  function simplifyHost(host?: string): string | undefined {
-    if (host == null) return undefined
-    if (host.startsWith("www."))
+  function simplifyHost(host: string): string {
+    if (host.startsWith("www.")) {
       return simplifyHost(host.substring(4))
-    if (/^(?:[a-z]{2})?\.wikipedia\.org/.test(host))
-      return "Wikipedia"
+    }
+    if (/^(?:[a-z]{2})?\.wikipedia\.org/.test(host)) return "Wikipedia"
     return host
+  }
+
+  function urlToSimpleHost(url: URL | string): string {
+    url = url instanceof URL ? url : new URL(url)
+    return simplifyHost(url.host)
   }
 
   const badgeSize = "7rem"
@@ -36,7 +40,7 @@
     </div>
     <h1>{technology.name}</h1>
     {#if technology.url != null}
-      <a href={technology.url.toString()}>Read more on {simplifyHost(technology.url?.host)}</a>
+      <a href={technology.url.toString()}>Read more on {urlToSimpleHost(technology.url)}</a>
     {/if}
     {#if technology.longDescription != null}
       <Markdown tokens={technology.longDescription.tokens} />

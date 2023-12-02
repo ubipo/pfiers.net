@@ -62,7 +62,7 @@ export async function createSrcSetForImage(
     const outPath = path.join(srcsetOutDirFsAbsolute, outFilename)
     const outExists = await fs.access(outPath).then(() => true).catch(() => false)
     const srcsetItem: SrcsetItem = {
-      mediaQuery, size: width, url: `${srcsetSiteRelativeDir}/${outFilename}`
+      mediaQuery, size: width, href: `${srcsetSiteRelativeDir}/${outFilename}`
     }
     if (outExists) return srcsetItem
     await image.resize(width).webp({ quality: 80 }).toFile(outPath)

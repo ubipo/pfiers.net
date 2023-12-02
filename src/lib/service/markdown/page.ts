@@ -2,8 +2,8 @@ import type { marked } from "marked";
 import type { FetchFn } from "../fetchFn";
 import { processTokens, type TokenProcessors } from "./tokenProcessing";
 import { resolveHrefForRoute } from "../url";
-import type { ImageMeta } from "./types";
-import { getImageHrefMeta } from "./imageMeta";
+import { getImageHrefMetaFromApi } from "../imageMeta/imageMeta";
+import type { ImageMeta } from "../imageMeta/types";
 
 
 export interface LinkPageSpecificData {
@@ -39,16 +39,11 @@ export async function generatePageSpecificTokenData(
   tokens: marked.TokensList,
 ) {
   const tokenData: PageSpecificTokenData = { }
-  if (routeId === "/") {
-    console.log("routeId is /")
-    console.log("tokens:", tokens.slice(-1)[0].tokens)
-  }
   const processors: TokenProcessors = {
     image: async token => {
-      if (routeId === "/") console.log("image token:", token)
       const rootRelativeHref = token.href
       const pageRelativeHref = resolveHrefForRoute(routeId, rootRelativeHref)
-      const meta = await getImageHrefMeta(fetchFn, rootRelativeHref)
+      const meta = await getImageHrefMetaFromApi(fetchFn, rootRelativeHref)
       tokenData.image = tokenData.image || { }
       tokenData.image[rootRelativeHref] = { pageRelativeHref, meta }
     },

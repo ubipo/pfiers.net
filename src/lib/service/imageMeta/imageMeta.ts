@@ -1,9 +1,8 @@
 import type { getImageMetaOnServer } from "./imageMetaOnServer"
-import { browser } from "$app/environment"
-import { OUTSIDE_STATIC_DIR, type ImageMeta } from "./types"
 import type { FetchFn } from "../fetchFn"
 import { Exception } from "../exception"
 import { intOrThrow, isObject, optionalStringOrThrow, stringOrThrow } from "../parseUtil"
+import { OUTSIDE_STATIC_DIR, type ImageMeta } from "./types"
 
 
 let getImageMetaOnServerFn: typeof getImageMetaOnServer | undefined = undefined
@@ -21,10 +20,10 @@ function imageMetaFromJson(json: string): ImageMeta {
       if (!Array.isArray(metaS.srcset)) throw new Exception(`Expected array, got ${metaS.srcset}`)
       return metaS.srcset.map((item: unknown) => {
         if (!isObject(item)) throw new Exception(`SrcsetItem: Expected object, got ${item}`)
-        const url = stringOrThrow(item.url, "srcsetItem.url")
+        const href = stringOrThrow(item.href, "srcsetItem.href")
         const mediaQuery = optionalStringOrThrow(item.mediaQuery, "srcsetItem.mediaQuery")
         const size = intOrThrow(item.size, "srcsetItem.size")
-        return { url, mediaQuery, size }
+        return { href, mediaQuery, size }
       })
     })()
   return { width, height, format, placeholder, srcset }
@@ -36,21 +35,10 @@ export async function getImageHrefMetaFromApi(
 ): Promise<ImageMeta> {
   const encodedHref = encodeURIComponent(href)
   const url = `/api/image-meta/${encodedHref}`
-  console.log(`Fetching image meta from API: ${url}`)
   const contentRes = await fetchFn(url)
   if (!contentRes.ok) throw new Exception(`Failed to load image meta from API: ${contentRes.status} ${contentRes.statusText}`)
   const contentJson = await contentRes.text()
   return imageMetaFromJson(contentJson)
-}
-
-export async function getImageHrefMeta(
-  fetchFn: FetchFn,
-  href: string,
-): Promise<ImageMeta> {
-  if (browser) {
-    return await getImageHrefMetaFromApi(fetchFn, href)
-  }
-  return await getImageHrefMetaOnServer(href)
 }
 
 export async function getImageHrefMetaOnServer(

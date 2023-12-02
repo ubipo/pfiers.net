@@ -9,11 +9,3 @@ export interface ImageMeta {
   placeholder: string
   srcset?: SrcsetItem[]
 }
-
-export interface ImageWithMetaToken {
-  type: 'imageWithMeta'
-  raw: string
-  href: string
-  title: string
-  meta: ImageMeta
-}

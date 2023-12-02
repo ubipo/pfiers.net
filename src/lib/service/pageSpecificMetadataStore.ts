@@ -5,7 +5,7 @@ import type { marked } from 'marked';
 import merge from "lodash.merge"
 
 
-type PagesSpecificTokenData = {
+export type PagesSpecificTokenData = {
   [routeId: string]: PageSpecificTokenData
 }
 

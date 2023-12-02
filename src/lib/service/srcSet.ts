@@ -4,7 +4,7 @@ export interface SrcsetItemSize {
 }
 
 export interface SrcsetItem extends SrcsetItemSize {
-    url: string
+    href: string
 }
 
 
