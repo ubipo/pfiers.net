@@ -1,59 +1,69 @@
-import type { marked } from "marked"
-import type { SrcSetImageToken } from "./markdown"
-import type { SrcsetItem } from "../srcSet"
 import type { getImageMetaOnServer } from "./imageMetaOnServer"
-import { isObject } from "../content/parseUtil"
-import { isUri, resolveHrefForSource } from "../url"
 import { browser } from "$app/environment"
-import { OUTSIDE_STATIC_DIR } from "./types"
+import { OUTSIDE_STATIC_DIR, type ImageMeta } from "./types"
+import type { FetchFn } from "../fetchFn"
+import { Exception } from "../exception"
+import { intOrThrow, isObject, optionalStringOrThrow, stringOrThrow } from "../parseUtil"
 
-
-export interface ImageMeta {
-  width: number
-  height: number
-  format: string
-  placeholder: string
-  srcset?: SrcsetItem[]
-}
-
-// Base64 encoded webp placeholder image
-export type ImagePlaceholder = string
-
-export interface ContentImageToken extends marked.Tokens.Image {
-  meta?: ImageMeta,
-}
-
-export interface ContentSrcSetImageToken extends SrcSetImageToken {
-  meta?: ImageMeta,
-}
-
-export function isImageWithMetaToken(token: marked.Token): token is ContentImageToken {
-  if (token.type !== 'image') return false
-  const contentImageToken = token as ContentImageToken
-  return isObject(contentImageToken.meta)
-}
 
 let getImageMetaOnServerFn: typeof getImageMetaOnServer | undefined = undefined
 
-export async function getImageHrefMeta(
-  sourceDirRelativePath: string,
+function imageMetaFromJson(json: string): ImageMeta {
+  const metaS = JSON.parse(json)
+  if (!isObject(metaS)) throw new Exception(`ImageMeta: Expected object, got ${metaS}`)
+  const width = intOrThrow(metaS.width, "imageMeta.width")
+  const height = intOrThrow(metaS.height, "imageMeta.height")
+  const format = stringOrThrow(metaS.format, "imageMeta.format")
+  const placeholder = stringOrThrow(metaS.placeholder, "imageMeta.placeholder")
+  const srcset = metaS.srcset == null
+    ? undefined
+    : (() => {
+      if (!Array.isArray(metaS.srcset)) throw new Exception(`Expected array, got ${metaS.srcset}`)
+      return metaS.srcset.map((item: unknown) => {
+        if (!isObject(item)) throw new Exception(`SrcsetItem: Expected object, got ${item}`)
+        const url = stringOrThrow(item.url, "srcsetItem.url")
+        const mediaQuery = optionalStringOrThrow(item.mediaQuery, "srcsetItem.mediaQuery")
+        const size = intOrThrow(item.size, "srcsetItem.size")
+        return { url, mediaQuery, size }
+      })
+    })()
+  return { width, height, format, placeholder, srcset }
+}
+
+export async function getImageHrefMetaFromApi(
+  fetchFn: FetchFn,
   href: string,
-): Promise<{ meta: ImageMeta | undefined, href: string }> {
-  if (isUri(href)) {
-    return { meta: undefined, href }
-  }
+): Promise<ImageMeta> {
+  const encodedHref = encodeURIComponent(href)
+  const url = `/api/image-meta/${encodedHref}`
+  console.log(`Fetching image meta from API: ${url}`)
+  const contentRes = await fetchFn(url)
+  if (!contentRes.ok) throw new Exception(`Failed to load image meta from API: ${contentRes.status} ${contentRes.statusText}`)
+  const contentJson = await contentRes.text()
+  return imageMetaFromJson(contentJson)
+}
+
+export async function getImageHrefMeta(
+  fetchFn: FetchFn,
+  href: string,
+): Promise<ImageMeta> {
   if (browser) {
-    return { meta: undefined, href }
+    return await getImageHrefMetaFromApi(fetchFn, href)
   }
-  href = resolveHrefForSource(sourceDirRelativePath, href)
+  return await getImageHrefMetaOnServer(href)
+}
+
+export async function getImageHrefMetaOnServer(
+  href: string,
+): Promise<ImageMeta> {
   const fn = getImageMetaOnServerFn == undefined
     ? await import('./imageMetaOnServer').then(m => m.getImageMetaOnServer)
     : getImageMetaOnServerFn
   getImageMetaOnServerFn = fn
-  const metaAndPath = await getImageMetaOnServerFn(href)
+  const metaAndPath = await fn(href)
   if (metaAndPath == OUTSIDE_STATIC_DIR) {
-    return { meta: undefined, href }
+    throw new Exception(`Image path outside static dir: ${href}`)
   }
   const { meta } = metaAndPath
-  return { meta, href }
+  return meta
 }

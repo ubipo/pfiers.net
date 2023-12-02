@@ -1,5 +1,5 @@
 import { EMPTY_MARKDOWN_DEFINITION, parseMarkdown, type MarkdownDefinition } from "$lib/service/markdown/markdown";
-import { ContentParseException, objectOrThrow, optionalStrArrOrThrow, optionalStringOrThrow, optionalHrefOrThrow, stringOrThrow, toUriSafeName } from "./parseUtil";
+import { ContentParseException, objectOrThrow, optionalStrArrOrThrow, optionalStringOrThrow, optionalHrefOrThrow, stringOrThrow, toUriSafeName } from "../parseUtil";
 import { stringLooseEqual } from "$lib/service/stringUtil";
 import { resolveHrefForSource } from "../url";
 

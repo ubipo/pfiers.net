@@ -10,7 +10,7 @@
 
   export let tokens: marked.TokensList
 
-  const renderers: any = {
+  const renderers = {
     dropword: Dropword,
     tweet: Tweet,
     link: Link,

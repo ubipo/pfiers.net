@@ -3,8 +3,8 @@ import { defaultOptions } from 'svelte-markdown/src/markdown-parser'
 import { Lexer, marked } from 'marked';
 import { isNonEmptyString } from '../stringUtil';
 import { resolveHrefForSource } from '../url';
-import { parseSrcsetSizesString, type SrcsetItemSize } from '../srcSet';
-import { getImageHrefMeta, type ContentImageToken } from "./imageMeta"
+import { parseSrcsetSizesString } from '../srcSet';
+import { type TokenProcessors, processTokens } from './tokenProcessing';
 
 
 export interface MarkdownDefinition {
@@ -21,36 +21,17 @@ export const EMPTY_MARKDOWN_DEFINITION: MarkdownDefinition = {
   tokens: EMPTY_TOKENS,
 }
 
-type Tokens = marked.Token | SrcSetImageToken
-
-type TokenProcessor<T extends Tokens> = (token: T) => Promise<void>
-
-export interface SrcSetImageToken {
-  type: 'srcSetImage'
-  raw: string
-  href: string
-  title: string
-  sizes: SrcsetItemSize[]
-}
-
-type TokenProcessorOfType<
-  T extends Tokens["type"]
-> = TokenProcessor<Extract<Tokens, { type: T }>>
-
-export type AllTokenProcessors = {
-  [TokenType in Tokens["type"]]: TokenProcessorOfType<TokenType>
-}
-
-export type TokenProcessors = Partial<AllTokenProcessors>
-
 const combinedOptions: undefined | marked.MarkedOptions = undefined
 
-export function getTokenProcessors(sourceDirRelativePath: string): TokenProcessors {
+export function getSourceTokenProcessors(
+  sourceDirRelativePath: string,
+): TokenProcessors {
   return {
     image: async token => {
-      const metaAndHref = await getImageHrefMeta(sourceDirRelativePath, token.href);
-      (token as ContentImageToken).meta = metaAndHref?.meta
-      token.href = metaAndHref?.href
+      token.href = resolveHrefForSource(sourceDirRelativePath, token.href)
+    },
+    link: async token => {
+      token.href = resolveHrefForSource(sourceDirRelativePath, token.href)
     }
   }
 }
@@ -194,15 +175,8 @@ export async function tokenizeMarkdown(
 ) {
   const combinedOptions = { ...defaultOptions, ...getTokenizerOptions(sourceFileDirPath) }
   const lexer = new Lexer(combinedOptions)
-  const tokenProcessors = getTokenProcessors(sourceFileDirPath)
   const tokens = lexer.lex(markdown);
-  const walkResults = marked.walkTokens(tokens, async function (token) {
-    const tokenType = token.type as marked.Token["type"]
-    const tokenProcessor = tokenProcessors[tokenType]
-    if (tokenProcessor == null) return
-    await (tokenProcessor as TokenProcessorOfType<typeof tokenType>)(token)
-  }) as unknown as Promise<null>[]
-  await Promise.all(walkResults)
+  processTokens(tokens, getSourceTokenProcessors(sourceFileDirPath))
   return tokens
 }
 

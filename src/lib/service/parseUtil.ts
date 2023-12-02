@@ -32,6 +32,13 @@ export function stringOrThrow(value: unknown, name: string) {
   return value
 }
 
+export function intOrThrow(value: unknown, name: string) {
+  if (value == null) throw new ContentParseException(`${name} is required`)
+  if (typeof value !== 'number') throw new ContentParseException(`${name} must be a number`)
+  if (!Number.isInteger(value)) throw new ContentParseException(`${name} must be an integer`)
+  return value
+}
+
 export function optionalHrefOrThrow(value: unknown, name: string) {
   const href = optionalStringOrThrow(value, name)
   if (href == null) return undefined

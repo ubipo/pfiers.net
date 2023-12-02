@@ -3,12 +3,13 @@ import { Exception } from "$lib/service/exception"
 import type { FetchFn } from "$lib/service/fetchFn"
 import { parseMarkdown, type MarkdownDefinition } from "$lib/service/markdown/markdown"
 import { parseProject, type Content, type ContentItem, type ContentItemDto, parseTechnology } from "./model"
-import { arrayOrThrow, ContentParseException, objectOrThrow, toUriSafeName } from "./parseUtil"
+import { arrayOrThrow, ContentParseException, objectOrThrow, toUriSafeName } from "../parseUtil"
 import parseYaml from "$lib/service/yaml"
 import type { FetchContentFile } from "./contentFile"
 import { fetchContentFromApiJson } from "./api"
 import { joinPath } from "../url"
 import { CONTENT_DIR_SITE_RELATIVE_URL } from "$lib/service/siteUrlConsts"
+import type { marked } from "marked"
 
 
 const getContentFromBuildImports = true

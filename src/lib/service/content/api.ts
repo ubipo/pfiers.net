@@ -1,7 +1,7 @@
 import { Exception } from "../exception"
 import type { FetchFn } from "../fetchFn"
 import type { Content, NonCyclicalContent, Project, Technology } from "./model"
-import { isObject } from "./parseUtil"
+import { isObject } from "../parseUtil"
 
 
 function makeContentCyclical(content: NonCyclicalContent): Content {

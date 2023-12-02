@@ -1,13 +1,12 @@
 import createSharp, { type Sharp } from "sharp"
 import fs from "fs/promises"
 import path from "path"
-import type { ImageMeta } from "./imageMeta"
 import { parseSrcsetSizesString, type SrcsetItem, type SrcsetItemSize } from "../srcSet"
 import parseYaml from "../yaml"
 import { joinPath, splitPath } from "../url"
 import { STATIC_DIR_SITE_RELATIVE_URL } from "../siteUrlConsts"
 import { STATIC_DIR_PROJECT_RELATIVE_PATH } from "../projectPathConsts"
-import { OUTSIDE_STATIC_DIR } from "./types"
+import { OUTSIDE_STATIC_DIR, type ImageMeta } from "./types"
 
 
 const SRCSET_FOLDER_NAME = '_srcset'
