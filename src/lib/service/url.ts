@@ -49,6 +49,14 @@ export function isAbsolutePath(path: string) {
   return path.startsWith("/")
 }
 
+export function isQueryOrFragment(path: string) {
+  return path.startsWith("?") || path.startsWith("#")
+}
+
+export function shouldBeResolved(path: string) {
+  return !(isUri(path) || isAbsolutePath(path) || isQueryOrFragment(path))
+}
+
 export function slashNormalize(path: string) {
   return removePrefix(removeSuffix(path, "/"), "./")
 }
@@ -86,7 +94,7 @@ export function resolveHrefForSource(
   sourceDirRelativePath: string,
   href: string,
 ) {
-  if (!isUri(href) && !isAbsolutePath(href)) {
+  if (shouldBeResolved(href)) {
     return joinPath(sourceDirRelativePath, href)
   }
   return href
@@ -107,7 +115,7 @@ export function resolveHrefForRoute(
   routeId: string | null,
   href: string,
 ): string {
-  if (!isUri(href) && !isAbsolutePath(href)) {
+  if (shouldBeResolved(href)) {
     const rootPath = routeIdToRelativeRootPath(routeId)
     return joinPath(rootPath, href)
   }
