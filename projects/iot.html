@@ -29,29 +29,29 @@
 		<link href="../_app/immutable/assets/markdown.7b33e57f.css" rel="stylesheet">
 		<link href="../_app/immutable/assets/projectButtons.9c2f3f73.css" rel="stylesheet">
 		<link href="../_app/immutable/assets/technologyBadge.f8a663be.css" rel="stylesheet">
-		<link rel="modulepreload" href="../_app/immutable/entry/start.d66924a8.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/start.18244a95.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/index.9b0db671.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.599afb3e.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons.ea74f618.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/index.8205a471.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/control.e7f5239e.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/app.01cf240b.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/_layout.svelte.e4dcf300.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/stores.ed910d3a.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/app.fdfc16be.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/_layout.svelte.22104551.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/stores.8c3da9c7.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/themeStore.80d27127.js">
 		<link rel="modulepreload" href="../_app/immutable/entry/_layout.ts.984db11e.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/_layout.da46b06b.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/projects-_project_-page.svelte.4182fe93.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/projects-_project_-page.svelte.39715083.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/spriteIcon.d7130a3c.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/markdown.36567afa.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/pageSpecificMetadataStore.77122287.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/markdown.c6a14633.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/pageSpecificMetadataStore.4c0ed160.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/projectButtons.a71e2a87.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/technologyBadge.a901ffea.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/projects-_project_-page.ts.d9cc7f9a.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/load.9a64d90f.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/markdown.313eedbb.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/projects-_project_-page.ts.f5edf38a.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/load.71429c28.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/markdown.a855ff41.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/index.2defaa64.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/pageSpecificMetadata.1999f404.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/_page.7896c0f9.js"><title>IoT - pfiers</title><!-- HEAD_svelte-gkyi49_START --><!-- HEAD_svelte-gkyi49_END -->
+		<link rel="modulepreload" href="../_app/immutable/chunks/pageSpecificMetadata.57df0299.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_page.cf3bfece.js"><title>IoT - pfiers</title><!-- HEAD_svelte-gkyi49_START --><!-- HEAD_svelte-gkyi49_END -->
 	</head>
 	<body>
 		
@@ -83,9 +83,32 @@
     
 
 
-    <p>I've created my fair share of IoT projects, mostly to solve small inconveniences
-that don't <em>reaaaaly</em> need solving 😅. But hey, that's what IoT is for, and I
-got the learn a ton along the way!</p><h2 id="water-usage-monitoring">Water usage monitoring</h2><p>This project uses a small camera and WiFi microcontroller to read the digits on
+    <p>I've created a bunch of IoT projects over the years. Some with <a href="#water-usage-monitoring" class="svelte-mzekcq">custom PCBs and
+machine vision</a>, others with <a href="#smartifying-an-old-space-heater" class="svelte-mzekcq">off-the-shelf relay
+modules</a>, and most with <a href="#water-well-level-sensor" class="svelte-mzekcq">custom C++ or Rust
+firmware</a>. Most of all, they have been a
+great way to learn with just the right amount of hackiness.</p><h2 id="door-handle-opener">Door Handle Opener</h2><p>Because an in-door smart lock was out of the question in our rented apartment,
+and of course for the fun of it, I built this door handle opener. It straps to
+the door handle and can easily be removed without leaving a trace (just like the
+<a href="#smartifying-an-old-space-heater" class="svelte-mzekcq">space heater I smartified</a>).</p><p>Check out the <a href="https://github.com/ubipo/door-handle-opener" class="svelte-mzekcq">GitHub repo</a> for a 
+detailed write-up.</p><!-- HTML_TAG_START --><video width="320" controls>
+  <source src="/content/projects/door-handle-opener-poc-demo.webm" type="video/mp4">
+</video>
+
+<!-- HTML_TAG_END --><h2 id="water-well-level-sensor">Water Well Level Sensor</h2><p>My dad and I needed a way to ensure the water level in a rain water collection
+well doesn't drop too low and that a pump actually uses the water as scheduled.
+So, as a fun end-to-end IoT project, I put together a sensor, serverless
+backend, and web UI.</p><p>Check out the <a href="https://github.com/ubipo/water-well-level/" class="svelte-mzekcq">GitHub repo</a> with all
+source code, terraform scripts, and a detailed write-up.</p><p><figure class="svelte-m9zqu1">
+  <div style="">
+    <img src="/content/projects/water-well-level-sensor.jpg" title="Sensor in the well" alt="Picture of the sensor in the well, showing the ESP module, battery, and
+ultrasonic sensor" style=""></div>
+  <figcaption class="svelte-m9zqu1"><!-- HTML_TAG_START -->Sensor in the well<!-- HTML_TAG_END --></figcaption>
+</figure></p><p><figure class="svelte-m9zqu1">
+  <div style="">
+    <img src="/content/projects/water-well-level-webui.png" title="Web UI showing the water level over time" alt="Screenshot of the web UI showing the water level over time" style=""></div>
+  <figcaption class="svelte-m9zqu1"><!-- HTML_TAG_START -->Web UI showing the water level over time<!-- HTML_TAG_END --></figcaption>
+</figure></p><h2 id="water-usage-monitoring">Water Usage Monitoring</h2><p>This project uses a small camera and WiFi microcontroller to read the digits on
 an analog water meter. Since I built this in 2018 (?) Belgium has started to 
 roll out smart water meters, but at the time we still had an analog one without
 even a reed switch port. This project was a great reason to try out a bunch of
@@ -113,13 +136,13 @@ bottom-right of image also shows digits being recognized by the neural
 net." style=""></div>
   <figcaption class="svelte-m9zqu1"><!-- HTML_TAG_START -->PCB of the device and an example of
 digits being recognized<!-- HTML_TAG_END --></figcaption>
-</figure></p><h2 id="smartifying-an-old-space-heater">Smartifying an old space heater</h2><p>This one was a lot of fun. I used an off-the-shelf 4-relay ESP module to control
-an old wall-mounted space heater in my dorm room. One of the relays was wired in
-parallel with the heater's original switch, and was controlled from a
-<a href="https://www.home-assistant.io/" class="svelte-mzekcq">HomeAssistant</a> server running on a Raspberry
-PI. That server also connected to a <a href="https://aranet.com/products/aranet4/" class="svelte-mzekcq">bluetooth air quality/temperature
-sensor</a>, effectively acting as a smart
-thermostat. I designed the case for the ESP module in <a href="https://www.autodesk.com/products/fusion-360/overview" class="svelte-mzekcq">Fusion
+</figure></p><h2 id="smartifying-an-old-space-heater">Smartifying an Old Space Heater</h2><p>This project had some great reverse-engineering fun. I used an off-the-shelf
+4-relay ESP module to control an old wall-mounted space heater in my dorm room.
+One of the relays was wired in parallel with the heater's original switch, and
+was controlled from a <a href="https://www.home-assistant.io/" class="svelte-mzekcq">HomeAssistant</a> server
+running on a Raspberry PI. That server also connected to a <a href="https://aranet.com/products/aranet4/" class="svelte-mzekcq">bluetooth air
+quality/temperature sensor</a>, effectively
+acting as a smart thermostat. I designed the case for the ESP module in <a href="https://www.autodesk.com/products/fusion-360/overview" class="svelte-mzekcq">Fusion
 360</a> and printed it at a
 local maker space.</p><!-- HTML_TAG_START --><video width="320" controls>
   <source src="/content/projects/space-heater-video.mp4" type="video/mp4">
@@ -132,13 +155,13 @@ mounted next to the heater" alt="Picture of the 3D-printed case for the ESP modu
 heater" style=""></div>
   <figcaption class="svelte-m9zqu1"><!-- HTML_TAG_START -->3D-printed case for the ESP module
 mounted next to the heater<!-- HTML_TAG_END --></figcaption>
-</figure></p><h2 id="hacking--smartifying-a-garage-gate">Hacking + smartifying a garage gate</h2><p>This was an assignment for the <em>Security</em> module in the last year of my
+</figure></p><h2 id="hacking--smartifying-a-garage-gate">Hacking + Smartifying a Garage Gate</h2><p>This was an assignment for the <em>Security</em> module in the last year of my IT
 Bachelor's. I used a <a href="https://www.realtek.com/en/products/communications-network-ics/item/rtl2832u" class="svelte-mzekcq">software defined
 radio</a>
 to sniff the communication between a remote control and its garage gate. After
 decoding the rolling code in the transmission using <a href="https://github.com/jopohl/urh" class="svelte-mzekcq">Universal Radio
-Hacker</a>, I was able to replay it using a <a href="https://www.adafruit.com/product/3071" class="svelte-mzekcq">generic
-433MHz transmitter</a>.</p><p>If miniaturized, this system could be installed near the gate and collect
+Hacker</a>, I relayed it using a <a href="https://www.adafruit.com/product/3071" class="svelte-mzekcq">generic 433MHz
+transmitter</a>.</p><p>If miniaturized, this system could be installed near the gate and collect
 rolling codes whenever an authorized user opens the garage gate. This way, the
 attacker can open the gate at any later time. <a href="/content/projects/gate-RF-replay.pdf" class="svelte-mzekcq">The presentation
 slides</a> contain diagrams to explain the
@@ -155,20 +178,23 @@ attack.</p><!-- HTML_TAG_START --><video controls preload="metadata" style="widt
 <!-- HTML_TAG_END --><p>Of course I had no personal need for this attack because I already had a remote
 for the gate. Being the lazy software developer I am however, it did get me
 thinking about how nice it would be to be able to open the gate from my phone.
-So I soldered a relay to the remote control and hooked it up to the
-HomeAssistant server in my dorm room. Infinite range achieved ♾️!</p><p><figure class="svelte-m9zqu1">
+So I soldered a relay to the remote control and hooked it up to the <a href="https://www.home-assistant.io/" class="svelte-mzekcq">Home
+Assistant</a> server in my dorm room. Infinite
+garage opener range achieved ♾️!</p><p><figure class="svelte-m9zqu1">
   <div style="">
     <img src="/content/projects/gate-relay.jpg" title="Relay hooked up to the remote control" alt="Picture of a relay connected to the gate&amp;#39;s remote
 control" style=""></div>
   <figcaption class="svelte-m9zqu1"><!-- HTML_TAG_START -->Relay hooked up to the remote control<!-- HTML_TAG_END --></figcaption>
-</figure></p><h2 id="dimming-lamps-and-controlling-led-strips">Dimming lamps and controlling LED strips</h2><p>Besides all of the above, I've also used IoT to dim lamps, control LED strips
+</figure></p><h2 id="dimming-lamps-and-controlling-led-strips">Dimming Lamps and Controlling LED Strips</h2><p>Besides all of the above, I've also used IoT to dim lamps, control LED strips
 and hook into light switches. All those mini projects are some combination of
 taking a cheap ESP module, connecting it to a relay or breakout board and
-hooking it up to HomeAssistant. Below for example is a video of me controlling a
-dimmer circuit that I connected to an Ikea lamp.</p><p>When it comes to the firmware on the ESP modules, I've used pre-built HTTP
-libraries, written my own HTTP server, used MQTT, written a custom UDP protocol,
-and eventually settled on just using <a href="https://esphome.io/" class="svelte-mzekcq">ESPHome</a> or
-<a href="https://tasmota.github.io/docs/" class="svelte-mzekcq">Tasmota</a> for most projects.</p><!-- HTML_TAG_START --><video controls style="width: 100%;">
+hooking it up to <a href="https://www.home-assistant.io/" class="svelte-mzekcq">Home Assistant</a>. Below for
+example is a video of me controlling a <a href="https://www.amazon.com/GENUINE-RobotDYN-Programmable-Controller-Compatible/dp/B071X19VL1" class="svelte-mzekcq">RobotDyn AC
+dimmer</a>
+via an ESP32 and hooked up to an Ikea lamp.</p><p>When it comes to the firmware on the WiFi modules, I've done everything from:
+writing my own HTTP servers in C++ and no-std Rust, implementing a basic MQTT
+client, writing a custom UDP protocol, and of course simply flashing
+<a href="https://esphome.io/" class="svelte-mzekcq">ESPHome</a> or <a href="https://tasmota.github.io/docs/" class="svelte-mzekcq">Tasmota</a>.</p><!-- HTML_TAG_START --><video controls style="width: 100%;">
   <source src="/content/projects/iot-dimming.mp4" type="video/mp4" />
 </video>
 <!-- HTML_TAG_END -->
@@ -181,7 +207,7 @@ and eventually settled on just using <a href="https://esphome.io/" class="svelte
 			
 			<script>
 				{
-					__sveltekit_1s9bceq = {
+					__sveltekit_14dw1pz = {
 						env: {},
 						base: new URL("..", location).pathname.slice(0, -1),
 						element: document.currentScript.parentElement
@@ -190,10 +216,10 @@ and eventually settled on just using <a href="https://esphome.io/" class="svelte
 					const data = [null,null];
 
 					Promise.all([
-						import("../_app/immutable/entry/start.d66924a8.js"),
-						import("../_app/immutable/entry/app.01cf240b.js")
+						import("../_app/immutable/entry/start.18244a95.js"),
+						import("../_app/immutable/entry/app.fdfc16be.js")
 					]).then(([kit, app]) => {
-						kit.start(app, __sveltekit_1s9bceq.element, {
+						kit.start(app, __sveltekit_14dw1pz.element, {
 							node_ids: [0, 5],
 							data,
 							form: null,

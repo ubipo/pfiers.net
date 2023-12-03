@@ -1,8 +1,8 @@
 ---
 name: IoT
 shortDescription: |
-  All my IoT projects: water usage monitoring, smartifying old space heaters or 
-  garage gates, dimming lamps and more!
+  All of my IoT projects: from machine vision water usage monitoring to smartifying old space heaters or 
+  garage gates!
 technologies:
   - Perception
   - Deep learning
@@ -18,12 +18,42 @@ image:
     net.
 ---
 
-I've created my fair share of IoT projects, mostly to solve small inconveniences
-that don't *reaaaaly* need solving 😅. But hey, that's what IoT is for, and I
-got the learn a ton along the way!
+I've created a bunch of IoT projects over the years. Some with [custom PCBs and
+machine vision](#water-usage-monitoring), others with [off-the-shelf relay
+modules](#smartifying-an-old-space-heater), and most with [custom C++ or Rust
+firmware](#water-well-level-sensor). Most of all, they have been a
+great way to learn with just the right amount of hackiness.
 
+## Door Handle Opener
 
-## Water usage monitoring
+Because an in-door smart lock was out of the question in our rented apartment,
+and of course for the fun of it, I built this door handle opener. It straps to
+the door handle and can easily be removed without leaving a trace (just like the
+[space heater I smartified](#smartifying-an-old-space-heater)).
+
+Check out the [GitHub repo](https://github.com/ubipo/door-handle-opener) for a 
+detailed write-up.
+
+<video width="320" controls>
+  <source src="/content/projects/door-handle-opener-poc-demo.webm" type="video/mp4">
+</video>
+
+## Water Well Level Sensor
+
+My dad and I needed a way to ensure the water level in a rain water collection
+well doesn't drop too low and that a pump actually uses the water as scheduled.
+So, as a fun end-to-end IoT project, I put together a sensor, serverless
+backend, and web UI.
+
+Check out the [GitHub repo](https://github.com/ubipo/water-well-level/) with all
+source code, terraform scripts, and a detailed write-up.
+
+![Picture of the sensor in the well, showing the ESP module, battery, and
+ultrasonic sensor](water-well-level-sensor.jpg "Sensor in the well")
+
+![Screenshot of the web UI showing the water level over time](water-well-level-webui.png "Web UI showing the water level over time")
+
+## Water Usage Monitoring
 
 This project uses a small camera and WiFi microcontroller to read the digits on
 an analog water meter. Since I built this in 2018 (?) Belgium has started to 
@@ -57,15 +87,15 @@ net.](./ewam-with-recognition.webp "PCB of the device and an example of
 digits being recognized")
 
 
-## Smartifying an old space heater
+## Smartifying an Old Space Heater
 
-This one was a lot of fun. I used an off-the-shelf 4-relay ESP module to control
-an old wall-mounted space heater in my dorm room. One of the relays was wired in
-parallel with the heater's original switch, and was controlled from a
-[HomeAssistant](https://www.home-assistant.io/) server running on a Raspberry
-PI. That server also connected to a [bluetooth air quality/temperature
-sensor](https://aranet.com/products/aranet4/), effectively acting as a smart
-thermostat. I designed the case for the ESP module in [Fusion
+This project had some great reverse-engineering fun. I used an off-the-shelf
+4-relay ESP module to control an old wall-mounted space heater in my dorm room.
+One of the relays was wired in parallel with the heater's original switch, and
+was controlled from a [HomeAssistant](https://www.home-assistant.io/) server
+running on a Raspberry PI. That server also connected to a [bluetooth air
+quality/temperature sensor](https://aranet.com/products/aranet4/), effectively
+acting as a smart thermostat. I designed the case for the ESP module in [Fusion
 360](https://www.autodesk.com/products/fusion-360/overview) and printed it at a
 local maker space.
 
@@ -78,15 +108,15 @@ heater](space-heater-box.jpg "3D-printed case for the ESP module
 mounted next to the heater")
 
 
-## Hacking + smartifying a garage gate
+## Hacking + Smartifying a Garage Gate
 
-This was an assignment for the *Security* module in the last year of my
+This was an assignment for the *Security* module in the last year of my IT
 Bachelor's. I used a [software defined
 radio](https://www.realtek.com/en/products/communications-network-ics/item/rtl2832u)
 to sniff the communication between a remote control and its garage gate. After
 decoding the rolling code in the transmission using [Universal Radio
-Hacker](https://github.com/jopohl/urh), I was able to replay it using a [generic
-433MHz transmitter](https://www.adafruit.com/product/3071).
+Hacker](https://github.com/jopohl/urh), I relayed it using a [generic 433MHz
+transmitter](https://www.adafruit.com/product/3071).
 
 If miniaturized, this system could be installed near the gate and collect
 rolling codes whenever an authorized user opens the garage gate. This way, the
@@ -107,25 +137,28 @@ attack.
 Of course I had no personal need for this attack because I already had a remote
 for the gate. Being the lazy software developer I am however, it did get me
 thinking about how nice it would be to be able to open the gate from my phone.
-So I soldered a relay to the remote control and hooked it up to the
-HomeAssistant server in my dorm room. Infinite range achieved ♾️!
+So I soldered a relay to the remote control and hooked it up to the [Home
+Assistant](https://www.home-assistant.io/) server in my dorm room. Infinite
+garage opener range achieved ♾️!
 
 ![Picture of a relay connected to the gate's remote
 control](gate-relay.jpg "Relay hooked up to the remote control")
 
 
-## Dimming lamps and controlling LED strips
+## Dimming Lamps and Controlling LED Strips
 
 Besides all of the above, I've also used IoT to dim lamps, control LED strips
 and hook into light switches. All those mini projects are some combination of
 taking a cheap ESP module, connecting it to a relay or breakout board and
-hooking it up to HomeAssistant. Below for example is a video of me controlling a
-dimmer circuit that I connected to an Ikea lamp.
+hooking it up to [Home Assistant](https://www.home-assistant.io/). Below for
+example is a video of me controlling a [RobotDyn AC
+dimmer](https://www.amazon.com/GENUINE-RobotDYN-Programmable-Controller-Compatible/dp/B071X19VL1)
+via an ESP32 and hooked up to an Ikea lamp.
 
-When it comes to the firmware on the ESP modules, I've used pre-built HTTP
-libraries, written my own HTTP server, used MQTT, written a custom UDP protocol,
-and eventually settled on just using [ESPHome](https://esphome.io/) or
-[Tasmota](https://tasmota.github.io/docs/) for most projects.
+When it comes to the firmware on the WiFi modules, I've done everything from:
+writing my own HTTP servers in C++ and no-std Rust, implementing a basic MQTT
+client, writing a custom UDP protocol, and of course simply flashing
+[ESPHome](https://esphome.io/) or [Tasmota](https://tasmota.github.io/docs/).
 
 <video controls style="width: 100%;">
   <source src="/content/projects/iot-dimming.mp4" type="video/mp4" />

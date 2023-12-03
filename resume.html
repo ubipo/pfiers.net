@@ -125,7 +125,19 @@
       color: #328546;
       text-decoration: underline;
       text-decoration-style: dotted;
-      font-style: normal;
+    }
+
+    .tech-list-title {
+      display: inline;
+    }
+
+    .tech-list {
+      display: inline;
+      font-size: 1rem;
+      font-style: italic;
+      margin-top: 0.5em;
+      line-height: 1.3em;
+      text-align: left;
     }
   </style>
 </head>
@@ -147,13 +159,10 @@
       <section>
         <h2>Passion</h2>
         <p>
-          From building autonomous drones and rovers, to helping us map the
-          world with apps and websites: if it involves a computer interacting
-          with the outdoors, I'm in.
-        </p>
-        <p>
-          Read about two of my favorite projects below, or check out all of my
-          web apps, embedded systems, and Android apps here: <a
+          From building autonomous robots, drones, and rovers, to helping us map
+          the world with apps and websites: if it involves a computer
+          interacting with the outdoors, I'm in. Explore my portfolio of past
+          projects here: <a
           href="https://pfiers.net/projects">pfiers.net&#x200B;/projects</a>.
         </p>
       </section>
@@ -180,26 +189,6 @@
           <p class="occupation-details">2018 - 2021</p>
           <p class="occupation-details">Magna cum laude</p>
         </section>
-        <!-- <section>
-          <h3 class="occupation-heading">
-            Acad. Bach. Industrial engineering
-            <span class="occupation-heading__extra">
-              - KU Leuven, Leuven​
-            </span>
-          </h3>
-          <p class="occupation-details">
-            2017 - 2018 <small><sub>(incomplete)</sub></small>
-          </p>
-        </section>
-        <section>
-          <h3 class="occupation-heading">
-            High School, Sciences-Maths
-            <span class="occupation-heading__extra">
-              - Scheppersinstituut ASO, Mechelen
-            </span>
-          </h3>
-          <p class="occupation-details">2011 - 2017</p>
-        </section> -->
       </section>
 
       <section>
@@ -220,6 +209,65 @@
         </section> -->
         <section>
           <h3 class="occupation-heading">
+            Data Engineer 
+            <span class="occupation-heading__extra">
+              - <a href="https://dataroots.io/">Dataroots</a>, Leuven
+            </span>
+          </h3>
+          <p class="occupation-details">March 2023 - present</p>
+          <p>
+            As a Data & Cloud Engineer at Dataroots, I collaborate with
+            customers from all sectors to create truly end-to-end data
+            solutions. This includes not just crafting state-of-the-art models
+            and analysis platforms, but also building a long term data strategy
+            and setting up the cloud infrastructure to support it all.
+          </p>
+          <p>
+            Joining a team of five, I started my first project at dataroots in
+            April of 2023. Our client,
+            <a href="https://cluepoints.com/">CluePoints</a>, offers a risk and
+            quality management platform for clinical trials, used among others
+            by <a href="https://www.pfizer.com/">Pfizer</a> and the <a
+            href="https://www.fda.gov/">FDA</a>. The goal of our team was to
+            eliminate bottlenecks and increase flexibility in the trial data
+            ingestion pipeline. To this end I deployed and benchmarked multiple
+            datalake components including the Airflow and Prefect workflow
+            orchestrators, databricks and snowflake data intelligence platforms,
+            and a combination of dbt, Spark, and custom Python data pipelines.
+            We were able to reduce the storage requirements by an order of
+            magnitude and to greatly increase the speed and flexibility of trial
+            data transformations.
+          </p>
+          <p>
+            On my second and current project, I am collaborating with the
+            audience data intelligence team of <a
+            href="https://www.vrt.be/">VRT</a>, the dutch-language public
+            broadcaster of Belgium. The goal of this project is to integrate
+            viewership and engagement data from multiple sources into the
+            company-wide datalake. To best support the existing workflows of the
+            team, I have developed an Airflow-orchestrated data export task
+            server for Windows Server. This <a
+            href="https://fastapi.tiangolo.com/">FastAPI</a> Python server uses
+            a combination of accessibility automation frameworks and UI machine
+            vision systems to extract data from GUI-only applications. My
+            solution eliminates the need for repetitive manual report generation
+            and allows the creation of rich new dashboards and analyses.
+          </p>
+          <p>
+            I also advised, and helped my teammates in various projects, for
+            among others, C-Energy, Touring, and Immoscoop. I did this in
+            particularly through my expertise in machine vision as well as
+            infrastructure and system administration.
+          </p>
+          <h4 class="tech-list-title">Tech stack:</h4>
+          <p class="tech-list">
+            Python, SQL, Spark, MLflow, Machine Learning, OpenCV, Azure, AWS,
+            Airflow, Prefect, Docker, Numpy, databricks,
+            Cloudformation/Terraform, dbt, Great Expectations, Agile
+          </p>
+        </section>
+        <section>
+          <h3 class="occupation-heading">
             Professional Tutor 
             <span class="occupation-heading__extra">
               - <a
@@ -227,38 +275,69 @@
               and other platforms
             </span>
           </h3>
-          <p class="occupation-details">2019 - </p>
+          <p class="occupation-details">2019 - present</p>
           <p>
             I first started tutoring in 2019 for my then university, UCLL. Since
             then, I've taught over fifty students in computer science and
             software engineering topics through various organizations. You can
-            read reviews by students on <a
-            href="https://pfiers.net/cgr"
+            read reviews by my students on <a href="https://pfiers.net/cgr"
             target="_blank">pfiers.net/cgr</a>.
+          </p>
+          <h4 class="tech-list-title">Tech stack:</h4>
+          <p class="tech-list">
+            Python, SQL, JavaScript, TypeScript, React, Java, C++
           </p>
         </section>
         <section>
           <h3 class="occupation-heading">
-            Open Summer of Code
+            Lead Blockchain Engineer
             <span class="occupation-heading__extra">
-              - Intern Software Developer - <a href="https://osoc.be/editions/2020/cyclofix">osoc.be</a>
+              - Art_Value, Stockholm
             </span>
           </h3>
-          <p class="occupation-details">July 2020</p>
+          <p class="occupation-details">2021</p>
+          <p>
+            Web3 and blockchain engineer for NFT and fungible token art auction
+            platform. As a blockchain engineer I developed and deployed solidity
+            smart contracts for the Ethereum blockchain to facilitate the
+            trading of auction tokens. I also developed the web3 website in
+            Typescript with Vue.js and backend in PHP and Python with a
+            PostgreSQL database. The backend was deployed on Google Cloud
+            Platform using terraform. I oversaw the handover of the web app to a
+            team of three junior full stack developers.
+          </p>
+          <h4 class="tech-list-title">Tech stack:</h4>
+          <p class="tech-list">
+            SQL, Solidity, Typescript, PHP, Python, Terraform, Google Cloud
+            Platform
+          </p>
+        </section>
+        <section>
+          <h3 class="occupation-heading">
+            Intern Software Developer
+            <span class="occupation-heading__extra">
+              - Open Summer of Code - <a href="https://osoc.be/editions/2020/cyclofix">osoc.be</a>
+            </span>
+          </h3>
+          <p class="occupation-details">2020</p>
           <p>
             Open Summer of Code is a 4-week summer programme focused
             on building open source projects of public utility.
             Commissioned by <a href="https://mobilite-mobiliteit.brussels/">Brussels Mobility</a>, my team and I built <a href="https://cyclofix.osm.be/map/">Cyclofix</a>: <span class="explanation">A solution to map, present and integrate cycling infrastructure in Brussels.</span>
           </p>
+          <h4 class="tech-list-title">Tech stack:</h4>
+          <p class="tech-list">
+            TypeScript, Node.js, Mapbox
+          </p>
         </section>
         <section>
           <h3 class="occupation-heading">
-            i-Force, Aalst
+            Intern Computer Forensic Analyst
             <span class="occupation-heading__extra">
-              - Intern Computer Forensic Analyst - <a href="https://i-force.be/">i-force.be</a>
+              - <a href="https://i-force.be/">i-Force</a>, Aalst
             </span>
           </h3>
-          <p class="occupation-details">September 2019</p>
+          <p class="occupation-details">2019</p>
           <p>
             Student job at i-Force, a fraud and digital forensics company.
             During my time here I created tools to aid in data recovery and
@@ -268,23 +347,35 @@
             Firewalls</a> and
             <a href="https://web.mit.edu/kerberos/">Kerberos</a>.
           </p>
+          <h4 class="tech-list-title">Tech stack:</h4>
+          <p class="tech-list">
+            Python, Citrix Hypervisor, Windows Server, Kerberos, Palo Alto
+            Firewalls
+          </p>
         </section>
         <section>
           <h3 class="occupation-heading">
-            NERF (IMEC), Leuven
+            Intern Research Software Developer
             <span class="occupation-heading__extra">
-              - Intern Research Software Developer - <a href="https://www.nerf.be/research/nerf-labs/karl-farrow-lab">nerf.be</a>
+              - <a
+              href="https://www.nerf.be/research/nerf-labs/karl-farrow-lab">NERF
+              (IMEC)</a>, Leuven</a>
             </span>
           </h3>
-          <p class="occupation-details">September 2018</p>
+          <p class="occupation-details">2018</p>
           <p>
-            Internship at the NERF (Neuro-Electronics Research Flanders)
-            neuroscience lab of professor <a
-            href="https://www.nerf.be/people/karl-farrow">Karl Farrow</a>,
-            during which I made
-            <a href="https://pfiers.net/projects/kinect-mouse-tracker/">“Kinect
-            Mouse Tracker”</a>, a computer vision application to track a mouse’s
-            position in real-time using depth information.
+            Internship at the Belgium neuroscience lab of professor <a
+            href="https://www.nerf.be/people/karl-farrow">Karl Farrow</a>, part
+            of NERF (Neuro-Electronics Research Flanders). During this
+            assignment I developed
+            <a href="https://pfiers.net/projects/kinect-mouse-tracker">“Kinect
+            Mouse Tracker”</a>, a computer vision application to track the
+            position of a mouse in real-time using depth information.
+          </p>
+          <h4 class="tech-list-title">Tech stack:</h4>
+          <p class="tech-list">
+            C++, OpenCV, Object detection, Multi-stream processing, Depth
+            cameras
           </p>
         </section>
       </section>
@@ -311,22 +402,26 @@
             </span>
           </h3>
           <p>
-            <a href="https://pfiers.net/projects/lakehopper">Lakehopper</a> is
-            my vision for an autonomous drone that can fly indefinitely by
-            hopping from one lake to the next, recharging its batteries each
-            time using solar panels.
-          </p>
-          <p>
             For my <a href="https://pfiers.net/dissertation.pdf">Master’s
-            thesis</a>, I developed Lakehopper’s high-level planning software.
-            This system uses a convolutional neural network to identify lakes
-            and buildings from aerial imagery. From this, it generates a
-            navigation graph to calculate the best multi-hop paths between
-            lakes. These paths avoid build-up areas and restricted airspace.
+            thesis</a>, I developed the high-level planning software for <i><a
+            href="https://pfiers.net/projects/lakehopper">Lakehopper</a></i>, an
+            autonomous drone that can fly indefinitely by hopping from one lake
+            to the next, recharging its batteries each time using solar panels.
           </p>
           <p>
-            In my free time I’m working on the hardware of the drone and the
-            next generation of the planner software.
+            This system uses a custom designed deep convolutional neural network
+            that I trained to identify lakes and buildings in aerial imagery. It
+            further uses <a href="https://opencv.org/">OpenCV</a> for object
+            detection based on this data. From this, it generates a navigation
+            graph to calculate the best multi-hop paths between lakes. These
+            paths avoid build-up areas and restricted airspace.
+          </p>
+          <p>
+            In my free time I have created a first prototype version of the
+            drone and the next generation of the planner software, including
+            integration with an on-board single board computer running <a
+            href="https://www.ros.org/">ROS</a>, the Robot Operating System on
+            Linux.
           </p>
         </section>
         <section>
@@ -339,12 +434,14 @@
           <p>
             <a href="https://pfiers.net/projects/pathy">Pathy</a> is my
             Bachelor’s thesis project. It is a small tank-track rover that
-            autonomously follows forest paths using a convolutional neural
+            autonomously follows forest paths using a <a
+            href="https://www.tensorflow.org">Tensorflow</a> + <a
+            href="https://keras.io/">Keras</a> deep convolutional neural
             network. The network runs on the single board computer on the rover
-            and processes data from a live webcam feed.
-
-            The labelling of the training data was crowdsourced by other 
-            students through a webapp.
+            and processes data from a live webcam feed. This pipeline is
+            facilitated and controlled through <a
+            href="https://www.ros.org/">ROS</a>. The labelling of the training
+            data was crowdsourced to other students through a webapp.
           </p>
         </section>
       </section>
@@ -352,11 +449,22 @@
       <section>
         <h2>Skills</h2>
         <p>
-          I have developed software in both high and low-level languages
-          languages: from JavaScript, Python and Kotlin, down to C++, Rust and
-          Go. Thanks to my computer science master's degree, I have a solid
-          understanding of the fundamentals of the field, as well as of modern
-          data science and machine learning techniques.
+          I believe that the best way to learn is by doing, and I have a track
+          record of quickly picking up new skills and applying them in
+          real-world end-to-end projects.
+        </p>
+        <p>
+          Through professional experience, personal projects, and my bachelor
+          and master's theses, I have gained profound knowledge and the ability
+          to practically apply deep learning and machine vision techniques for
+          object detection, classification, and segmentation.
+        </p>
+        <p>
+          Over my more than 7 years of focused software and systems development,
+          I have mastered an extensive range of technologies and programming
+          languages. Thanks to my computer science master's degree, I have a
+          solid understanding of the fundamentals of the field, as well as of
+          modern data science techniques.
         </p>
         <p>
           Through my undergraduate specialization in <a
@@ -376,7 +484,8 @@
           cartography and GIS. I’m a member of <a
           href="https://openstreetmap.be">OSM Belgium</a> and the <a
           href="https://wiki.osmfoundation.org/wiki/Main_Page">OpenStreetMap
-          Foundation</a>, and I’ve contributed several apps and websites.
+          Foundation</a>, and I’ve contributed several open-source apps and
+          websites.
         </p>
       </section>
     </main>

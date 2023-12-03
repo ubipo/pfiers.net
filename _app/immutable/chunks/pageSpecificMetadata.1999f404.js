@@ -1,1 +1,0 @@
-import{p}from"./pageSpecificMetadataStore.77122287.js";async function o(i,e,...a){const n=a.map(t=>t==null?void 0:t.tokens).filter(t=>t!=null);await Promise.all(n.map(async t=>{await p(i,e,t)}))}async function s(i,e,a){await o(i,e,a.shortDescription,a.longDescription)}async function r(i,e,a){await o(i,e,a.shortDescription,a.longDescription)}export{r as a,s as p};
