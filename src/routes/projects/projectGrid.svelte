@@ -38,9 +38,19 @@
   </button>
   <h1>Projects</h1>
   <p>
-    These are some of my bigger projects. I also have a 
-    <a href="https://github.com/ubipo/">GitHub</a> with all these and
-    more ✨
+    My favorite projects ✨
+  </p>
+  <p>
+    To quickly read about my experience for a particular topic like <a
+    href="/technologies/perception">Computer Vision</a> or a language like <a
+    href="/technologies/python">Python</a>, check out <i><a
+    href="/technologies">Technologies</a></i>. For a history of my professional
+    experience,
+    <a href="/resume.html">read my resume here</a>.
+  </p>
+  <p>
+    I also have a 
+    <a href="https://github.com/ubipo/">GitHub</a> with all these and more!
   </p>
 </ColumnGrid>
 
